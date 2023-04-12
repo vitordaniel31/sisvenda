@@ -60,6 +60,33 @@
 
 ## 🚀 Como executar o projeto
 
+**O tutorial abaixo assume que você já tenha instalado o **[Docker](https://www.docker.com/)**
+ em sua máquina.\**
+
+```bash
+git clone https://github.com/vitordaniel31/sisvenda.git
+
+cd sisvenda
+
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs &&
+    cp .env.example .env &&
+    php artisan key:generate && 
+    npm install
+
+
+docker compose up -d
+
+docker exec -it sisvenda-laravel-1 bash
+
+npm run dev
+
+```
+
 ---
 
 ## 🛠 Tecnologias
@@ -75,7 +102,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 > Veja o arquivo  [package.json](https://github.com/vitordaniel31/sisvenda/blob/main/package.json)
 ---
-## ✒️ Autor
+## ✒️ Autores
 
 <table>
   <tr>
