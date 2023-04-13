@@ -5,7 +5,7 @@
 
 ## Descrição
 
-Este documento descreve os User Stories criados a partir da Lista de Requisitos no [Documento 001 - Documento de Visão](doc-visao.md). Este documento também pode ser adaptado para descrever Casos de Uso. Modelo de documento baseado nas características do processo easYProcess (YP).
+Este documento descreve os User Stories criados a partir da Lista de Requisitos no [Documento 001 - Documento de Visão](https://github.com/vitordaniel31/sisvenda/blob/main/docs/doc_visao.md). Este documento também pode ser adaptado para descrever Casos de Uso. Modelo de documento baseado nas características do processo easYProcess (YP).
 
 
 
@@ -25,7 +25,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF001, RF002      | Login 				|
+| RF001  | Login 				|
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -37,7 +37,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente.                                   | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração)                                   | 
-| **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                                   | 
+| **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                                   | 
 
 
 
@@ -57,7 +57,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF001, RF002      | Logout 				|
+| RF002      | Logout 				|
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -69,7 +69,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Desenvolvedor**         |  José Pereira (responsável por implementar e realizar testes de unidade e testes de integração). 
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                   | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                                   | 
-| **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                                 | 
+| **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                                 | 
 
 
 
@@ -88,7 +88,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF03, RF011      | Manter administrador 				|
+| RF03, RF012      | Manter administrador 				|
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -100,7 +100,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
-| **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
+| **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
 
 
 
@@ -133,10 +133,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 10                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Desenvolvedor**         |  José Pereira e Ketlly  (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
-| **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
+| **Testador**              |  Hugo (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
 
 
 
@@ -172,7 +172,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
-| **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
+| **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
 
 
 
@@ -205,7 +205,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 20                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo  (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
 | **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
@@ -231,7 +231,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF010      |  Manter PIX
+| RF011      |  Manter PIX
  				|
 
 |                           |                                     |
@@ -241,7 +241,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 5                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo  (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
 | **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
@@ -267,7 +267,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF012      |  Gerar QR Code do PIX
+| RF013      |  Gerar QR Code do PIX
 
 
 |                           |                                     |
@@ -277,7 +277,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 5                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
 | **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
@@ -311,7 +311,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 10                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo  (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
 | **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
@@ -343,7 +343,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 10                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo (responsáveis por implementar e realizar testes de unidade e testes de integração).
 | **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
 | **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
