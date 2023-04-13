@@ -63,6 +63,7 @@
 **O tutorial abaixo assume que você já tenha instalado o **[Docker](https://www.docker.com/)**
  em sua máquina.\**
 
+### Instalação
 ```bash
 git clone https://github.com/vitordaniel31/sisvenda.git
 
@@ -78,7 +79,9 @@ docker run --rm \
     php artisan key:generate && 
     npm install
 
-
+```
+### Inicialização
+```bash
 docker compose up -d
 
 docker exec -it sisvenda-laravel-1 bash
@@ -86,6 +89,8 @@ docker exec -it sisvenda-laravel-1 bash
 npm run dev
 
 ```
+
+Aplicação Local (http://localhost:8000)
 
 ---
 
