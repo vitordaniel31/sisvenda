@@ -1,15 +1,22 @@
-<script setup>
+<script>
 import { Link } from "@inertiajs/vue3";
 import MasterLayout from "./MasterLayout.vue";
 
-const props = defineProps({
-    title: {
-        type: String,
+export default {
+    components: {
+        MasterLayout,
+        Link,
     },
-    description: {
-        type: String,
+
+    props: {
+        title: {
+            type: String,
+        },
+        description: {
+            type: String,
+        },
     },
-});
+};
 </script>
 
 <template>
@@ -29,16 +36,30 @@ const props = defineProps({
                         </div>
                     </a>
                     <hr class="sidebar-divider my-0" />
-                    <li class="nav-item active">
-                        <Link
-                            class="nav-link collapsed"
-                            :href="route('dashboard')"
-                        >
-                            <i class="fas fa-home"></i>
-                            <span>Dashboard</span>
-                        </Link>
-                    </li>
-                    <hr class="sidebar-divider my-0" />
+                    <div>
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('dashboard')"
+                            >
+                                <i class="fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
+                    <div v-if="can('users.read')">
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('dashboard')"
+                            >
+                                <i class="fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
                 </ul>
                 <div id="content-wrapper" class="d-flex flex-column">
                     <div id="content">
