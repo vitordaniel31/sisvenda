@@ -11,7 +11,7 @@ const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${title} - Sisvenda`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,

@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-    <MasterLayout>
+    <MasterLayout :title="title">
         <template #layout>
             <div id="wrapper">
                 <ul
@@ -52,10 +52,10 @@ export default {
                         <li class="nav-item active">
                             <Link
                                 class="nav-link collapsed"
-                                :href="route('dashboard')"
+                                :href="route('users.index')"
                             >
-                                <i class="fas fa-home"></i>
-                                <span>Dashboard</span>
+                                <i class="fas fa-users"></i>
+                                <span>Usuários</span>
                             </Link>
                         </li>
                         <hr class="sidebar-divider my-0" />

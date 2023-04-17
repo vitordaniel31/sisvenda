@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <MasterLayout>
+    <MasterLayout title="Autenticação">
         <template #layout>
             <div style="height: 100vh" class="d-flex align-items-center">
                 <div class="row justify-content-center" style="width: 200vh">

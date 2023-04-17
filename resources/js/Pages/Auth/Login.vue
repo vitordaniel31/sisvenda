@@ -1,33 +1,48 @@
-<script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import MasterLayout from '@/Layouts/MasterLayout.vue';
-import AuthenticationLayout from '@/Layouts/AuthenticationLayout.vue';
+<script>
+import InputError from "@/Components/InputError.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import MasterLayout from "@/Layouts/MasterLayout.vue";
+import AuthenticationLayout from "@/Layouts/AuthenticationLayout.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
 
-defineProps({
-    canResetPassword: {
-        type: Boolean,
+export default {
+    components: {
+        AuthenticationLayout,
+        InputLabel,
+        TextInput,
+        PrimaryButton,
+        InputError,
+        Link,
     },
-    status: {
-        type: String,
+
+    data() {
+        return {
+            form: useForm({
+                email: "",
+                password: "",
+                remember: false,
+            }),
+        };
     },
-});
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
+    props: {
+        canResetPassword: {
+            type: Boolean,
+        },
+        status: {
+            type: String,
+        },
+    },
 
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+    methods: {
+        submit() {
+            this.form.post(route("login"), {
+                onFinish: () => this.form.reset("password"),
+            });
+        },
+    },
 };
 </script>
 
@@ -83,7 +98,11 @@ const submit = () => {
                         Esqueceu sua senha?
                     </Link>
 
-                    <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <PrimaryButton
+                        class="ml-4"
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
                         Log in
                     </PrimaryButton>
                 </div>

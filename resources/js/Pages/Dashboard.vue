@@ -1,5 +1,11 @@
-<script setup>
+<script>
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
+
+export default {
+    components: {
+        DashboardLayout,
+    },
+};
 </script>
 
 <template>

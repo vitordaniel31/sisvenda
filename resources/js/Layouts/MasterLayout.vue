@@ -1,5 +1,5 @@
 <script>
-import { usePage } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 
 //css
 import "../Static/template/vendor/fontawesome-free/css/all.min.css";
@@ -16,7 +16,17 @@ import "../Static/template/js/demo/datatables-demo.js";
 import "../Static/template/vendor/datatables/dataTables.bootstrap4.js";
 import "../Static/plugins/toastr/toastr.min.js";
 
-export default {};
+export default {
+    components: {
+        Head,
+    },
+
+    props: {
+        title: {
+            type: String,
+        },
+    },
+};
 </script>
 
 <style>
@@ -26,14 +36,14 @@ export default {};
 </style>
 
 <template>
-    <head>
+    <Head>
         <meta charset="utf-8" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
         />
 
-        <title>Sisvenda</title>
+        <title>{{ title }}</title>
 
         <!-- Icons -->
         <!--<link rel="shortcut icon" href="{{ asset('Imagens/favicon.png') }}" /> -->
@@ -42,9 +52,11 @@ export default {};
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
         />
-    </head>
+        <slot name="css_after"></slot>
+    </Head>
 
     <body id="page-top" class="sidebar-toggled bg-capelli">
         <slot name="layout"></slot>
+        <slot name="js_after"></slot>
     </body>
 </template>
