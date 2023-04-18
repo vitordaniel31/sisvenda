@@ -75,7 +75,7 @@ export default {
                     type="password"
                     class="mt-1 block w-full"
                     v-model="form.password"
-                    required
+                    :required="create"
                     autocomplete="new-password"
                 />
 
@@ -94,7 +94,7 @@ export default {
                     type="password"
                     class="mt-1 block w-full"
                     v-model="form.password_confirmation"
-                    required
+                    :required="create"
                     autocomplete="new-password"
                 />
 
