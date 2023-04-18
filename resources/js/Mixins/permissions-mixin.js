@@ -2,8 +2,8 @@ import { usePage } from "@inertiajs/vue3";
 
 export default {
     computed: {
-        user() {
-            return usePage().props.auth.user;
+        auth() {
+            return usePage().props.auth;
         },
     },
 
@@ -17,7 +17,7 @@ export default {
                 return true;
             }
 
-            return permissions.some((v) => permissions.indexOf(v) >= 0);
+            return this.auth.user.permissions.some((v) => permissions.indexOf(v) >= 0);
         },
 
         hasRole(roles) {
@@ -29,7 +29,7 @@ export default {
                 return true;
             }
 
-            return roles.some((v) => roles.indexOf(v) >= 0);
+            return this.auth.user.roles.some((v) => roles.indexOf(v) >= 0);
         },
     },
 };
