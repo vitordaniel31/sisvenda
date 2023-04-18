@@ -48,18 +48,6 @@ export default {
                         </li>
                         <hr class="sidebar-divider my-0" />
                     </div>
-                    <div v-if="can('users.read')">
-                        <li class="nav-item active">
-                            <Link
-                                class="nav-link collapsed"
-                                :href="route('dashboard')"
-                            >
-                                <i class="fas fa-home"></i>
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
-                        <hr class="sidebar-divider my-0" />
-                    </div>
                 </ul>
                 <div id="content-wrapper" class="d-flex flex-column">
                     <div id="content">

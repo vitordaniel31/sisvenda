@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from "vue";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import AuthenticationLayout from "@/Layouts/AuthenticationLayout.vue";
