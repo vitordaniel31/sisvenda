@@ -52,6 +52,11 @@ class UserController extends Controller
 
         //$user->syncRoles($request->roles);
 
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'O usuário foi criado com sucesso.'
+        ]);
+
         return Redirect::route('users.show', $user);
     }
 
@@ -105,6 +110,11 @@ class UserController extends Controller
         }
 
         //$user->syncRoles($request->roles);
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'O usuário foi atualizado com sucesso.'
+        ]);
 
         return Redirect::route('users.show', $user);
     }
