@@ -1,6 +1,8 @@
 <script>
 import { Link } from "@inertiajs/vue3";
 import MasterLayout from "./MasterLayout.vue";
+import { toast } from "vue3-toastify";
+import { usePage } from "@inertiajs/vue3";
 
 export default {
     components: {
@@ -15,6 +17,23 @@ export default {
         description: {
             type: String,
         },
+    },
+
+    methods: {
+        toastr(type, message) {
+            // Use toastify
+            if (type && message) {
+                toast[type](message);
+            }
+        },
+    },
+
+    mounted() {
+        let alert = usePage().props.flash.alert;
+
+        if (alert) {
+            this.toastr(alert["type"], alert["message"]);
+        }
     },
 };
 </script>
@@ -87,7 +106,7 @@ export default {
                                         aria-labelledby="userDropdown"
                                     >
                                         <Link
-                                            href="/logout"
+                                            href=""
                                             as="button"
                                             type="button"
                                             class="btn btn-sm text-dark"
