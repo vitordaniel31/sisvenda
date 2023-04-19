@@ -1,6 +1,8 @@
 <script>
 import { Link } from "@inertiajs/vue3";
 import MasterLayout from "./MasterLayout.vue";
+import { toast } from "vue3-toastify";
+import { usePage } from "@inertiajs/vue3";
 
 export default {
     components: {
@@ -16,11 +18,28 @@ export default {
             type: String,
         },
     },
+
+    methods: {
+        toastr(type, message) {
+            // Use toastify
+            if (type && message) {
+                toast[type](message);
+            }
+        },
+    },
+
+    mounted() {
+        let alert = usePage().props.flash.alert;
+
+        if (alert) {
+            this.toastr(alert["type"], alert["message"]);
+        }
+    },
 };
 </script>
 
 <template>
-    <MasterLayout :title="title">
+    <MasterLayout>
         <template #layout>
             <div id="wrapper">
                 <ul
@@ -44,18 +63,6 @@ export default {
                             >
                                 <i class="fas fa-home"></i>
                                 <span>Dashboard</span>
-                            </Link>
-                        </li>
-                        <hr class="sidebar-divider my-0" />
-                    </div>
-                    <div v-if="can('users.read')">
-                        <li class="nav-item active">
-                            <Link
-                                class="nav-link collapsed"
-                                :href="route('users.index')"
-                            >
-                                <i class="fas fa-users"></i>
-                                <span>Usuários</span>
                             </Link>
                         </li>
                         <hr class="sidebar-divider my-0" />
@@ -99,7 +106,7 @@ export default {
                                         aria-labelledby="userDropdown"
                                     >
                                         <Link
-                                            href="/logout"
+                                            href=""
                                             as="button"
                                             type="button"
                                             class="btn btn-sm text-dark"
