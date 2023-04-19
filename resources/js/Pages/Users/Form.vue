@@ -15,9 +15,11 @@ export default {
         create: {
             type: Boolean,
         },
+
         disabled: {
             type: Boolean,
         },
+
         form: {
             type: Object,
         },
@@ -56,13 +58,14 @@ export default {
                     v-model="form.email"
                     required
                     autocomplete="username"
+                    :disabled="disabled"
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div v-if="!disabled" class="row justify-content-center">
         <div class="col-lg-5">
             <div class="form-group">
                 <InputLabel for="password" value="Senha" />
@@ -72,7 +75,7 @@ export default {
                     type="password"
                     class="mt-1 block w-full"
                     v-model="form.password"
-                    required
+                    :required="create"
                     autocomplete="new-password"
                 />
 
@@ -91,7 +94,7 @@ export default {
                     type="password"
                     class="mt-1 block w-full"
                     v-model="form.password_confirmation"
-                    required
+                    :required="create"
                     autocomplete="new-password"
                 />
 

@@ -12,13 +12,19 @@ export default {
         PrimaryButton,
     },
 
+    props: {
+        user: {
+            type: Object,
+        },
+    },
+
     data() {
         return {
             title: "Usuários",
-            description: "Cadastrar Usuário",
+            description: "Editar Usuário",
             form: useForm({
-                name: "",
-                email: "",
+                name: this.user.name,
+                email: this.user.email,
                 password: "",
                 password_confirmation: "",
             }),
@@ -27,7 +33,7 @@ export default {
 
     methods: {
         submit() {
-            this.form.post(route("users.store"), {
+            this.form.put(route("users.update", this.user), {
                 onFinish: () =>
                     this.form.reset("password", "password_confirmation"),
             });
@@ -42,12 +48,13 @@ export default {
             <li class="breadcrumb-item">
                 <Link :href="route('users.index')">Usuários</Link>
             </li>
-            <li class="breadcrumb-item active">Cadastrar Usuário</li>
+            <li class="breadcrumb-item active">Editar Usuário</li>
+            <li class="breadcrumb-item active">{{ user.id }}</li>
         </template>
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
-                    <Form :form="form" :create="true" :disabled="false"></Form>
+                    <Form :form="form" :create="false" :disabled="false"></Form>
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">
