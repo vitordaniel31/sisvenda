@@ -10,7 +10,7 @@ import "../Static/template/vendor/datatables/dataTables.bootstrap4.min.css";
 import "../Static/template/vendor/jquery/jquery.min.js";
 import "../Static/template/vendor/bootstrap/js/bootstrap.bundle.min.js";
 import "../Static/template/vendor/jquery-easing/jquery.easing.min.js";
-import "../Static/template/js/sb-admin-2.min.js";
+import "../Static/template/js/sb-admin-2.js";
 import "../Static/template/vendor/datatables/jquery.dataTables.js";
 import "../Static/template/js/demo/datatables-demo.js";
 import "../Static/template/vendor/datatables/dataTables.bootstrap4.js";
