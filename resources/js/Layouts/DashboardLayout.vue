@@ -25,6 +25,15 @@ export default {
                 toast[type](message);
             }
         },
+
+        menu() {
+            $("body").toggleClass("sidebar-toggled");
+            $(".sidebar").toggleClass("toggled");
+
+            if ($(".sidebar").hasClass("toggled")) {
+                $(".sidebar .collapse").collapse("hide");
+            }
+        },
     },
 
     watch: {
@@ -96,6 +105,7 @@ export default {
                         >
                             <button
                                 id="sidebarToggleTop"
+                                :onclick="menu"
                                 class="btn text-capelli btn-link d-md-none rounded-circle mr-3"
                             >
                                 <i class="fa fa-bars"></i>
