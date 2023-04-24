@@ -8,6 +8,8 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import permissionsMixin from "./Mixins/permissions-mixin";
 import { toast } from "vue3-toastify";
 import Vue3Toastify from "vue3-toastify";
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 //css
 import "vue3-toastify/dist/index.css";
@@ -26,6 +28,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(VueSweetalert2)
             .use(Vue3Toastify, {
                 autoClose: 5000,
                 theme: "colored",
