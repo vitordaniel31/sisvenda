@@ -128,7 +128,7 @@ class UserController extends Controller
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'O usuário foi deletado com sucesso.'
+            'message' => 'O usuário foi deletado com sucesso.',
         ]);
 
         return Redirect::route('users.index');

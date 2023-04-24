@@ -27,18 +27,28 @@ export default {
         },
     },
 
-    mounted() {
-        let alert = usePage().props.flash.alert;
+    watch: {
+        alert: {
+            handler(val) {
+                if (val) {
+                    this.toastr(val["type"], val["message"]);
+                }
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
 
-        if (alert) {
-            this.toastr(alert["type"], alert["message"]);
-        }
+    computed: {
+        alert() {
+            return usePage().props.flash.alert;
+        },
     },
 };
 </script>
 
 <template>
-    <MasterLayout>
+    <MasterLayout :title="title">
         <template #layout>
             <div id="wrapper">
                 <ul
