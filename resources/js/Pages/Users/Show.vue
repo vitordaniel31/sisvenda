@@ -48,12 +48,21 @@ export default {
                     </h5>
                     <div class="btn-group float-right">
                         <Link
-                            v-if="can('users.update')"
+                            v-show="can('users.update')"
                             class="btn btn-sm ms-1 btn-outline-secondary"
                             :href="route('users.edit', user)"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </Link>
+                        <button
+                            v-show="can('users.delete')"
+                            class="btn btn-sm ms-1 ml-1 btn-outline-danger"
+                            v-on:click="
+                                deleteAlert(route('users.destroy', this.user))
+                            "
+                        >
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="card-body">

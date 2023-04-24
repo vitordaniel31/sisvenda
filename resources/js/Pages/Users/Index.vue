@@ -90,6 +90,20 @@ export default {
                                                     class="fa fa-fw fa-pencil-alt"
                                                 ></i>
                                             </Link>
+                                            <button
+                                                v-show="can('users.delete')"
+                                                class="btn btn-sm ms-1 ml-1 btn-outline-danger"
+                                                v-on:click="
+                                                    deleteAlert(
+                                                        route(
+                                                            'users.destroy',
+                                                            user
+                                                        )
+                                                    )
+                                                "
+                                            >
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

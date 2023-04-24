@@ -1,6 +1,8 @@
+import { useForm } from "@inertiajs/vue3";
+
 export default {
     methods: {
-        deleteAlert(formId) {
+        deleteAlert(route) {
             this.$swal({
                 title: "Você tem certeza?",
                 text: "Você não poderá recuperar este item!",
@@ -14,8 +16,15 @@ export default {
                 cancelButtonText: "Cancelar",
             }).then((action) => {
                 if (action.isConfirmed) {
+                    this.deleteForm.delete(route);
                 }
             });
         },
+    },
+
+    data() {
+        return {
+            deleteForm: useForm({}),
+        };
     },
 };

@@ -21,7 +21,6 @@ export default {
 
     methods: {
         toastr(type, message) {
-            // Use toastify
             if (type && message) {
                 toast[type](message);
             }
