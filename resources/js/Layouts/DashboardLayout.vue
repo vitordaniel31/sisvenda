@@ -21,25 +21,34 @@ export default {
 
     methods: {
         toastr(type, message) {
-            // Use toastify
             if (type && message) {
                 toast[type](message);
             }
         },
     },
 
-    mounted() {
-        let alert = usePage().props.flash.alert;
+    watch: {
+        alert: {
+            handler(val) {
+                if (val) {
+                    this.toastr(val["type"], val["message"]);
+                }
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
 
-        if (alert) {
-            this.toastr(alert["type"], alert["message"]);
-        }
+    computed: {
+        alert() {
+            return usePage().props.flash.alert;
+        },
     },
 };
 </script>
 
 <template>
-    <MasterLayout>
+    <MasterLayout :title="title">
         <template #layout>
             <div id="wrapper">
                 <ul
@@ -63,6 +72,18 @@ export default {
                             >
                                 <i class="fas fa-home"></i>
                                 <span>Dashboard</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
+                    <div v-if="can('users.read')">
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('users.index')"
+                            >
+                                <i class="fas fa-users"></i>
+                                <span>Usuários</span>
                             </Link>
                         </li>
                         <hr class="sidebar-divider my-0" />

@@ -13,12 +13,13 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 //css
 import "vue3-toastify/dist/index.css";
+import sweetAlertMixin from "./Mixins/sweet-alert-mixin";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${title} - Sisvenda`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,
@@ -34,6 +35,7 @@ createInertiaApp({
                 theme: "colored",
             })
             .mixin(permissionsMixin)
+            .mixin(sweetAlertMixin)
             .mount(el);
     },
     progress: {
