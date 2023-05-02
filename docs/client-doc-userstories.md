@@ -16,6 +16,39 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | 01/12/2022 | 1.0   | Documento inicial  | Ketlly Azevedo de Medeiros (Gerente de Projetos) |
 
 
+### User Story US00 - Manter administrador
+
+|               |                                                                |
+| ------------- | :------------------------------------------------------------- |
+| **Descrição** | Esse caso de uso descreve as etapas para o cadastro e exclusão de administradores. Sendo que, o administrador principal será cadastrado diretamente pelos desenvolvedores e este será impossível de excluir. O principal, por sua vez, poderá cadastrar novos administradores, porém, terão acesso limitado, pois apenas o principal pode cadastrar novos administradores. |
+
+| **Requisitos envolvidos** |                                                    |
+| -------------     | :------------------------------------------------------------- |
+| RF03, RF012      | Manter administrador 				|
+
+|                           |                                     |
+| ------------------------- | ----------------------------------- | 
+| **Prioridade**            | Importante                           | 
+| **Estimativa**            | 5h                             	  | 
+| **Tempo Gasto (real):**   |                                     | 
+| **Tamanho Funcional**     | 20                                  | 
+| **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
+| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
+| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
+| **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
+| **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
+
+
+
+| Testes de Aceitação (TA) |  |
+| ------------------ | --------- |
+| **Código**      | **Descrição** |
+| **TA03.01** | Após fornecer os dados necessários, o administrador principal poderá cadastrar novos administradores, assim que a operação for concluída o sistema registra essa ação nos logs. |
+| **TA03.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e o administrador devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro. |
+| **TA03.03** | Para que seja feita a exclusão de um outro administrador, o principal (único que pode realizar essa operação) busca pelo administrador a ser excluído, clica no botão de excluir e precisará confirmar que deseja excluí-lo. Após terminada a operação, é registrado nos logs que este administrador foi excluído e seu autor. |
+| **TA03.04** | Caso o administrador não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão corretos e em seguida repetir a ação. No caso de estarem certos, verificar se o administrador foi cadastrado no sistema anteriormente. |
+| **TA03.05** | Caso o administrador principal feche o sistema antes de confirmar a exclusão do administrador selecionado, o sistema considerará que a exclusão não foi realizada. |
+
 
 ### User Story US01 - Login
 
@@ -80,41 +113,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA02.02** | Caso o usuário feche o navegador ao invés de realizar o logout, o sistema manterá seu login efetuado. |
 
 
-### User Story US03 - Manter administrador
-
-|               |                                                                |
-| ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse caso de uso descreve as etapas para o cadastro e exclusão de administradores. Sendo que, o administrador principal será cadastrado diretamente pelos desenvolvedores e este será impossível de excluir. O principal, por sua vez, poderá cadastrar novos administradores, porém, terão acesso limitado, pois apenas o principal pode cadastrar novos administradores. |
-
-| **Requisitos envolvidos** |                                                    |
-| -------------     | :------------------------------------------------------------- |
-| RF03, RF012      | Manter administrador 				|
-
-|                           |                                     |
-| ------------------------- | ----------------------------------- | 
-| **Prioridade**            | Importante                           | 
-| **Estimativa**            | 5h                             	  | 
-| **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 20                                  | 
-| **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
-| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
-| **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
-| **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
 
 
 
-| Testes de Aceitação (TA) |  |
-| ------------------ | --------- |
-| **Código**      | **Descrição** |
-| **TA03.01** | Após fornecer os dados necessários, o administrador principal poderá cadastrar novos administradores, assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA03.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e o administrador devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro. |
-| **TA03.03** | Para que seja feita a exclusão de um outro administrador, o principal (único que pode realizar essa operação) busca pelo administrador a ser excluído, clica no botão de excluir e precisará confirmar que deseja excluí-lo. Após terminada a operação, é registrado nos logs que este administrador foi excluído e seu autor. |
-| **TA03.04** | Caso o administrador não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão corretos e em seguida repetir a ação. No caso de estarem certos, verificar se o administrador foi cadastrado no sistema anteriormente. |
-| **TA03.05** | Caso o administrador principal feche o sistema antes de confirmar a exclusão do administrador selecionado, o sistema considerará que a exclusão não foi realizada. |
-
-
-### User Story US04 - Editar dados do administrador
+### User Story US03 - Editar dados do administrador
 
 
 |               |                                                                |
@@ -150,7 +152,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA04.05** | Caso o administrador feche o sistema antes de confirmar a edição dos dados do administrador selecionado, o sistema considerará que a edição não foi realizada. |
 
 
-### User Story US05 - Manter produtos
+### User Story US04 - Manter produtos
 
 
 |               |                                                                |
@@ -186,7 +188,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA05.05** | Caso o usuário feche o sistema antes de confirmar a edição do produto selecionado, o sistema considerará que a edição não foi realizada. |
 
 
-### User Story US06 - Manter vendas
+### User Story US05 - Manter vendas
 
 
 |               |                                                                |
@@ -222,7 +224,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA06.05** | Caso a venda não seja localizada, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se a venda foi iniciada. |
 | **TA06.06** | Caso o usuário feche o sistema antes de confirmar o cancelamento da venda selecionada, o sistema considerará que a operação não foi realizada. |
 
-### User Story US07 -  Manter PIX
+### User Story US06 -  Manter PIX
 
 
 |               |                                                                |
@@ -258,7 +260,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA07.05** | Após o administrador acessar a página de PIX cadastrados e selecionar a que for desativar, ele terá que confirmar a desativação daquela chave e finalizar a operação, com o sistema exibindo uma mensagem de operação bem sucedida. Assim que a operação for concluída, o sistema registra nos logs a desativação da chave PIX. |
 | **TA07.06** | Caso o administrador não confirme a desativação, o sistema o redireciona para a tela de PIX cadastrados. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão de desativação. |
 
-### User Story US08 -  Gerar QR Code do PIX
+### User Story US07 -  Gerar QR Code do PIX
 
 
 |               |                                                                |
@@ -292,7 +294,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA08.03** | Caso no ato do pagamento ocorrer algum erro, a venda ficará como pendente até que seja normalizado. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão do pagamento.|
 
 
-### User Story US09 -  Emitir relatórios
+### User Story US08 -  Emitir relatórios
 
 
 |               |                                                                |
@@ -324,7 +326,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA09.01** | Após o administrador acessar a página de emissão de relatórios, ele terá que informar um período para emissão dos relatórios e então o sistema carregará todas as informações desse determinado período. Tais como: valor total, peças mais vendidas e outros dados.|
 | **TA09.02** | Caso ele tenha colocado uma data que não ocorreu vendas será retornado uma mensagem informado, ou caso ele coloque uma data inexistente (ex.: 30/02/2005) aparecerá uma mensagem de erro e ele digitará novamente, uma data correta.|
 
-### User Story US10 -  Gerar Conta a Receber para Pagamento
+### User Story US09 -  Gerar Conta a Receber para Pagamento
 
 
 |               |                                                                |
