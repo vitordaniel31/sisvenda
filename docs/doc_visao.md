@@ -24,9 +24,9 @@ Taciano          | Analista e Desenvolvedor             | taciano@bsi.ufrn.br
 Membro     |     Competências   |
 ---------  | ----------- |
 José Marques     | Desenvolvedor PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript; Especialista em testes de software.
-Ketlly Azevedo   | Especialista em Gestão de Projetos; Desenvolvedora PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript, Vue.
+Ketlly Azevedo   | Desenvolvedora PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript, Vue.
 Vitor Daniel     | Analista de Sistemas; Desenvolvedor PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript, AngularJS e Ionic.
-Hugo Maia        | NÃO TEM
+Hugo Maia        | Desenvolveddor HTML, CSS, JavaScript, Python
 Taciano          | Desenvolvedor Java, Junit, Eclipse, JSP, JSF, Hibernate, Matemática, Latex, etc;
 
 ## Perfis dos Usuários
