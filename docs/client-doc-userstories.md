@@ -1,5 +1,4 @@
 
-
 # Documento Lista de User Stories
     
 
@@ -16,15 +15,16 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | 01/12/2022 | 1.0   | Documento inicial  | Ketlly Azevedo de Medeiros (Gerente de Projetos) |
 
 
-### User Story US00 - Manter administrador
+### User Story US00 - Manter gerentes
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse caso de uso descreve as etapas para o cadastro e exclusão de administradores. Sendo que, o administrador principal será cadastrado diretamente pelos desenvolvedores e este será impossível de excluir. O principal, por sua vez, poderá cadastrar novos administradores, porém, terão acesso limitado, pois apenas o principal pode cadastrar novos administradores. |
+| **Descrição** | Esse story descreve as etapas para a criação, listagem, edição e exclusão de dados de um usuário, quando requisitado pelo administrador. Sendo que, o administrador será cadastrado diretamente pelos desenvolvedores, este será impossível de excluir. O administrador, por sua vez, poderá cadastrar novos gerentes, porém, terão acesso limitado, pois apenas o administrador pode cadastrar novos gerentes. |
 
-| **Requisitos envolvidos** |                                                    |
+| **Requisitos envolvidos** |                              
+                      |
 | -------------     | :------------------------------------------------------------- |
-| RF03, RF012      | Manter administrador 				|
+| RF003, RF004, RF005, RF006      | Manter gerentes 				|
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -43,18 +43,21 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA03.01** | Após fornecer os dados necessários, o administrador principal poderá cadastrar novos administradores, assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA03.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e o administrador devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro. |
-| **TA03.03** | Para que seja feita a exclusão de um outro administrador, o principal (único que pode realizar essa operação) busca pelo administrador a ser excluído, clica no botão de excluir e precisará confirmar que deseja excluí-lo. Após terminada a operação, é registrado nos logs que este administrador foi excluído e seu autor. |
-| **TA03.04** | Caso o administrador não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão corretos e em seguida repetir a ação. No caso de estarem certos, verificar se o administrador foi cadastrado no sistema anteriormente. |
-| **TA03.05** | Caso o administrador principal feche o sistema antes de confirmar a exclusão do administrador selecionado, o sistema considerará que a exclusão não foi realizada. |
+| **TA00.01** | Após fornecer os dados necessários, o administrador poderá cadastrar novos gerentes, assim que a operação for concluída o sistema registra essa ação nos logs. |
+| **TA00.02** | Caso o administrador digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e o administrador devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro. |
+| **TA00.03** | Para que seja feita a exclusão de um gerente, o administrador (único que pode realizar essa operação) busca pelo gerente a ser excluído, clica no botão de excluir e precisará confirmar que deseja excluí-lo. Após terminada a operação, é registrado nos logs que este gerente foi excluído e seu autor. |
+| **TA00.04** | Caso o gerente não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão corretos e em seguida repetir a ação. No caso de estarem certos, verificar se o gerente foi cadastrado no sistema anteriormente. |
+| **TA00.05** | Caso o administrador feche o sistema antes de confirmar a exclusão do gerente selecionado, o sistema considerará que a exclusão não foi realizada. |
+| **TA00.06** | Após acessar a página de seu perfil, o administrador poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação nos logs. |
+| **TA00.07** | Para que o administrador faça a edição de um gerente, ele irá buscar pelo usuário que deseja, acessar seu perfil e então clicar no botão de edição de dados, finalmente poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação nos logs.|
+
 
 
 ### User Story US01 - Login
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | O ato do administrador de logar-se ao sistema para poder realizar alterações e cadastros. Sempre que um administrador fizer login no sistema, seu acesso será registrado nos logs, para controle das ações realizadas dentro do sistema. |
+| **Descrição** | O sistema terá uma tela de login para o usuário entrar e realizar operações. O login será feito com email e senha. E terá a possibilidade de recuperar a senha. |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
@@ -68,7 +71,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Tamanho Funcional**     | 5                                    | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
 | **Desenvolvedor**         |  José Pereira e Ketlly (responsáveis por implementar e realizar testes de unidade e testes de integração).
-| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente.                                   | 
+| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente.)                                   | 
 | **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração)                                   | 
 | **Testador**              |  Hugo  (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                                   | 
 
@@ -86,7 +89,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | O ato do administrador fazer o logout do sistema para poder sair do sistema, ou realizar a troca de conta. Sempre que um administrador fizer logout do sistema será registrado nos logs, para controle das ações realizadas dentro do sistema. |
+| **Descrição** | O sistema terá um botão para quando o usuário quiser encerrar sua sessão. |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
@@ -113,55 +116,16 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **TA02.02** | Caso o usuário feche o navegador ao invés de realizar o logout, o sistema manterá seu login efetuado. |
 
 
-
-
-
-### User Story US03 - Editar dados do administrador
+### User Story US03 - Produtos
 
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse story descreve as etapas para a edição de dados de um administrador, quando realizada por ele próprio e pelo administrador principal, este poderá editar dados de outros administradores por ter maior poder de controle do sistema |
+| **Descrição** | Esse story descreve as etapas para a criação, listagem ou exclusão dos produtos, podendo e editar os que já haviam sido cadastrados, alterar algum dado ou o deixar inativo. Para que a ação seja efetuada, o administrador ou o gerente precisará fornecer código, nome, descrição e preço. |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF004      | Editar dados do administrador
- 				|
-
-|                           |                                     |
-| ------------------------- | ----------------------------------- | 
-| **Prioridade**            | Importante                           | 
-| **Estimativa**            | 2h                             	  | 
-| **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 10                                  | 
-| **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira e Ketlly  (responsáveis por implementar e realizar testes de unidade e testes de integração).
-| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
-| **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
-| **Testador**              |  Hugo (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
-
-
-
-| Testes de Aceitação (TA) |  |
-| ------------------ | --------- |
-| **Código**      | **Descrição** |
-| **TA04.01** | Após acessar a página de seu perfil, o administrador poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA04.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e as informações devidamente salvas, o sistema registra nos logs a conclusão da operação.|
-| **TA04.03** | Para que o administrador principal faça a edição de um outro administrador, ele irá buscar pelo usuário que deseja, acessar seu perfil e então clicar no botão de edição de dados, finalmente poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação nos logs.|
-| **TA04.04** | Caso o administrador principal digite algum dado incorretamente, o sistema o informará do erro para que seja digitado corretamente. Assim que a operação for concluída e as informações devidamente salvas, o sistema registra nos logs a operação que foi realizada. |
-| **TA04.05** | Caso o administrador feche o sistema antes de confirmar a edição dos dados do administrador selecionado, o sistema considerará que a edição não foi realizada. |
-
-
-### User Story US04 - Manter produtos
-
-
-|               |                                                                |
-| ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse caso de uso descreve a funcionalidade utilizada para cadastrar novos produtos e editar os que já haviam sido cadastrados, podendo alterar algum dado ou o deixar inativo. Para que a ação seja efetuada, o administrador precisará fornecer nome, descrição e preço. |
-
-| **Requisitos envolvidos** |                                                    |
-| -------------     | :------------------------------------------------------------- |
-| RF005, RF006      | Manter produtos
+| RF007, RF008, RF009, RF010      |  Produtos
  				|
 
 |                           |                                     |
@@ -181,23 +145,25 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA05.01** | Após fornecer os dados necessários, o administrador poderá cadastrar novos produtos, assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA05.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto já estiver cadastrado, o sistema informará que aquele produto já existe no banco de dados. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro.|
-| **TA05.03** | Para que seja feita a edição de um produto, o administrador busca pelo produto desejado, clica no botão de editar e precisará fornecer os dados a serem atualizados, como também poderá editar o status para ativo/inativo, quando o produto estiver disponível ou quando não for mais vendido. Após confirmar a edição, é registrado nos logs que este administrador foi excluído e seu autor.|
-| **TA05.04** | Caso o produto não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se o produto já foi cadastrado.|
-| **TA05.05** | Caso o usuário feche o sistema antes de confirmar a edição do produto selecionado, o sistema considerará que a edição não foi realizada. |
+| **TA03.01** | Após fornecer os dados necessários, o usuário poderá cadastrar novos produtos, assim que a operação for concluída o sistema registra essa ação nos logs. |
+| **TA03.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto já estiver cadastrado, o sistema informará que aquele produto já existe no banco de dados. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro.|
+| **TA03.03** | Para que seja feita a edição de um produto, o usuário busca pelo produto desejado, clica no botão de editar e precisará fornecer os dados a serem atualizados, como também poderá editar o status para ativo/inativo, quando o produto estiver disponível ou quando não for mais vendido. Após confirmar a edição, é registrado nos logs a edição do produto.|
+| **TA03.04** | Caso o produto não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se o produto já foi cadastrado.|
+| **TA03.05** | Caso o usuário feche o sistema antes de confirmar a edição do produto selecionado, o sistema considerará que a edição não foi realizada. |
 
 
-### User Story US05 - Manter vendas
+### User Story US04 - Produtos vendas
 
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse story descreve a funcionalidade utilizada para cadastrar e cancelar vendas. Para seu funcionamento, o administrador precisará fornecer os produtos que fazem parte, o valor total, o método de pagamento e a data da venda. Para cancelar, apenas será necessário realizar a busca e confirmar o cancelamento. |
+| **Descrição** | Esse story descreve as etapas para cadastrar, listar, cancelar ou editar vendas. O administrador ou gerente precisará fornecer as informações relacionadas a venda. Para cancelar, apenas será necessário realizar a busca e confirmar o cancelamento.
+
+ |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF007, RF008      | Manter vendas
+| RF011, RF012, RF013, RF014, RF015      | Produtos vendas
  				|
 
 |                           |                                     |
@@ -217,23 +183,23 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA06.01** | Após fornecer os dados necessários, o administrador poderá cadastrar uma nova venda. Assim que a operação for concluída, será gerado a forma de pagamento pelo método escolhido e o sistema registra essa venda nos logs. |
-| **TA06.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto não estiver cadastrado, o sistema informará que aquele produto não existe no banco de dados e assim terá de ser feito o cadastro antes de realizar a venda. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro.|
-| **TA06.03** | Caso no ato do pagamento ocorrer algum erro, a venda ficará como pendente até que o problema seja solucionado e o pagamento confirmado.|
-| **TA06.04** | Para que seja feito o cancelamento de uma venda, o administrador busca pela venda em questão, clica no botão de cancelar e então precisará confirmar o cancelamento. Após terminada a operação, é registrado nos logs que a venda foi cancelada e seu autor.|
-| **TA06.05** | Caso a venda não seja localizada, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se a venda foi iniciada. |
-| **TA06.06** | Caso o usuário feche o sistema antes de confirmar o cancelamento da venda selecionada, o sistema considerará que a operação não foi realizada. |
+| **TA04.01** | Após fornecer os dados necessários, o usuário poderá cadastrar uma nova venda. Assim que a operação for concluída, será gerado a forma de pagamento pelo método escolhido e o sistema registra essa venda nos logs. |
+| **TA04.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto não estiver cadastrado, o sistema informará que aquele produto não existe no banco de dados e assim terá de ser feito o cadastro antes de realizar a venda. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro.|
+| **TA04.03** | Caso no ato do pagamento ocorrer algum erro, a venda ficará como pendente até que o problema seja solucionado e o pagamento confirmado.|
+| **TA04.04** | Para que seja feito o cancelamento de uma venda, o usuário busca pela venda em questão, clica no botão de cancelar e então precisará confirmar o cancelamento. Após terminada a operação, é registrado nos logs que a venda foi cancelada e seu autor.|
+| **TA04.05** | Caso a venda não seja localizada, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se a venda foi iniciada. |
+| **TA04.06** | Caso o usuário feche o sistema antes de confirmar o cancelamento da venda selecionada, o sistema considerará que a operação não foi realizada. |
 
-### User Story US06 -  Manter PIX
+### User Story US05 -  Pagamento
 
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse story descreve a funcionalidade utilizada para cadastrar, editar e excluir informações relacionadas ao PIX. Para seu funcionamento, o administrador precisará fornecer a chave PIX, o banco da conta |
+| **Descrição** | Esse story descreve passo passo o pagamento, após selecionar a forma de pagamento de uma venda. Quando o usuário finalizar uma venda e escolher a forma de pagamento, irá gerar uma conta a receber, para que o cliente realize o pagamento, seja com uma ou mais formas, e assim, confirme o sucesso daquela venda. Cada um pagamento poderá ser feito com uma forma de pagamento. Assim, o cliente pode realizar vários pagamentos, com várias formas de pagamentos diferentes, até que a soma desses pagamentos resultem no valor total do pedido. |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF011      |  Manter PIX
+| RF016, RF017    |  Pagamento
  				|
 
 |                           |                                     |
@@ -253,23 +219,22 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA07.01** | Após o administrador acessar a página de cadastro do PIX e preencher os dados adequadamente, finaliza a operação e  o sistema exibe uma mensagem de operação bem sucedida. Assim que a operação for concluída, o sistema registra nos logs a conclusão do cadastro. |
-| **TA07.02** | Caso o administrador não conclua a ação de cadastro o sistema o redireciona para a tela de PIX cadastrados. Caso seja digitado algum dado incorretamente, o sistema informará o erro para que seja corrigido. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão do cadastro.|
-| **TA07.03** | Após o administrador acessar a página de PIX cadastrados e selecionar a que for editar, o administrador fornece as novas informações relacionadas àquela chave e finaliza a operação, com o sistema exibindo uma mensagem de operação bem sucedida. Assim que a operação for concluída, o sistema registra nos logs a conclusão da edição.|
-| **TA07.04** | Caso o administrador não conclua a edição, o sistema o redireciona para a tela de PIX cadastrados. Caso seja digitado algum dado incorretamente, o sistema informará o erro para que seja corrigido. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão de edição.|
-| **TA07.05** | Após o administrador acessar a página de PIX cadastrados e selecionar a que for desativar, ele terá que confirmar a desativação daquela chave e finalizar a operação, com o sistema exibindo uma mensagem de operação bem sucedida. Assim que a operação for concluída, o sistema registra nos logs a desativação da chave PIX. |
-| **TA07.06** | Caso o administrador não confirme a desativação, o sistema o redireciona para a tela de PIX cadastrados. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão de desativação. |
+| **TA05.01** | O sistema está gerando uma conta a receber  |
+| **TA05.02** | Após o usuário finalizar o pagamento, todos os dados serão adicionados no log junto com o agente. |
+| **TA05.03** | Caso o usuário encerre o processo sem finalizar. O pagamento será cancelado e todos os dados serão adicionados no log junto com o agente. |
 
-### User Story US07 -  Gerar QR Code do PIX
+
+
+### User Story US06 -  Forma de pagamento
 
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse caso de uso descreve as etapas para a geração de QR Code para pagamentos com PIX.  |
+| **Descrição** | Esse story descreve passo passo a forma de pagamento, após a finalização de uma venda. Quando o usuário finalizar uma venda, irá gerar uma conta a receber, para que o cliente realize a selação da forma de pagamento, seja com uma ou mais formas, e assim, confirme o sucesso daquela venda. Cada conta a receber, terá um ou muitos registros de pagamento e um pagamento poderá ser feito com uma forma de pagamento. Assim, o cliente pode realizar vários pagamentos, com várias formas de pagamentos diferentes, até que a soma desses pagamentos resultem no valor total do pedido.   |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF013      |  Gerar QR Code do PIX
+| RF018, RF019, RF020, RF021      |  Forma de pagamento
 
 
 |                           |                                     |
@@ -289,12 +254,15 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA08.01** | Após o administrador cadastrar uma venda, conforme o requisitado, e escolher o PIX como forma de pagamento, o sistema gera o QR Code para pagamento com PIX e então verifica se o pagamento foi realizado com sucesso.|
-| **TA08.02** | Caso não haja uma venda correspondente àquele pagamento, o usuário será informado de tal erro e será preciso verificar se a venda foi realmente cadastrada. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão do pagamento.|
-| **TA08.03** | Caso no ato do pagamento ocorrer algum erro, a venda ficará como pendente até que seja normalizado. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão do pagamento.|
+| **TA06.01** | O sistema está gerando uma conta a receber e é possível fazer pagamentos com formas de pagamento diferentes. |
+| **TA06.02** | Caso o usuário escolha uma opção inválida, irá aparecer uma mensagem de erro.|
+| **TA06.03** | Após o usuário escolher por uma opção válida, será gerado o caminho correto para a finalização e conclusão do pagamento. |
+| **TA06.04** | Caso o usuário escolha uma opção e precise por alterar, será exibido a opção de troca do método. |
+| **TA06.05** | Caso o usuário encerre o processo sem finalizar. O pagamento será cancelado e todos os dados serão adicionados no log junto com o agente. |
 
 
-### User Story US08 -  Emitir relatórios
+
+### User Story US08 -   Relatórios
 
 
 |               |                                                                |
@@ -303,7 +271,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF009      |  Emitir relatórios
+| RF022, RF023, RF024, RF025      |  Relatórios
 
 
 |                           |                                     |
@@ -325,34 +293,3 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Código**      | **Descrição** |
 | **TA09.01** | Após o administrador acessar a página de emissão de relatórios, ele terá que informar um período para emissão dos relatórios e então o sistema carregará todas as informações desse determinado período. Tais como: valor total, peças mais vendidas e outros dados.|
 | **TA09.02** | Caso ele tenha colocado uma data que não ocorreu vendas será retornado uma mensagem informado, ou caso ele coloque uma data inexistente (ex.: 30/02/2005) aparecerá uma mensagem de erro e ele digitará novamente, uma data correta.|
-
-### User Story US09 -  Gerar Conta a Receber para Pagamento
-
-
-|               |                                                                |
-| ------------- | :------------------------------------------------------------- |
-| **Descrição** | O sistema, quando o administrador finalizar uma venda, irá gerar uma conta a receber. Essa conta terá um ou muitos pagamentos, na qual, cada pagamento será realizado com a forma de pagamento escolhida pelo cliente. Assim, o cliente pode realizar vários pagamentos, com várias formas de pagamentos diferentes, até que a soma desses pagamentos resultem no valor total do pedido.|
-
-| **Requisitos envolvidos** |                                                    |
-| -------------     | :------------------------------------------------------------- |
-| RF010      |  Gerar Conta a Receber para Pagamento
-
-
-|                           |                                     |
-| ------------------------- | ----------------------------------- | 
-| **Prioridade**            | Importante                           | 
-| **Estimativa**            | 5h                             	  | 
-| **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 10                                  | 
-| **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
-| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo (responsáveis por implementar e realizar testes de unidade e testes de integração).
-| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  | 
-| **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          | 
-| **Testador**              |  Vitor (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         | 
-
-
-
-| Testes de Aceitação (TA) |  |
-| ------------------ | --------- |
-| **Código**      | **Descrição** |
-| **TA10.01** | O sistema está gerando uma conta a receber e é possível fazer pagamentos com formas de pagamento diferentes.|
