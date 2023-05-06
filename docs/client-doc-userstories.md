@@ -122,10 +122,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | Esse story descreve as etapas para a criação, listagem ou exclusão dos produtos, podendo e editar os que já haviam sido cadastrados, alterar algum dado ou o deixar inativo. Para que a ação seja efetuada, o administrador ou o gerente precisará fornecer código, nome, descrição e preço. |
 
-| **Requisitos envolvidos** |                                                    |
+| **Requisitos envolvidos** |                                                   |
 | -------------     | :------------------------------------------------------------- |
 | RF007, RF008, RF009, RF010      |  Produtos
- 				|
+ 				
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -158,12 +158,12 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | Esse story descreve as etapas para cadastrar, listar, cancelar ou editar vendas. O administrador ou gerente precisará fornecer as informações relacionadas a venda. Para cancelar, apenas será necessário realizar a busca e confirmar o cancelamento.
 
- |
+ 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
 | RF011, RF012, RF013, RF014, RF015      | Produtos vendas
- 				|
+ 				
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
@@ -199,7 +199,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
 | RF016, RF017    |  Pagamento
- 				|
+ 				
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
