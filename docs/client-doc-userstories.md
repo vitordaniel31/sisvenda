@@ -290,5 +290,5 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA09.01** | Após o administrador acessar a página de emissão de relatórios, ele terá que informar um período para emissão dos relatórios e então o sistema carregará todas as informações desse determinado período. Tais como: valor total, peças mais vendidas e outros dados.|
-| **TA09.02** | Caso ele tenha colocado uma data que não ocorreu vendas será retornado uma mensagem informado, ou caso ele coloque uma data inexistente (ex.: 30/02/2005) aparecerá uma mensagem de erro e ele digitará novamente, uma data correta.|
+| **TA08.01** | Após o administrador acessar a página de emissão de relatórios, ele terá que informar um período para emissão dos relatórios e então o sistema carregará todas as informações desse determinado período. Tais como: valor total, peças mais vendidas e outros dados.|
+| **TA08.02** | Caso ele tenha colocado uma data que não ocorreu vendas será retornado uma mensagem informado, ou caso ele coloque uma data inexistente (ex.: 30/02/2005) aparecerá uma mensagem de erro e ele digitará novamente, uma data correta.|
