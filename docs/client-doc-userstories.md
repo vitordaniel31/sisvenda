@@ -21,10 +21,9 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | ------------- | :------------------------------------------------------------- |
 | **Descrição** | Esse story descreve as etapas para a criação, listagem, edição e exclusão de dados de um usuário, quando requisitado pelo administrador. Sendo que, o administrador será cadastrado diretamente pelos desenvolvedores, este será impossível de excluir. O administrador, por sua vez, poderá cadastrar novos gerentes, porém, terão acesso limitado, pois apenas o administrador pode cadastrar novos gerentes. |
 
-| **Requisitos envolvidos** |                              
-                      |
+| **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF003, RF004, RF005, RF006      | Manter gerentes 				|
+| RF003, RF004, RF005, RF006  | Manter gerentes 				|
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
