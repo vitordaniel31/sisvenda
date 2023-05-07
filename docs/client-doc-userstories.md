@@ -12,14 +12,18 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | Data       | Versão  | Descrição                          | Autor                          |
 | :--------- | :-----: | :--------------------------------: | :----------------------------- |
-| 01/12/2022 | 1.0   | Documento inicial  | Ketlly Azevedo de Medeiros (Gerente de Projetos) |
+| 13/04/2023 | 1.0   | Documento inicial  | Hugo Maia Pereira |
+| 13/04/2023 | 1.1   | Correções  | Hugo Maia Pereira |
+| 02/05/2023 | 1.2   | Correções  | Ketlly Medeiros |
+| 06/05/2023 | 2.0   | Reconstrução do documento  | Hugo Maia |
+| 07/05/2023 | 2.1   | Correções  | Vitor Daniel |
 
 
-### User Story US00 - Manter gerentes
+### User Story US00 - Manter Usuários
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse story descreve as etapas para a criação, listagem, edição e exclusão de dados de um usuário, quando requisitado pelo administrador. Sendo que, o administrador será cadastrado diretamente pelos desenvolvedores, este será impossível de excluir. O administrador, por sua vez, poderá cadastrar novos gerentes, porém, terão acesso limitado, pois apenas o administrador pode cadastrar novos gerentes. |
+| **Descrição** | Esse story descreve as etapas para a criação, listagem, edição e exclusão de dados de um usuário, quando requisitado pelo administrador. Sendo que, o administrador será cadastrado diretamente pelos desenvolvedores sendo este impossível de excluir. O administrador, por sua vez, poderá cadastrar novos usuários, que irão receber o perfil de gerente e algumas permissões a menos que o administrador. |
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
@@ -28,7 +32,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Importante                           | 
-| **Estimativa**            | 5h                             	  | 
+| **Estimativa**            | 10h                             	  | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 20                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
@@ -42,13 +46,13 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA00.01** | Após fornecer os dados necessários, o administrador poderá cadastrar novos gerentes, assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA00.02** | Caso o administrador digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e o administrador devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro. |
-| **TA00.03** | Para que seja feita a exclusão de um gerente, o administrador (único que pode realizar essa operação) busca pelo gerente a ser excluído, clica no botão de excluir e precisará confirmar que deseja excluí-lo. Após terminada a operação, é registrado nos logs que este gerente foi excluído e seu autor. |
+| **TA00.01** | Após fornecer os dados necessários, o administrador poderá cadastrar novos gerentes, assim que a operação for concluída o sistema registra essa ação no histórico de ações. |
+| **TA00.02** | Caso o administrador digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Assim que a operação for concluída e o administrador devidamente cadastrado, o sistema registra no histórico de ações a conclusão do cadastro. |
+| **TA00.03** | Para que seja feita a exclusão de um gerente, o administrador (único que pode realizar essa operação) busca pelo gerente a ser excluído, clica no botão de excluir e precisará confirmar que deseja excluí-lo. Após terminada a operação, é registrado no histórico de ações que este gerente foi excluído e seu autor. |
 | **TA00.04** | Caso o gerente não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão corretos e em seguida repetir a ação. No caso de estarem certos, verificar se o gerente foi cadastrado no sistema anteriormente. |
 | **TA00.05** | Caso o administrador feche o sistema antes de confirmar a exclusão do gerente selecionado, o sistema considerará que a exclusão não foi realizada. |
-| **TA00.06** | Após acessar a página de seu perfil, o administrador poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA00.07** | Para que o administrador faça a edição de um gerente, ele irá buscar pelo usuário que deseja, acessar seu perfil e então clicar no botão de edição de dados, finalmente poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação nos logs.|
+| **TA00.06** | Após acessar a página de seu perfil, o administrador poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação no histórico de ações. |
+| **TA00.07** | Para que o administrador faça a edição de um gerente, ele irá buscar pelo usuário que deseja, acessar seu perfil e então clicar no botão de edição de dados, finalmente poderá realizar a edição dos dados necessários, fornecendo os novos valores e os salvando. Assim que a operação for concluída o sistema registra essa ação no histórico de ações.|
 
 
 
@@ -79,7 +83,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA01.01** | O usuário informa, na tela de login, email e senha, que ao clicar em Login ele é redirecionado para a página de acesso e o sistema registra essa ação nos logs. |
+| **TA01.01** | O usuário informa, na tela de login, email e senha, que ao clicar em Login ele é redirecionado para a página de acesso e o sistema registra essa ação no histórico de ações. |
 | **TA01.02** | O usuário informa, na tela de login, email e senha incorretos, ao clicar em Login será retornada uma mensagem alertando que a senha está incorreta, ele poderá digitar novamente ou utilizar a opção Esqueci a Senha, para modificar sua senha e tentar login novamente. |
 | **TA01.03** | O sistema informará ao usuário caso tente realizar login com algum campo em branco, o alerta será no campo que estiver em branco. Mensagem: Campo necessário não informado. |
 
@@ -111,16 +115,16 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA02.01** | Após clicar no botão "sair/logout"o sistema deve ir para a página inicial de login. O sistema registra essa ação nos logs. |
+| **TA02.01** | Após clicar no botão "sair/logout"o sistema deve ir para a página inicial de login. O sistema registra essa ação no histórico de ações. |
 | **TA02.02** | Caso o usuário feche o navegador ao invés de realizar o logout, o sistema manterá seu login efetuado. |
 
 
-### User Story US03 - Produtos
+### User Story US03 - Manter Produtos
 
 
 |               |                                                                |
 | ------------- | :------------------------------------------------------------- |
-| **Descrição** | Esse story descreve as etapas para a criação, listagem ou exclusão dos produtos, podendo e editar os que já haviam sido cadastrados, alterar algum dado ou o deixar inativo. Para que a ação seja efetuada, o administrador ou o gerente precisará fornecer código, nome, descrição e preço. |
+| **Descrição** | Esse story descreve as etapas para a criação, listagem, edição ou exclusão dos produto. Para que a ação de cadastro ou edição seja efetuada, o administrador ou o gerente precisará fornecer código, nome, descrição e preço. Vale ressaltar, que o produto poderá ser inativado, caso não estiver mais a venda na loja, por exemplo.|
 
 | **Requisitos envolvidos** |                                                   |
 | -------------     | :------------------------------------------------------------- |
@@ -130,7 +134,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Importante                           | 
-| **Estimativa**            | 6h                             	  | 
+| **Estimativa**            | 10h                             	  | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 20                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
@@ -144,14 +148,14 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA03.01** | Após fornecer os dados necessários, o usuário poderá cadastrar novos produtos, assim que a operação for concluída o sistema registra essa ação nos logs. |
-| **TA03.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto já estiver cadastrado, o sistema informará que aquele produto já existe no banco de dados. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro.|
-| **TA03.03** | Para que seja feita a edição de um produto, o usuário busca pelo produto desejado, clica no botão de editar e precisará fornecer os dados a serem atualizados, como também poderá editar o status para ativo/inativo, quando o produto estiver disponível ou quando não for mais vendido. Após confirmar a edição, é registrado nos logs a edição do produto.|
+| **TA03.01** | Após fornecer os dados necessários, o usuário poderá cadastrar novos produtos, assim que a operação for concluída o sistema registra essa ação no histórico de ações. |
+| **TA03.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto já estiver cadastrado, o sistema informará que aquele produto já existe no banco de dados. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra no histórico de ações a conclusão do cadastro.|
+| **TA03.03** | Para que seja feita a edição de um produto, o usuário busca pelo produto desejado, clica no botão de editar e precisará fornecer os dados a serem atualizados, como também poderá editar o status para ativo/inativo, quando o produto estiver disponível ou quando não for mais vendido. Após confirmar a edição, é registrado no histórico de ações a edição do produto.|
 | **TA03.04** | Caso o produto não seja localizado, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se o produto já foi cadastrado.|
 | **TA03.05** | Caso o usuário feche o sistema antes de confirmar a edição do produto selecionado, o sistema considerará que a edição não foi realizada. |
 
 
-### User Story US04 - Produtos vendas
+### User Story US04 - Manter Vendas
 
 
 |               |                                                                |
@@ -162,13 +166,13 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 | **Requisitos envolvidos** |                                                    |
 | -------------     | :------------------------------------------------------------- |
-| RF011, RF012, RF013, RF014, RF015      | Produtos vendas
+| RF011, RF012, RF013, RF014, RF015  |    Vendas
  				
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Importante                           | 
-| **Estimativa**            | 6h                             	  | 
+| **Estimativa**            | 12h                             	  | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 20                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
@@ -182,14 +186,14 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Testes de Aceitação (TA) |  |
 | ------------------ | --------- |
 | **Código**      | **Descrição** |
-| **TA04.01** | Após fornecer os dados necessários, o usuário poderá cadastrar uma nova venda. Assim que a operação for concluída, será gerado a forma de pagamento pelo método escolhido e o sistema registra essa venda nos logs. |
-| **TA04.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto não estiver cadastrado, o sistema informará que aquele produto não existe no banco de dados e assim terá de ser feito o cadastro antes de realizar a venda. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra nos logs a conclusão do cadastro.|
+| **TA04.01** | Após fornecer os dados necessários, o usuário poderá cadastrar uma nova venda. Assim que a operação for concluída, será gerado a forma de pagamento pelo método escolhido e o sistema registra essa venda no histórico de ações. |
+| **TA04.02** | Caso o usuário digite algum dado incorretamente, o sistema o informará do erro para que digite corretamente. Ou quando o produto não estiver cadastrado, o sistema informará que aquele produto não existe no banco de dados e assim terá de ser feito o cadastro antes de realizar a venda. Assim que a operação for concluída e o produto devidamente cadastrado, o sistema registra no histórico de ações a conclusão do cadastro.|
 | **TA04.03** | Caso no ato do pagamento ocorrer algum erro, a venda ficará como pendente até que o problema seja solucionado e o pagamento confirmado.|
-| **TA04.04** | Para que seja feito o cancelamento de uma venda, o usuário busca pela venda em questão, clica no botão de cancelar e então precisará confirmar o cancelamento. Após terminada a operação, é registrado nos logs que a venda foi cancelada e seu autor.|
+| **TA04.04** | Para que seja feito o cancelamento de uma venda, o usuário busca pela venda em questão, clica no botão de cancelar e então precisará confirmar o cancelamento. Após terminada a operação, é registrado no histórico de ações que a venda foi cancelada e seu autor.|
 | **TA04.05** | Caso a venda não seja localizada, será exibida uma mensagem pedindo para conferir se os dados estão certos e repetir a ação. E no caso de estarem certos, verificar se a venda foi iniciada. |
 | **TA04.06** | Caso o usuário feche o sistema antes de confirmar o cancelamento da venda selecionada, o sistema considerará que a operação não foi realizada. |
 
-### User Story US05 -  Pagamento
+### User Story US05 - Manter Pagamento
 
 
 |               |                                                                |
@@ -204,7 +208,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Importante                           | 
-| **Estimativa**            | 3h                             	  | 
+| **Estimativa**            | 4h                             	  | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 5                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
@@ -224,7 +228,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 
 
-### User Story US06 -  Forma de pagamento
+### User Story US06 - Manter Formas de Pagamento
 
 
 |               |                                                                |
@@ -239,7 +243,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Importante                           | 
-| **Estimativa**            | 3h                             	  | 
+| **Estimativa**            | 4h                             	  | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 5                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
@@ -261,7 +265,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 
 
 
-### User Story US07 -   Relatórios
+### User Story US07 - Manter Relatórios
 
 
 |               |                                                                |
@@ -276,7 +280,7 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 |                           |                                     |
 | ------------------------- | ----------------------------------- | 
 | **Prioridade**            | Importante                           | 
-| **Estimativa**            | 3h                             	  | 
+| **Estimativa**            | 5h                             	  | 
 | **Tempo Gasto (real):**   |                                     | 
 | **Tamanho Funcional**     | 10                                  | 
 | **Analista**            	| Vitor (responsável por especificar/detalhar o US).                              | 
