@@ -66,7 +66,7 @@ RF021 - Excluir Forma de Pagamento | <p align="justify">O sistema deverá permit
 RF022 - Relatórios Periódicos | <p align="justify">O usuário poderá gerar um relatório a partir das vendas realizadas, onde conseguirá um feedback a respeito dos produtos que estão sendo mais vendidos, como também os meios de pagamentos mais utilizados e o valor total das vendas no período escolhido.</p> | Administrador ou Gerente |
 RF023 - Estatísticas no Dashboard | <p align="justify">No dashboard, o usuário deve ter acesso a estatísticas, uma espécie de "mini relatórios" que ficarão disponivéis na página principal, como: número de vendas no dia, produtos mais vendidos na semana etc. </p> | Administrador ou Gerente |
 RF024 - Histórico de Ações | <p align="justify">O sistema deve registrar no banco de dados todas as movimentações feitas por quaisquer usuários, como: alteração do preço de um produto, alteração de dados de um usuário, cadastro de vendas etc., para que fique registrado e em eventuais erros dos usuários, esse histórico possa ajudar a indetificá-los. </p> | Administrador ou Gerente |
-RF025 - Lista de Histórico de Ações | <p align="justify">O sistema deverá ter uma página que liste o histórico de movimentações. </p> | Administrador |
+RF025 - Lista de Histórico de Ações | <p align="justify">O sistema deverá ter uma página que liste o histórico de ações. </p> | Administrador |
 
 ## Lista de Requisitos Não-Funcionais
 
