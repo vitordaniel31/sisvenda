@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             'email' => 'hugo2mufrn@gmail.com',
             'password' => 'password',
             'roles' => [
-                'Administrador Principal'
+                'Administrador'
             ]
         ],
         [
@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'jose.marques15@hotmail.com',
             'password' => 'password',
             'roles' => [
-                'Administrador Principal'
+                'Administrador'
             ]
         ],
         [
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'email' => 'ketlly.azevedo.090@ufrn.edu.br',
             'password' => 'password',
             'roles' => [
-                'Administrador Principal'
+                'Administrador'
             ]
         ],
         [
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'taciano.silva@ufrn.br',
             'password' => 'password',
             'roles' => [
-                'Administrador Principal'
+                'Administrador'
             ]
         ],
         [
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'email' => 'vitordaniel602@gmail.com',
             'password' => 'password',
             'roles' => [
-                'Administrador Principal'
+                'Administrador'
             ]
         ],
     ];
