@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -22,7 +24,6 @@ class ProductController extends Controller
         $products = Product::all();
 
         $products = collect($products)->map(function ($product) {
-            $product['roles'] = implode(', ', $product->getRoleNames()->toArray());
             $product['can_update'] = auth()->user()->can('update', $product);
             $product['can_delete'] = auth()->user()->can('delete', $product);
             return $product;
@@ -44,14 +45,9 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|regex:/^\d+(\.\d{1,3})?$/',
-        ]);
-
-        $product = Product::create();
+        $product = Product::create($request->validated());
 
         session()->flash('alert', [
             'type' => 'success',
@@ -87,14 +83,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|regex:/^\d+(\.\d{1,3})?$/',
-        ]);
-
-        $product->update();
+        $product->update($request->validated());
 
 
         session()->flash('alert', [
