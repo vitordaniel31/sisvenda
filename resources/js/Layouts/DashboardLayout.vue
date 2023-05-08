@@ -85,6 +85,18 @@ export default {
                         </li>
                         <hr class="sidebar-divider my-0" />
                     </div>
+                    <div v-if="can('products.read')">
+                            <li class="nav-item active">
+                                <Link
+                                    class="nav-link collapsed"
+                                    :href="route('products.index')"
+                                >
+                                    <i class="fab fa-product-hunt"></i>
+                                    <span>Produtos</span>
+                                </Link>
+                            </li>
+                            <hr class="sidebar-divider my-0" />
+                        </div>
                     <div v-if="can('users.read')">
                         <li class="nav-item active">
                             <Link
