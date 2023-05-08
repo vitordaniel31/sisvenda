@@ -11,7 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,8 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'max:255'],
-            'price' => ['price', 'numeric', 'regex:/^\d+(\.\d{1,3})?$/']
+            'name' => ['required','string', 'max:255'],
+            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,3})?$/']
         ];
     }
 }
