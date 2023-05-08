@@ -31,7 +31,7 @@ Taciano          | Desenvolvedor Java, Junit, Eclipse, JSP, JSF, Hibernate, Mate
 
 ## Perfis dos Usuários
 
-O sistema poderá ser utilizado apenas por dois tipos de usuários, o administrador principal e o administrador simplificado. 
+O sistema poderá ser utilizado apenas por dois tipos de usuários, o administrador e o gerente. 
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |

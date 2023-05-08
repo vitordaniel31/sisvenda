@@ -26,7 +26,7 @@
 
 ## ⚙️ Funcionalidades
 
-- [x] O administrador principal tem acesso a sua loja virtual contendo:
+- [x] O administrador tem acesso a sua loja virtual contendo:
   - [x] Cadastro, edição e visualização de administradores; 
   - [x] Cadastro, edição e visualização de produtos;
   - [x] Cadastro, edição e visualização de vendas;
