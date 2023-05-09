@@ -10,91 +10,85 @@ Para a modelagem pode se usar o Astah UML ou o BrModelo. Uma ferramenta interess
 
 ```mermaid
 classDiagram
-    class Administrador {
-        - nome : char
+    class User {
+        - name : char
         - email : char
-        - senha : char
-        + getNome() char
-        + setNome(nome char) void
+        - password : char
+        + getName() char
+        + setName(name char) void
         + getEmail() char
         + setEmail(email char) void
-        + getSenha() char
-        + setSenha(senha char) void
-        + login(email char, senha char) boolean
+        + getPassword() char
+        + setPassword(password char) void
+        + login(email char, password char) boolean
     }
-    class AdministradorPrincipal {
-        + cadastrar(a : Adminitrador) void
-        + excluir(a : Administrador) void
+    class StockHistory{
+        - user_id : User
+        - action : char
+        - previous : char
+        - later : char
+        - time : date
+        + register(history : StockHistory) void
     }
-    class Log{
-        - adm : Administrador
-        - acao : char
-        - anterior : char
-        - posterior : char
-        - time : Date
-        + cadastrar(log : Log) void
+    class Product{
+        - name : char
+        - price : double
+        - active : boolean
+        + register(pro : Product) void
+        + edit(pro : Product) void
+        + getActive() boolean
+        + setActive(active : boolean) void
     }
-    class Produto{
-        - nome : char
-        - preco : double
-        - ativo : boolean
-        + cadastrar(pro : Produto) void
-        + editar(pro : Produto) void
-        + getAtivo() boolean
-        + setAtivo(ativo : boolean) void
-    }
-    class ProdutoVenda{
-        - produto : Produto
-        - quantidade : int
-        - preco : double
-        - venda : Venda
+    class ProductSale{
+        - product_id : Product
+        - sale_id : Sale
+        - quantity : int
+        - price : double
         + total() double
     }
-    class Venda{
-        - data : Date
+    class Sale{
+        - date : date
         - status : boolean
-        - adm : Administrador
+        - user_id : User
         + total() double
-        + gerarConta() void
-        + finalizarVenda() void
-        + rentabilidadeProdutos(di : date, df : date) void
-        + relatorioVendas(di : date, df : date) void
-        + relatorioFormaPagamento(di : date, df : date) void
+        + generateAccount() void
+        + completeSale() void
+        + profitabilityProducts(di : date, df : date) void
+        + reportSales(di : date, df : date) void
+        + reportPaymentMethod(di : date, df : date) void
     }
-    class Conta{
-        - venda : Venda
+    class Account{
+        - sale_id : Sale
         - total : double
         + getTotal() double
         + setTotal(total: double) void
-        + gerarPagamento() void
+        + makePayment() void
     }
-    class FormaPagamentoDaConta{
-        FormaPagamentoDaConta
-        - forma : FormaPagamento
-        - conta : Conta
-        - valor : double
+    class PaymentMethodOfAccount{
+        - payment_id : PaymentMethod
+        - account_id : Account
+        - value : double
     }
-    class FormaPagamento{
-        - codigo : int
-        - nome : char
-        + getBanco() char
-        + setBanco(banco: char) void
-        + getChavePix() char
-        + setChavePix(chave: char) void
+    class PaymentMethod{
+        - number : int
+        - name : char
+        + getBank() char
+        + setBank(bank: char) void
+        + getPix() char
+        + setPix(key: char) void
     }
     class Pix{
-        - chavePix : char
-        - banco : char
-        + emitirQrCode() void
+        - key : char
+        - bank : char
+        + issueQrCode() void
     }
-    Administrador <|-- AdministradorPrincipal
-    Administrador "1" <-- "0 ... *" Log
-    ProdutoVenda "0 ... *" --> "1" Produto
-    Venda "1" -- "1 ... *" ProdutoVenda
-    Venda "1" <-- "1" Conta
-    FormaPagamentoDaConta "*" --> "1" Conta
-    FormaPagamentoDaConta "*" --> "1" FormaPagamento
-    FormaPagamento "1" -- "0 ... 1" Pix
+    User "1" <-- "0 ... *" StockHistory
+    ProductSale "0 ... *" --> "1" Product
+    Sale "1" -- "1 ... *" ProductSale
+    Sale "1" <-- "1" Account
+    PaymentMethodOfAccount "*" --> "1" Account
+    PaymentMethodOfAccount "*" --> "1" PaymentMethod
+    PaymentMethod "1" -- "0 ... 1" Pix
 ```
 
 ### Descrição das Entidades
@@ -103,16 +97,15 @@ Descrição sucinta das entidades presentes no sistema.
 
 | Entidade | Descrição                                                                                                                                |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Administrador   | Entidade que representa o Administrador tem as informações: nome, email, senha, + getNome(), + setNome(nome char), + getEmail(), + setEmail(email char), + getSenha(), + setSenha(senha char), + login(email, senha char).                                      |
-| Administrador Principal     | Entidade que representa o Administrador Principal tem as informações: + cadastrar(a : Adminitrador), + excluir(a : Administrador). Esta classe é herdeira da classe Administrador. |
-| Log     | Entidade que representa o Log tem as informações: adm, acao, anterior, posterior : char, time, + cadastrar(log : Log).             |
-| Produto    | Entidade que representa um Produto tem as informações nome, preco, ativo, + cadastrar(pro : Produto), + editar(pro : Produto), + getAtivo(), setAtivo(ativo : boolean).                     |
-| ProdutoVenda    | Entidade que representa um relacionamento N:N entre Produto e Venda.                    |
-| Venda    | Entidade que representa uma Venda tem as informações data, status, adm : Administrador, + total(), + gerarConta(), + finalizarVenda(), + rentabilidadeProdutos(di : date, df : date), relatorioVendas(di : date, df : date), relatorioFormaPagamento(di : date, df : date).                     |
-| Conta    | Entidade que representa uma Conta tem as informações venda : Venda, total, + getTotal(), + setTotal(total: double), + gerarPagamento().                     |
-| FormaPagamento    | Entidade que representa uma FormaPagamento tem as informações codigo, nome, + getBanco(), + setBanco(banco: char), + getChavePix(), + setChavePix(chave: char).                |
-| FormaPagamentoDaConta    | Entidade que representa um relacionamento N:N entre FormaPagamento e Conta.                |
-| Pix    | Entidade que representa um Pix tem as informações chavePix, banco, + emitirQrCode().               |
+| User   | Entidade que representa o usuario tem as informações: name, email, password, + getName(), + setName(name char), + getEmail(), + setEmail(email char), + getPassword(), + setPassword(password char), + login(email, password char).                                      |
+| StockHistory     | Entidade que representa o histórico de ações tem as informações: user_id, action, previous, later, + register(history : StockHistory).            |
+| Product    | Entidade que representa um produto tem as informações name, price, active, + register(pro : Product), + edit(pro : Product), + getActive(), setActive(active : boolean).                     |
+| ProductSale    | Entidade que representa um relacionamento N:N entre produto e venda.                    |
+| Sale    | Entidade que representa uma venda tem as informações date, status, user_id : User, + total(), + generateAccount(), + completeSale(), + profitabilityProducts(di : date, df : date), reportSales(di : date, df : date), reportPaymentMethod(di : date, df : date).                     |
+| Account    | Entidade que representa uma Conta tem as informações sale_id : Sale, total, + getTotal(), + setTotal(total: double), + makePayment().                     |
+| PaymentMethod    | Entidade que representa uma forma de pagamento tem as informações number, name, + getBank(), + setBank(bank: char), + getPix(), + setPix(key: char).                |
+| PaymentMethodOfAccount    | Entidade que representa um relacionamento N:N entre PaymentMethod e Account.                |
+| Pix    | Entidade que representa um Pix tem as informações key, bank, + issueQrCode().               |
 
 ## Modelo de Dados (Entidade-Relacionamento)
 
@@ -120,105 +113,105 @@ Para criar modelos ER é possível usar o BrModelo e gerar uma imagem. Contudo, 
 
 ```mermaid
 erDiagram
-    Administrador ||--o{ Log : "cadastra"
-    Produto }|--|{ Venda : "tem"
-    Conta ||--|{ Venda : "tem"
-    Conta ||--|{ FormaPagamento : "possui"
-    Pix |o--o| FormaPagamento : "pode ser"
+    User ||--o{ StockHistory : "cadastra"
+    Product }|--|{ Sale : "tem"
+    Account ||--|{ Sale : "tem"
+    Account ||--|{ PaymentMethod : "possui"
+    Pix |o--o| PaymentMethod : "pode ser"
 ```
 
 ### Dicionário de Dados
-* Administrador
+* User
 
-| Tabela     | Administrador                                                                |
+| Tabela     | User                                                                       |
 | ---------- | -------------------------------------------------------------------------- |
-| Descrição  | Armazena as informações do administrador da loja.                       |
-| Observação | O administrador pode ser o Administrador Principal com todas as permissões, mas também pode ser o administrador simplicado com permissões limitadas. |
+| Descrição  | Armazena as informações do User da loja.                                   |
+| Observação | Ele poderá ser o admnistrador ou gerente.                                  |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| nome          | nome do administrador            | VARCHAR      | 150     | Not Null              |
-| e-mail        | e-mail de acesso do administrador| VARCHAR      | 150     | Not Null              |
-| senha         | senha de acesso do administrador | VARCHAR      | 50      | Not Null              |
+| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| name          | nome do usuario                  | VARCHAR      | 150     | Not Null              |
+| e-mail        | e-mail de acesso do usuario      | VARCHAR      | 150     | Not Null              |
+| password      | password de acesso do usuario    | VARCHAR      | 50      | Not Null              |
 
-* Log
+* StockHistory
   
-| Tabela     | Log                                                                |
-| ---------- | -------------------------------------------------------------------------- |
+| Tabela     | StockHistory                                                                |
+| ---------- | --------------------------------------------------------------------------  |
 | Descrição  | Armazena as informações de cada movimentação da loja.                       |
-| Observação | O administrador pode realizar as ações que tenha permissão e para questão de segurança, salvará um log automaticamente de qual modificação foi feita e o autor |
+| Observação | O usuario logado pode realizar as ações que tenha permissão e para questão de segurança, salvará o historico de alterações automaticamente de qual modificação foi feita e o autor.                                   |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| adm           | identificador do administrador   | VARCHAR      | 150     | FK / Not Null         |
-| acao          | ação realizada no sistema        | VARCHAR      | 150     | Not Null              |
-| anterior      | senha de acesso do administrador | VARCHAR      | 150     | Not Null              |
-| posterior     | senha de acesso do administrador | VARCHAR      | 150     | Not Null              |
-| time          | senha de acesso do administrador | DATE         | ---     | Not Null              |
+| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| user_id       | identificador do usuario         | VARCHAR      | 150     | FK / Not Null         |
+| action        | ação realizada no sistema        | VARCHAR      | 150     | Not Null              |
+| previous      | estado anterior da ação          | VARCHAR      | 150     | Not Null              |
+| later         | estado posterior da ação         | VARCHAR      | 150     | Not Null              |
+| time          | horário da alteração             | DATE         | ---     | Not Null              |
 
-* Produto
+* Product
 
-| Tabela     | Produto                                                                |
+| Tabela     | Product                                                                    |
 | ---------- | -------------------------------------------------------------------------- |
-| Descrição  | Armazena as informações de cada produto da loja.                       |
-| Observação | O administrador pode cadastrar e editar um produto. |
+| Descrição  | Armazena as informações de cada produto da loja.                           |
+| Observação | O Usuario pode register e editar um produto. |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| nome          | nome do produto                  | VARCHAR      | 150     | Not Null              |
-| preco         | valor que está custando o produto| DOUBLE       | ---     | Not Null              |
-| ativo         | chave que configura a disponibilidade do produto | BOOLEAN    | ---   | Not Null  |
+| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| name          | nome do produto                  | VARCHAR      | 150     | Not Null              |
+| price         | valor que está custando o produto| DOUBLE       | ---     | Not Null              |
+| active        | chave que configura a disponibilidade do produto | BOOLEAN    | ---   | Not Null  |
 
-* Venda
+* Sale
 
-| Tabela     | Venda                                                                |
+| Tabela     | Sale                                                                       |
 | ---------- | -------------------------------------------------------------------------- |
-| Descrição  | Armazena as informações de cada venda da loja.                       |
-| Observação | O administrador pode cadastrar e cancelar uma venda. |
+| Descrição  | Armazena as informações de cada venda da loja.                             |
+| Observação | O usuario pode registrar e cancelar uma venda.                             |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| data          | data que a venda foi realizada   | DATE         | ---     | Not Null              |
+| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| date          | data que a venda foi realizada   | DATE         | ---     | Not Null              |
 | status        | status da venda (concluida ou cancelada) | BOOLEAN       | ---     | Not Null     |
-| adm           | identificador do administrador   | INT      | ---     | FK / Not Null         |
+| user_id           | identificador do Usuario   | INT      | ---     | FK / Not Null               |
 
-* Conta
+* Account
 
-| Tabela     | Conta                                                                |
+| Tabela     | Conta                                                                      |
 | ---------- | -------------------------------------------------------------------------- |
-| Descrição  | Armazena as informações da conta da loja.                       |
-| Observação | Será gerado uma conta para que receba um pagamento. |
+| Descrição  | Armazena as informações da conta bancária da loja.                         |
+| Observação | Será gerado uma conta para que receba um pagamento.                        |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| venda         | identificador da venda realizada | INT          | ---     | FK / Not Null         |
+| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| sale_id         | identificador da venda realizada | INT        | ---     | FK / Not Null         |
 | total         | valor total da venda             | DOUBLE       | ---     | Not Null              |
 
-* FormaPagamento
+* PaymentMethod
 
 | Tabela     | FormaPagamento                                                                |
-| ---------- | -------------------------------------------------------------------------- |
+| ---------- | --------------------------------------------------------------------------    |
 | Descrição  | Armazena as informações da forma de pagamento da venda.                       |
 | Observação | Será escolhida a forma que a conta será paga. |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| nome          | tipo de pagamento (cartão, dinheiro, pix) | VARCHAR          | 150     | Not Null         |
+| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| name          | tipo de pagamento (cartão, dinheiro, pix) | VARCHAR          | 150     | Not Null |
 
 * Pix
 
-| Tabela     | Pix                                                                |
+| Tabela     | Pix                                                                        |
 | ---------- | -------------------------------------------------------------------------- |
-| Descrição  | Armazena as informações do pix da loja.                       |
-| Observação | Será cadastrado as informações da chave pix. |
+| Descrição  | Armazena as informações do pix da loja.                                    |
+| Observação | Será cadastrado as informações da chave pix.                               |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| chavePix      | identificador da chave pix       | VARCHAR      | 150     | PK / Identity         |
-| banco         | banco o qual o pix está vinculado| VARCHAR      | 150     | Not Null              |
+| key      | identificador da chave pix       | VARCHAR      | 150     | PK / Identity              |
+| bank         | banco o qual o pix está vinculado| VARCHAR      | 150     | Not Null               |
