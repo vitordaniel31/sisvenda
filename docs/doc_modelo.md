@@ -140,7 +140,7 @@ erDiagram
 | Tabela     | StockHistory                                                                |
 | ---------- | --------------------------------------------------------------------------  |
 | Descrição  | Armazena as informações de cada movimentação da loja.                       |
-| Observação | O usuario logado pode realizar as ações que tenha permissão e para questão de segurança, salvará o historico de alterações automaticamente de qual modificação foi feita e o autor.                                   |
+| Observação | O usuario logado pode realizar as ações que tenha permissão e para questão de segurança, salvará o historico de alterações automaticamente de qual modificação foi feita e o autor.                                                                                     |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
@@ -156,7 +156,7 @@ erDiagram
 | Tabela     | Product                                                                    |
 | ---------- | -------------------------------------------------------------------------- |
 | Descrição  | Armazena as informações de cada produto da loja.                           |
-| Observação | O Usuario pode register e editar um produto. |
+| Observação | O Usuario pode register e editar um produto.                               |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
@@ -197,7 +197,7 @@ erDiagram
 | Tabela     | FormaPagamento                                                                |
 | ---------- | --------------------------------------------------------------------------    |
 | Descrição  | Armazena as informações da forma de pagamento da venda.                       |
-| Observação | Será escolhida a forma que a conta será paga. |
+| Observação | Será escolhida a forma que a conta será paga.                                 |
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
