@@ -31,7 +31,7 @@ export default {
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="form-group">
-                <InputLabel for="name" value="Nome" />
+                <InputLabel for="name" value="Nome" :required="true" />
 
                 <TextInput
                     id="name"
@@ -49,7 +49,7 @@ export default {
         </div>
         <div class="col-lg-5">
             <div class="form-group">
-                <InputLabel for="price" value="Preço" />
+                <InputLabel for="price" value="Preço" :required="true" />
                 <TextInput
                     id="price"
                     type="number"

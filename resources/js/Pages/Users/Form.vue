@@ -31,7 +31,7 @@ export default {
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="form-group">
-                <InputLabel for="name" value="Nome" />
+                <InputLabel for="name" value="Nome" :required="true" />
 
                 <TextInput
                     id="name"
@@ -49,7 +49,7 @@ export default {
         </div>
         <div class="col-lg-5">
             <div class="form-group">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email" :required="true" />
 
                 <TextInput
                     id="email"
@@ -68,7 +68,7 @@ export default {
     <div v-if="!disabled" class="row justify-content-center">
         <div class="col-lg-5">
             <div class="form-group">
-                <InputLabel for="password" value="Senha" />
+                <InputLabel for="password" value="Senha" :required="create" />
 
                 <TextInput
                     id="password"
@@ -79,7 +79,11 @@ export default {
                     autocomplete="new-password"
                 />
 
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError
+                    class="mt-2"
+                    :message="form.errors.password"
+                    :required="true"
+                />
             </div>
         </div>
         <div class="col-lg-5">
@@ -87,6 +91,7 @@ export default {
                 <InputLabel
                     for="password_confirmation"
                     value="Confirme a senha"
+                    :required="create"
                 />
 
                 <TextInput
