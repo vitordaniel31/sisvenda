@@ -153,7 +153,12 @@ export default {
                                         aria-labelledby="userDropdown"
                                     >
                                         <Link
-                                            href=""
+                                            :href="
+                                                route(
+                                                    'users.show',
+                                                    $page.props.auth.user.id
+                                                )
+                                            "
                                             as="button"
                                             type="button"
                                             class="btn btn-sm text-dark"
