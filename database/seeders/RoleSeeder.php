@@ -19,6 +19,10 @@ class RoleSeeder extends Seeder
                 'roles.create',
                 'roles.update',
                 'roles.delete',
+                'products.read',
+                'products.create',
+                'products.update',
+                'products.delete',
             ]
         ],
         [
