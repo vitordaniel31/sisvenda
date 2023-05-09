@@ -33,8 +33,16 @@ export default {
             <div class="form-group">
                 <InputLabel for="name" value="Nome" />
 
-                <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus
-                    autocomplete="name" :disabled="disabled" />
+                <TextInput
+                    id="name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.name"
+                    required
+                    autofocus
+                    autocomplete="name"
+                    :disabled="disabled"
+                />
 
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
@@ -42,8 +50,15 @@ export default {
         <div class="col-lg-5">
             <div class="form-group">
                 <InputLabel for="price" value="Preço" />
-                <input id="price" type="number" class="mt-1 block w-full" v-model="form.price" required
-                    :disabled="disabled" />
+                <TextInput
+                    id="price"
+                    type="number"
+                    step="0.01"
+                    class="mt-1 block w-full"
+                    v-model="form.price"
+                    required
+                    :disabled="disabled"
+                />
 
                 <InputError class="mt-2" :message="form.errors.price" />
             </div>

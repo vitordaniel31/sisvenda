@@ -58,7 +58,10 @@ export default {
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">
-                        <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <PrimaryButton
+                            :class="{ 'opacity-25': form.processing }"
+                            :disabled="form.processing"
+                        >
                             Confirmar
                         </PrimaryButton>
                     </div>

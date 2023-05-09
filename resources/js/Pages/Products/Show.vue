@@ -47,13 +47,22 @@ export default {
                         Dados Gerais
                     </h5>
                     <div class="btn-group float-right">
-                        <Link v-show="product.can_update" class="btn btn-sm ms-1 btn-outline-secondary"
-                            :href="route('products.edit', product)">
-                        <i class="fa fa-pencil-alt"></i>
+                        <Link
+                            v-show="product.can_update"
+                            class="btn btn-sm ms-1 btn-outline-secondary"
+                            :href="route('products.edit', product)"
+                        >
+                            <i class="fa fa-pencil-alt"></i>
                         </Link>
-                        <button v-show="product.can_delete" class="btn btn-sm ms-1 ml-1 btn-outline-danger" v-on:click="
-                            deleteAlert(route('products.destroy', this.product))
-                            ">
+                        <button
+                            v-show="product.can_delete"
+                            class="btn btn-sm ms-1 ml-1 btn-outline-danger"
+                            v-on:click="
+                                deleteAlert(
+                                    route('products.destroy', this.product)
+                                )
+                            "
+                        >
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>

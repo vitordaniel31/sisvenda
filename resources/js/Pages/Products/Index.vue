@@ -35,46 +35,69 @@ export default {
                         <h6 class="font-weight-bold">
                             {{ title }}
                         </h6>
-                        <Link v-show="can('products.create')" :href="route('products.create')"
-                            class="btn btn-capelli btn-sm mb-2">
-                        <i class="fa fa-fw fa-plus"></i>Cadastrar Produto
+                        <Link
+                            v-show="can('products.create')"
+                            :href="route('products.create')"
+                            class="btn btn-capelli btn-sm mb-2"
+                        >
+                            <i class="fa fa-fw fa-plus"></i>Cadastrar Produto
                         </Link>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-vcenter table-bordered hover" id="dataTable">
+                        <table
+                            class="table table-striped table-vcenter table-bordered hover"
+                            id="dataTable"
+                        >
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Preco</th>
+                                    <th>Preço</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(product, index) in products">
                                     <td>
-                                        <Link :href="route('products.show', product)">{{ product.name }}
+                                        <Link
+                                            :href="
+                                                route('products.show', product)
+                                            "
+                                            >{{ product.name }}
                                         </Link>
                                     </td>
                                     <td>
-                                        {{ product.price }}
+                                        R$ {{ product.price.replace(".", ",") }}
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <Link v-show="product.can_update" class="btn btn-sm btn-outline-secondary"
-                                                :href="route('products.edit', product)">
-                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                            <Link
+                                                v-show="product.can_update"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                :href="
+                                                    route(
+                                                        'products.edit',
+                                                        product
+                                                    )
+                                                "
+                                            >
+                                                <i
+                                                    class="fa fa-fw fa-pencil-alt"
+                                                ></i>
                                             </Link>
-                                            <button v-show="product.can_delete"
-                                                class="btn btn-sm ms-1 ml-1 btn-outline-danger" v-on:click="
+                                            <button
+                                                v-show="product.can_delete"
+                                                class="btn btn-sm ms-1 ml-1 btn-outline-danger"
+                                                v-on:click="
                                                     deleteAlert(
                                                         route(
                                                             'products.destroy',
                                                             product
                                                         )
                                                     )
-                                                    ">
+                                                "
+                                            >
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
