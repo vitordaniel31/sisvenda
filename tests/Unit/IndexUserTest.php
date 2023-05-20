@@ -6,7 +6,7 @@ use Spatie\Permission\Models\Role;
 
 uses(Tests\TestCase::class);
 
-it('delete a user with permission', function () {
+it('list users with permission', function () {
     $user = User::factory()->create();
     $role = Role::firstOrCreate([
         'name' => 'Administrador',
@@ -14,20 +14,20 @@ it('delete a user with permission', function () {
     ]);
 
     $permission = Permission::firstOrCreate([
-        'name' => 'users.delete',
+        'name' => 'users.read',
         'guard_name' => '*'
     ]);
 
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $this->actingAs($user)->delete(route('users.destroy', $user))
-        ->assertRedirect(route('users.index'));
+    $this->actingAs($user)->get(route('users.index'))
+        ->assertStatus(200);
 });
 
-it('delete a user without permission', function () {
+it('list users without permission', function () {
     $user = User::factory()->create();
 
-    $this->actingAs($user)->delete(route('users.destroy', $user))
+    $this->actingAs($user)->get(route('users.index'))
         ->assertStatus(403);
 });
