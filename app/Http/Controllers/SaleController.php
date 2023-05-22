@@ -2,16 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateSaleRequest;
+use App\Http\Requests\UpdateSaleRequest;
+use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class SaleController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Sale::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $sales = Sale::all();
+
+        $sales = collect($sales)->map(function ($sale) {
+            $sale['can_update'] = auth()->user()->can('update', $sale);
+            $sale['can_delete'] = auth()->user()->can('delete', $sale);
+            return $sale;
+        }, $sales);
+
+        return Inertia::render('Sales/Index', [
+            'sales' => $sales
+        ]);
     }
 
     /**
@@ -19,7 +39,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Sales/Create');
     }
 
     /**
