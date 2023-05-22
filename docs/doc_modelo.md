@@ -47,6 +47,7 @@ classDiagram
         + total() double
     }
     class Sale{
+        - client : char
         - date : date
         - status : boolean
         - user_id : User
@@ -130,7 +131,7 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
 | name          | nome do usuario                  | VARCHAR      | 150     | Not Null              |
 | e-mail        | e-mail de acesso do usuario      | VARCHAR      | 150     | Not Null              |
 | password      | password de acesso do usuario    | VARCHAR      | 50      | Not Null              |
@@ -144,7 +145,7 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
 | user_id       | identificador do usuario         | VARCHAR      | 150     | FK / Not Null         |
 | action        | ação realizada no sistema        | VARCHAR      | 150     | Not Null              |
 | previous      | estado anterior da ação          | VARCHAR      | 150     | Not Null              |
@@ -160,7 +161,7 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
 | name          | nome do produto                  | VARCHAR      | 150     | Not Null              |
 | price         | valor que está custando o produto| DOUBLE       | ---     | Not Null              |
 | active        | chave que configura a disponibilidade do produto | BOOLEAN    | ---   | Not Null  |
@@ -174,10 +175,11 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| cliente       | cliente da venda                 | VARCHAR      | ---     | Not Null              |
 | date          | data que a venda foi realizada   | DATE         | ---     | Not Null              |
-| status        | status da venda (concluida ou cancelada) | BOOLEAN       | ---     | Not Null     |
-| user_id           | identificador do Usuario   | INT      | ---     | FK / Not Null               |
+| status        | status da venda (concluida ou cancelada) | BOOLEAN        | ---     | Not Null    |
+| user_id       | identificador do Usuario         | INT          | ---     | FK / Not Null         |
 
 * Account
 
@@ -188,8 +190,8 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| sale_id         | identificador da venda realizada | INT        | ---     | FK / Not Null         |
+| id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| sale_id       | identificador da venda realizada | INT          | ---     | FK / Not Null         |
 | total         | valor total da venda             | DOUBLE       | ---     | Not Null              |
 
 * PaymentMethod
@@ -201,7 +203,7 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| number        | identificador gerado automatico  | INT          | ---     | PK / Identity         |
+| id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
 | name          | tipo de pagamento (cartão, dinheiro, pix) | VARCHAR          | 150     | Not Null |
 
 * Pix
@@ -213,5 +215,5 @@ erDiagram
 
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| key      | identificador da chave pix       | VARCHAR      | 150     | PK / Identity              |
-| bank         | banco o qual o pix está vinculado| VARCHAR      | 150     | Not Null               |
+| key           | identificador da chave pix       | VARCHAR      | 150     | PK / Identity         |
+| bank          | banco o qual o pix está vinculado| VARCHAR      | 150     | Not Null              |
