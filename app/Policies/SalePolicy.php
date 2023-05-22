@@ -13,15 +13,15 @@ class SalePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->can('sales.read');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Sale $sale): bool
+    public function view(User $user, Product $product): bool
     {
-        //
+        return $user->can('sales.read');
     }
 
     /**
@@ -29,7 +29,7 @@ class SalePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->can('sales.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class SalePolicy
      */
     public function update(User $user, Sale $sale): bool
     {
-        //
+        return $user->can('sales.update');
     }
 
     /**
@@ -45,22 +45,6 @@ class SalePolicy
      */
     public function delete(User $user, Sale $sale): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Sale $sale): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Sale $sale): bool
-    {
-        //
+        return $user->can('sales.delete');
     }
 }
