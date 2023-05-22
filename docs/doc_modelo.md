@@ -176,7 +176,7 @@ erDiagram
 | Nome          | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
 | id            | identificador gerado automatico  | INT          | ---     | PK / Identity         |
-| cliente       | cliente da venda                 | VARCHAR      | ---     | Not Null              |
+| client        | cliente da venda                 | VARCHAR      | ---     | Not Null              |
 | date          | data que a venda foi realizada   | DATE         | ---     | Not Null              |
 | status        | status da venda (concluida ou cancelada) | BOOLEAN        | ---     | Not Null    |
 | user_id       | identificador do Usuario         | INT          | ---     | FK / Not Null         |
