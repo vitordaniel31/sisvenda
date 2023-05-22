@@ -4,8 +4,9 @@ use App\Models\Product;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(Tests\TestCase::class);
+uses(Tests\TestCase::class, RefreshDatabase::class);
 
 it('show a product with permission', function () {
     $user = User::factory()->create();
@@ -52,7 +53,7 @@ it('show a not found product', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $notFoundProductId = Product::latest()->first()->id + 100;
+    $notFoundProductId = Product::latest()->first()?->id + 100;
 
     $this->actingAs($user)->get(route('products.show', $notFoundProductId))
         ->assertStatus(404);
