@@ -45,17 +45,29 @@ class SaleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateSaleRequest $request)
     {
-        //
+        $sale= Sale::create($request->validated());
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'A venda foi criada com sucesso.'
+        ]);
+
+        return Redirect::route('sales.show', $sale);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Sale $sale)
     {
-        //
+        $sale['can_update'] = auth()->user()->can('update', $sale);
+        $sale['can_delete'] = auth()->user()->can('delete', $sale);
+
+        return Inertia::render('Sales/Show', [
+            'sale' => $sale
+        ]);
     }
 
     /**
