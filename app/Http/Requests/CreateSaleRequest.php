@@ -22,7 +22,9 @@ class CreateSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'date' => ['required','date_format:d-m-Y'],
+            'user_id' => ['required','string','max:255'],
+        
         ];
     }
 }
