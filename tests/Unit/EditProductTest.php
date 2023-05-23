@@ -10,7 +10,6 @@ uses(Tests\TestCase::class, RefreshDatabase::class);
 
 it('edit a product with permission', function () {
     $user = User::factory()->create();
-    $product = Product::factory()->create();
     $role = Role::firstOrCreate([
         'name' => 'Administrador',
         'guard_name' => '*'
@@ -24,24 +23,20 @@ it('edit a product with permission', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $editProduct = [
+    $product = Product::factory()->create();
+
+    $this->actingAs($user)->put(route('products.update', $product), [
         'name' => "Novo nome",
         'price' => 20.0
-    ];
-
-    $this->actingAs($user)->put(route('products.update', $product),$editProduct)
-        ->assertRedirect(route('products.show', $user));
+    ])->assertRedirect(route('products.show', $product));
 });
 
 it('edit a product without permission', function () {
     $user = User::factory()->create();
     $product = Product::factory()->create();
 
-    $editProduct = [
+    $this->actingAs($user)->put(route('products.update', $product), [
         'name' => "Novo nome",
         'price' => 20.0
-    ];
-    
-    $this->actingAs($user)->put(route('products.update', $product),$editProduct)
-        ->assertStatus(403);
+    ])->assertStatus(403);
 });

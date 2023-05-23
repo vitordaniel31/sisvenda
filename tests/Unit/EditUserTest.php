@@ -22,18 +22,17 @@ it('edit a user with permission', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $newUser = [
-        'name' => "Testando Usuário",
+    $this->actingAs($user)->put(route('users.update', $user), [
+        'name' => "Testando Editar Usuário",
         'email' => "usuario_testado@gmail.com"
-    ];
-
-    $this->actingAs($user)->put(route('users.update', $user),$newUser)
-        ->assertRedirect(route('users.show', $user));
+    ])->assertRedirect(route('users.show', $user));
 });
 
 it('edit a user without permission', function () {
     $user = User::factory()->create();
 
-    $this->actingAs($user)->put(route('users.update', $user))
-        ->assertStatus(403);
+    $this->actingAs($user)->put(route('users.update', $user), [
+        'name' => "Testando Editar Usuário",
+        'email' => "usuario_testado@gmail.com"
+    ])->assertStatus(403);
 });
