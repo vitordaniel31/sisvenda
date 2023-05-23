@@ -5,9 +5,10 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+
 uses(Tests\TestCase::class, RefreshDatabase::class);
 
-it('list users with permission', function () {
+it('create users with permission', function () {
     $user = User::factory()->create();
     $role = Role::firstOrCreate([
         'name' => 'Administrador',
@@ -22,13 +23,27 @@ it('list users with permission', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $this->actingAs($user)->get(route('users.create', User::factory()->create()))
-        ->assertStatus(200);
+    $this->actingAs($user)
+        ->post(route('users.store', [
+        'name' => 'New User', 
+        'email' => 'newUser@gmail.com', 
+        'password' => 'password123', 
+        'password_confirmation' => 
+        'password123'
+        ]))
+        ->assertRedirect(route('users.show', User::latest()->skip(1)->take(1)->first()));
 });
-
-it('list users without permission', function () {
+it('Create a user without permission', function () {
     $user = User::factory()->create();
 
-    $this->actingAs($user)->get(route('users.create', User::factory()->create()))
-        ->assertStatus(403);
+    $this->actingAs($user)->post(route(
+        'users.store',
+        ['name' => 'New User', 
+        'email' => 'newUser@gmail.com', 
+        'password' => 'password123', 
+        'password_confirmation' => 'password123'
+        ]))
+    ->assertStatus(403);
 });
+
+
