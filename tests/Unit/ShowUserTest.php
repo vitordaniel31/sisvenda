@@ -48,7 +48,7 @@ it('show a not found user', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $notFoundUserId = User::latest()->first()?->id + 100;
+    $notFoundUserId = User::latest('id')->first()?->id + 100;
 
     $this->actingAs($user)->get(route('users.show', $notFoundUserId))
         ->assertStatus(404);

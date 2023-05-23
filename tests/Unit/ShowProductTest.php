@@ -53,7 +53,7 @@ it('show a not found product', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $notFoundProductId = Product::latest()->first()?->id + 100;
+    $notFoundProductId = Product::latest('id')->first()?->id + 100;
 
     $this->actingAs($user)->get(route('products.show', $notFoundProductId))
         ->assertStatus(404);

@@ -27,7 +27,7 @@ it('create a product with permission', function () {
             'name' => 'Produto Teste',
             'price' => 10.00
         ]))
-        ->assertRedirect(route('products.show', Product::latest()->first()));
+        ->assertRedirect(route('products.show', Product::latest('id')->first()));
 });
 
 it('create a product without permission', function () {
