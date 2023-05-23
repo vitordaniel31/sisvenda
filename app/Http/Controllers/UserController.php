@@ -100,7 +100,7 @@ class UserController extends Controller
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);
 
-            $user = $user->update([
+            $user->update([
                 'password' => Hash::make($request->password)
             ]);
         }

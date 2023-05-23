@@ -11,6 +11,10 @@
 |
 */
 
+use App\Models\User;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 uses(
     Tests\TestCase::class,
     // Illuminate\Foundation\Testing\RefreshDatabase::class,
@@ -45,4 +49,26 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+function createUserForActing(string $permission = null): User
+{
+    $user = User::factory()->create();
+
+    if ($permission) {
+        $role = Role::firstOrCreate([
+            'name' => 'Administrador',
+            'guard_name' => '*'
+        ]);
+
+        $permission = Permission::firstOrCreate([
+            'name' => $permission,
+            'guard_name' => '*'
+        ]);
+
+        $user->syncPermissions($permission->id);
+        $user->syncRoles($role->id);
+    }
+
+    return $user;
 }
