@@ -9,7 +9,6 @@ uses(Tests\TestCase::class);
 
 it('create a product with permission', function () {
     $user = User::factory()->create();
-    $product = Product::factory()->create();
     $role = Role::firstOrCreate([
         'name' => 'Administrador',
         'guard_name' => '*'
@@ -24,15 +23,18 @@ it('create a product with permission', function () {
     $user->syncRoles($role->id);
 
     $this->actingAs($user)
-    ->post(route('products.store', $product->toArray()))
-    ->assertRedirect(route('products.show', Product::latest()->first()));
-
+        ->post(route('products.store', [
+            'name' => 'Produto Test',
+            'price' => 10.00
+        ]))
+        ->assertRedirect(route('products.show', Product::latest()->first()));
 });
 
 it('create a product without permission', function () {
     $user = User::factory()->create();
-    $product = Product::factory()->create();
 
-    $this->actingAs($user)->post(route('products.store', $product))
-        ->assertStatus(403);
+    $this->actingAs($user)->post(route('products.store', [
+        'name' => 'Produto Test',
+        'price' => 10.00
+    ]))->assertStatus(403);
 });
