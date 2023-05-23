@@ -22,11 +22,12 @@ it('edit a user with permission', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $this->actingAs($user)->put(route('users.update', $user),
-        [
-            'name' => "Testando Usuário",
-            'email' => "usuario_testado@gmail.com"
-        ])
+    $newUser = [
+        'name' => "Testando Usuário",
+        'email' => "usuario_testado@gmail.com"
+    ];
+
+    $this->actingAs($user)->put(route('users.update', $user),$newUser)
         ->assertRedirect(route('users.show', $user));
 });
 
