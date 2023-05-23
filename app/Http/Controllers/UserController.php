@@ -51,7 +51,9 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $user = User::create($request->except('roles'));
+        $user = User::create(array_merge($request->except('roles', 'password'), [
+            'password' => Hash::make($request->password),
+        ]));
 
         //$user->syncRoles($request->roles);
 

@@ -24,26 +24,24 @@ it('create users with permission', function () {
     $user->syncRoles($role->id);
 
     $this->actingAs($user)
-        ->post(route('users.store', [
-        'name' => 'New User', 
-        'email' => 'newUser@gmail.com', 
-        'password' => 'password123', 
-        'password_confirmation' => 
-        'password123'
-        ]))
-        ->assertRedirect(route('users.show', User::latest()->skip(1)->take(1)->first()));
+        ->post(route('users.store'), [
+            'name' => 'New User',
+            'email' => 'newUser@gmail.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123'
+        ])->assertRedirect(route('users.show', User::latest('id')->first()));
 });
-it('Create a user without permission', function () {
+
+it('create a user without permission', function () {
     $user = User::factory()->create();
 
-    $this->actingAs($user)->post(route(
-        'users.store',
-        ['name' => 'New User', 
-        'email' => 'newUser@gmail.com', 
-        'password' => 'password123', 
-        'password_confirmation' => 'password123'
-        ]))
-    ->assertStatus(403);
+    $this->actingAs($user)->post(
+        route('users.store'),
+        [
+            'name' => 'New User',
+            'email' => 'newUser@gmail.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123'
+        ]
+    )->assertStatus(403);
 });
-
-
