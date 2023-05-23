@@ -1,13 +1,14 @@
 <?php
 
 use App\Models\User;
+use App\Models\Product;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(Tests\TestCase::class, RefreshDatabase::class);
 
-it('edit a user with permission', function () {
+it('edit a product with permission', function () {
     $user = User::factory()->create();
     $role = Role::firstOrCreate([
         'name' => 'Administrador',
@@ -15,24 +16,27 @@ it('edit a user with permission', function () {
     ]);
 
     $permission = Permission::firstOrCreate([
-        'name' => 'users.update',
+        'name' => 'products.update',
         'guard_name' => '*'
     ]);
 
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    $this->actingAs($user)->put(route('users.update', $user), [
-        'name' => "Testando Editar Usuário",
-        'email' => "usuario_testado@gmail.com"
-    ])->assertRedirect(route('users.show', $user));
+    $product = Product::factory()->create();
+
+    $this->actingAs($user)->put(route('products.update', $product), [
+        'name' => "Novo nome",
+        'price' => 20.0
+    ])->assertRedirect(route('products.show', $product));
 });
 
-it('edit a user without permission', function () {
+it('edit a product without permission', function () {
     $user = User::factory()->create();
+    $product = Product::factory()->create();
 
-    $this->actingAs($user)->put(route('users.update', $user), [
-        'name' => "Testando Editar Usuário",
-        'email' => "usuario_testado@gmail.com"
+    $this->actingAs($user)->put(route('products.update', $product), [
+        'name' => "Novo nome",
+        'price' => 20.0
     ])->assertStatus(403);
 });

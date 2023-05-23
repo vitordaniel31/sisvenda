@@ -24,7 +24,7 @@ it('create a product with permission', function () {
 
     $this->actingAs($user)
         ->post(route('products.store', [
-            'name' => 'Produto Test',
+            'name' => 'Produto Teste',
             'price' => 10.00
         ]))
         ->assertRedirect(route('products.show', Product::latest()->first()));
@@ -34,7 +34,7 @@ it('create a product without permission', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)->post(route('products.store', [
-        'name' => 'Produto Test',
+        'name' => 'Produto Teste',
         'price' => 10.00
     ]))->assertStatus(403);
 });
