@@ -10,13 +10,13 @@ export default {
 
     data() {
         return {
-            title: "Usuários",
-            description: "Uma lista de todos os usuários",
+            title: "Produtos",
+            description: "Uma lista de todos os produtos",
         };
     },
 
     props: {
-        users: {
+        products: {
             type: Object,
         },
     },
@@ -26,7 +26,7 @@ export default {
 <template>
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
-            <li class="breadcrumb-item active">Usuários</li>
+            <li class="breadcrumb-item active">Produtos</li>
         </template>
         <template #content>
             <div class="card shadow mb-4">
@@ -36,11 +36,11 @@ export default {
                             {{ title }}
                         </h6>
                         <Link
-                            v-show="can('users.create')"
-                            :href="route('users.create')"
+                            v-show="can('products.create')"
+                            :href="route('products.create')"
                             class="btn btn-capelli btn-sm mb-2"
                         >
-                            <i class="fa fa-fw fa-plus"></i>Cadastrar Usuário
+                            <i class="fa fa-fw fa-plus"></i>Cadastrar Produto
                         </Link>
                     </div>
                 </div>
@@ -52,37 +52,33 @@ export default {
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Email</th>
-                                    <th>Perfil</th>
+                                    <th>Preço</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(user, index) in users">
+                                <tr v-for="(product, index) in products">
                                     <td>
-                                        <Link :href="route('users.show', user)"
-                                            >{{ user.name }}
+                                        <Link
+                                            :href="
+                                                route('products.show', product)
+                                            "
+                                            >{{ product.name }}
                                         </Link>
                                     </td>
                                     <td>
-                                        {{ user.email }}
-                                    </td>
-                                    <td>
-                                        {{
-                                            user.roles
-                                                .map((role) => {
-                                                    return role.name;
-                                                })
-                                                .join(", ")
-                                        }}
+                                        R$ {{ product.price.replace(".", ",") }}
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="user.can_update"
+                                                v-show="product.can_update"
                                                 class="btn btn-sm btn-outline-secondary"
                                                 :href="
-                                                    route('users.edit', user)
+                                                    route(
+                                                        'products.edit',
+                                                        product
+                                                    )
                                                 "
                                             >
                                                 <i
@@ -90,13 +86,13 @@ export default {
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="user.can_delete"
+                                                v-show="product.can_delete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(
                                                         route(
-                                                            'users.destroy',
-                                                            user
+                                                            'products.destroy',
+                                                            product
                                                         )
                                                     )
                                                 "

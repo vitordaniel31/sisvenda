@@ -53,6 +53,10 @@ export default {
             return usePage().props.flash.alert;
         },
     },
+
+    mounted() {
+        $(".dataTable").DataTable();
+    },
 };
 </script>
 
@@ -81,6 +85,18 @@ export default {
                             >
                                 <i class="fas fa-home"></i>
                                 <span>Dashboard</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
+                    <div v-if="can('products.read')">
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('products.index')"
+                            >
+                                <i class="fab fa-product-hunt"></i>
+                                <span>Produtos</span>
                             </Link>
                         </li>
                         <hr class="sidebar-divider my-0" />
@@ -137,7 +153,12 @@ export default {
                                         aria-labelledby="userDropdown"
                                     >
                                         <Link
-                                            href=""
+                                            :href="
+                                                route(
+                                                    'users.show',
+                                                    $page.props.auth.user.id
+                                                )
+                                            "
                                             as="button"
                                             type="button"
                                             class="btn btn-sm text-dark"

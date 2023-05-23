@@ -9,7 +9,7 @@ class RoleSeeder extends Seeder
 {
     private $roles = [
         [
-            'name' => 'Administrador Principal',
+            'name' => 'Administrador',
             'permissions' => [
                 'users.read',
                 'users.create',
@@ -19,18 +19,15 @@ class RoleSeeder extends Seeder
                 'roles.create',
                 'roles.update',
                 'roles.delete',
+                'products.read',
+                'products.create',
+                'products.update',
+                'products.delete',
             ]
         ],
         [
-            'name' => 'Administrador',
-            'permissions' => [
-                'users.read',
-                'users.create',
-                'users.update',
-                'roles.read',
-                'roles.create',
-                'roles.update',
-            ]
+            'name' => 'Gerente',
+            'permissions' => []
         ],
     ];
 

@@ -31,38 +31,48 @@ Taciano          | Desenvolvedor Java, Junit, Eclipse, JSP, JSF, Hibernate, Mate
 
 ## Perfis dos Usuários
 
-O sistema poderá ser utilizado apenas por dois tipos de usuários, o administrador principal e o administrador simplificado. 
+O sistema poderá ser utilizado apenas por dois tipos de usuários, o administrador e o gerente. 
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
-Administrador Principal | Esse perfil será criado desde a implantação do sistema e conseguirá fazer alterações em todos os níveis.
-Administrador           | Assim como o anterior, esse administrador poderá realizar seu login, porém, haverá de ser cadastrado pelo Administrador Principal e terá algumas limitações. Suas permissões serão determinadas pelo Administrador Principal.
+Administrador | Esse perfil será criado desde a implantação do sistema e conseguirá fazer alterações em todos os níveis.
+Gerente           | Esse perfil todas as permissões que o Administrador, no entanto, não poderá cadastrar novos usuários, nem editar os existentes, como também não terá acesso ao histórico de movimentações. Suas permissões serão determinadas pelo Administrador.
 
 ## Lista de Requisitos Funcionais
 
   Requisito    |    Descrição    |    Ator    |
 ---------                                 | ----------- | ---------- |
-RF001 - Login    | <p align="justify"> O sistema terá uma tela de login para o administrador entrar e realizar operações. O login será feito com email e senha. E terá a possibilidade de recuperar a senha. </p> | Administrador |
-RF002 - Logout | <p align="justify">O sistema terá um botão para quando o usuário quiser encerrar sua sessão. </p> | Administrador |
-RF003 - Cadastro de Administrador | <p align="justify">O sistema terá um usuário administrador inapagável. Esse administrador terá a permissão para cadastrar outros usuários administradores. </p>| Administrador Principal |
-RF004 - Edição dos dados dos administradores | <p align="justify">O sistema deverá permitir a alteração de dados dos administradores, como: email, nome, senha etc. </p> | Administrador Principal |
-RF005 - Cadastro de Produtos | <p align="justify">O sistema deve permitir que um administrador cadastre novos produtos. </p> | Administrador |
-RF006 - Edição dos dados dos produtos | <p align="justify">O sistema deverá permitir a alteração de dados dos produtos, como: nome e preço. Além da possibilidade de desativá-lo caso o produto não esteja mais à venda.</p> | Administrador |
-RF007 - Cadastro de Vendas | <p align="justify">O sistema deve permitir que o administrador cadastre uma nova venda contendo o(s) produto(s), valor, método de pagamento e data.</p> | Administrador |
-RF008 - Cancelar Vendas | <p align="justify">Caso a venda esteja incorreta o administrador poderá cancelá-la. Mudando assim, o status da venda para cancelada.</p> | Administrador |
-RF009 - Relatórios Periódicos | <p align="justify">O administrador poderá gerar um relatório a partir das vendas realizadas, onde conseguirá um feedback a respeito dos produtos que estão sendo mais vendidos, como também os meios de pagamentos mais utilizados e o valor total das vendas no período escolhido.</p> | Administrador |
-RF010 - Gerar Conta a Receber para Pagamento | <p align="justify">O sistema, quando o administrador finalizar uma venda, irá gerar uma conta a receber, para que o cliente realize o pagamento, seja com uma ou mais formas, e assim, confirme o sucesso daquela venda. Cada conta a receber, terá um ou muitos registros de pagamento e um pagamento poderá ser feito com uma forma de pagamento. Assim, o cliente pode realizar vários pagamentos, com várias formas de pagamentos diferentes, até que a soma desses pagamentos resultem no valor total do pedido. Vale ressaltar que poderia vir a existir um novo requisito dando continuidade para este, sendo esse o requisito de emissão de notas fiscais. No entanto, o cliente optou por não emitir notas pelo sistema.</p> | Administrador |
-RF011 - Manter PIX | <p align="justify">O sistema terá cadastrado diferentes chaves PIX, para que o pagamento possa ser efetuado de tal forma. Para o administrador, será possível cadastrar novas chaves, editar e desativar as chaves existentes.</p> | Administrador |
-RF012 - Exclusão de administrador | <p align="justify">O sistema deverá permitir a exclusão de administradores. No entanto, o administrador principal, que será cadastrado pela equipe desenvolvedora, não poderá ser excluído.</p> | Administrador Principal |
-RF013 - Gerador de QR Code para PIX | <p align="justify">Para clientes que desejem pagar via PIX, o sistema deverá gerar um QRcode com o valor em questão, e verificar se o pagamento foi realizado.</p> | Administrador |
+RF001 - Login    | <p align="justify"> O sistema terá uma tela de login para o administrador entrar e realizar operações. O login será feito com email e senha. E terá a possibilidade de recuperar a senha. </p> | Todos os usuários |
+RF002 - Logout | <p align="justify">O sistema terá um botão para quando o usuário quiser encerrar sua sessão. </p> | Todos os usuários. |
+RF003 - Lista de Usuários | <p align="justify">O sistema deverá ter uma página que liste todos os usuários. </p>| Administrador |
+RF004 - Cadastro de Usuário | <p align="justify">O sistema deverá ter a possibilidade de cadastrar novos usuários.</p>| Administrador |
+RF005 - Edição de Usuário | <p align="justify">O sistema deverá permitir a alteração de dados dos usuários, como: email, nome, senha etc. </p> | Administrador |
+RF006 - Excluir Usuário | <p align="justify">O sistema deverá permitir apagar um usuário, no entanto, esse registro não será apagado do banco de dados, mas sim inativado. </p> | Administrador |
+RF007 - Lista de Produtos | <p align="justify">O sistema deverá ter uma página que liste todos os produtos. </p> | Administrador ou Gerente |
+RF008 - Cadastro de Produtos | <p align="justify">O sistema deve permitir que um usuário cadastre novos produtos. </p> | Administrador ou Gerente |
+RF009 - Edição de Produto | <p align="justify">O sistema deverá permitir a alteração de dados dos produtos, como: nome e preço.</p> | Administrador ou Gerente |
+RF010 - Excluir Produto | <p align="justify">O sistema deverá permitir apagar um produto, no entanto, esse registro não será apagado do banco de dados, mas sim inativado. Essa funcionalidade poderá ser usada quando um produto não estiver mais a venda na loja, por exemplo.</p> | Administrador ou Gerente |
+RF011 - Lista de Vendas | <p align="justify">O sistema deverá ter uma página que liste todos as vendas. </p> | Administrador ou Gerente |
+RF012 - Cadastro de Vendas | <p align="justify">O sistema deve permitir que um usuário cadastre novas vendas. </p> | Administrador ou Gerente |
+RF013 - Cancelar Vendas | <p align="justify">Caso a venda esteja incorreta o usuário poderá cancelá-la. Mudando assim, o status da venda para cancelada.</p> | Administrador ou Gerente |
+RF014 - Cadastrar produtos na venda | <p align="justify">O usuário poderá inserir produtos na venda</p> | Administrador ou Gerente |
+RF015 - Remover produtos da venda | <p align="justify">O usuário poderá remover produtos da venda</p> | Administrador ou Gerente |
+RF016 - Gerar Conta a Receber para Pagamento | <p align="justify">O sistema, quando o usuário finalizar uma venda, irá gerar uma conta a receber, para que o cliente realize o pagamento, seja com uma ou mais formas, e assim, confirme o sucesso daquela venda. Cada conta a receber, terá um ou muitos registros de pagamento e um pagamento poderá ser feito com uma forma de pagamento. Assim, o cliente pode realizar vários pagamentos, com várias formas de pagamentos diferentes, até que a soma desses pagamentos resultem no valor total do pedido.</p> | Administrador ou Gerente |
+RF017 - Gerador de QR Code para PIX | <p align="justify">Para clientes que desejem pagar via PIX, o sistema deverá gerar um QRcode com o valor em questão, e verificar se o pagamento foi realizado.</p> | Administrador ou Gerente |
+RF018 - Lista de Formas de Pagamento | <p align="justify">O sistema deverá ter uma página que liste todas as formas de pagamento. </p> | Administrador ou Gerente |
+RF019 - Cadastro de Formas de Pagamento | <p align="justify">O sistema deve permitir que um usuário cadastre novas formas de pagamento. </p> | Administrador ou Gerente |
+RF020 - Edição de Forma de Pagamento | <p align="justify">O sistema deverá permitir a alteração de dados das formas de pagamento</p> | Administrador ou Gerente |
+RF021 - Excluir Forma de Pagamento | <p align="justify">O sistema deverá permitir apagar uma forma de pagamento, no entanto, esse registro não será apagado do banco de dados, mas sim inativado. Essa funcionalidade poderá ser usada quando uma forma de pagamento não estiver mais sendo usada na loja, por exemplo.</p> | Administrador ou Gerente |
+RF022 - Relatórios Periódicos | <p align="justify">O usuário poderá gerar um relatório a partir das vendas realizadas, onde conseguirá um feedback a respeito dos produtos que estão sendo mais vendidos, como também os meios de pagamentos mais utilizados e o valor total das vendas no período escolhido.</p> | Administrador ou Gerente |
+RF023 - Estatísticas no Dashboard | <p align="justify">No dashboard, o usuário deve ter acesso a estatísticas, uma espécie de "mini relatórios" que ficarão disponivéis na página principal, como: número de vendas no dia, produtos mais vendidos na semana etc. </p> | Administrador ou Gerente |
+RF024 - Histórico de Ações | <p align="justify">O sistema deve registrar no banco de dados todas as movimentações feitas por quaisquer usuários, como: alteração do preço de um produto, alteração de dados de um usuário, cadastro de vendas etc., para que fique registrado e em eventuais erros dos usuários, esse histórico possa ajudar a indetificá-los. </p> | Administrador ou Gerente |
+RF025 - Lista de Histórico de Ações | <p align="justify">O sistema deverá ter uma página que liste o histórico de ações. </p> | Administrador |
 
 ## Lista de Requisitos Não-Funcionais
 
 Requisito                                 | Descrição   |
 ---------                                 | ----------- |
-RNF001 - Segurança | <p align="justify">O sistema deve fornecer segurança para com os dados da loja. Desse modo, o usuário deverá utilizar senhas fortes e o sistema cobrará de forma periódica a troca de senha.</p> |
-RNF002 - Valores Permanentes das Vendas | <p align="justify">Mesmo que um produto tenha o preço modificado, os valores das compras passadas não serão alterados.</p> |
-RNF003 - Registro automático de logs | <p align="justify">Para segurança do sistema, haverá uma tabela para registrar todas as ações do sistema: login e logout dos usuários, alteração de dados e emissão de relatórios. Salvando sempre o antes e o depois da alteração. </p>|
+RNF001 - Segurança | <p align="justify">O sistema deve fornecer segurança para com os dados da loja. Desse modo, o usuário deverá utilizar senhas fortes e o sistema cobrará de forma periódica a troca de senha.</p>
 
 ## Riscos
 

@@ -1,8 +1,10 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
-        "build": "vite build && vite build --ssr"
+        "dev": "vite && npm run development",
+        "build": "vite build && vite build --ssr",
+        "prod": "npm run production",
+        "production": "npm run build"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
