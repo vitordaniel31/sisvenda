@@ -21,14 +21,14 @@ it('list products with permission', function () {
 
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
-    $product = Product::factory()->create();
-    $this->actingAs($user)->get(route('products.index', $product))
+    
+    $this->actingAs($user)->get(route('products.index'))
         ->assertStatus(200);
 });
 
 it('list products without permission', function () {
     $user = User::factory()->create();
-    $product = Product::factory()->create();
-    $this->actingAs($user)->get(route('products.index', $product))
+    
+    $this->actingAs($user)->get(route('products.index'))
         ->assertStatus(403);
 });
