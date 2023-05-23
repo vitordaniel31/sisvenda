@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(Tests\TestCase::class, RefreshDatabase::class);
 
 it('delete a product with permission', function () {
-    $product = Product::factory()->create();
     $user = User::factory()->create();
     $role = Role::firstOrCreate([
         'name' => 'Administrador',
@@ -24,7 +23,7 @@ it('delete a product with permission', function () {
     $user->syncPermissions($permission->id);
     $user->syncRoles($role->id);
 
-    
+    $product = Product::factory()->create();
 
     $this->actingAs($user)->delete(route('products.destroy', $product))
         ->assertRedirect(route('products.index'));
@@ -37,4 +36,3 @@ it('delete a product without permission', function () {
     $this->actingAs($user)->delete(route('products.destroy', $product))
         ->assertStatus(403);
 });
-
