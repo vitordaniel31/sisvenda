@@ -21,10 +21,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Redirect::route('dashboard');
+    return view('landing-page.index');
 });
 
-Route::middleware('auth')->group(function () {
+Route::prefix('backoffice')->middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
