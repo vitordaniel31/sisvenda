@@ -5,15 +5,18 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
+
 import permissionsMixin from "./Mixins/permissions-mixin";
+import sweetAlertMixin from "./Mixins/sweet-alert-mixin";
+import dayJsMixin from "./Mixins/dayjs-mixin";
+
 import { toast } from "vue3-toastify";
 import Vue3Toastify from "vue3-toastify";
-import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-
-//css
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
 import "vue3-toastify/dist/index.css";
-import sweetAlertMixin from "./Mixins/sweet-alert-mixin";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -36,6 +39,7 @@ createInertiaApp({
             })
             .mixin(permissionsMixin)
             .mixin(sweetAlertMixin)
+            .mixin(dayJsMixin)
             .mount(el);
     },
     progress: {

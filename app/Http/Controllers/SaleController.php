@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Sale;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -22,12 +21,6 @@ class SaleController extends Controller
     public function index()
     {
         $sales = Sale::all();
-
-        $sales = collect($sales)->map(function ($sale) {
-            $sale['can_update'] = auth()->user()->can('update', $sale);
-            $sale['can_delete'] = auth()->user()->can('delete', $sale);
-            return $sale;
-        }, $sales);
 
         return Inertia::render('Sales/Index', [
             'sales' => $sales
@@ -47,7 +40,10 @@ class SaleController extends Controller
      */
     public function store(CreateSaleRequest $request)
     {
-        $sale= Sale::create($request->validated());
+        $sale = Sale::create(\array_merge($request->validated(), [
+            'status_id' => Sale::STATUS_OPEN['id'],
+            'user_id' => auth()->user()->id,
+        ]));
 
         session()->flash('alert', [
             'type' => 'success',
@@ -68,46 +64,5 @@ class SaleController extends Controller
         return Inertia::render('Sales/Show', [
             'sale' => $sale
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Sale $sale)
-    {
-        return Inertia::render('Sales/Edit', [
-            'sale' => $sale
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSaleRequest $request, Product $sale)
-    {
-        $sale->update($request->validated());
-
-
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'A venda foi atualizada com sucesso.'
-        ]);
-
-        return Redirect::route('sales.show', $sale);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Sale $sale)
-    {
-        $sale->delete();
-
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'A venda foi deletada com sucesso.',
-        ]);
-
-        return Redirect::route('sales.index');
     }
 }

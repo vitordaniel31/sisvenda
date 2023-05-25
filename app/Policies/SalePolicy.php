@@ -19,7 +19,7 @@ class SalePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Product $product): bool
+    public function view(User $user, Sale $sale): bool
     {
         return $user->can('sales.read');
     }

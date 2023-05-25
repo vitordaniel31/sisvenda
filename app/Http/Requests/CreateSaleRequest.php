@@ -11,7 +11,7 @@ class CreateSaleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,7 @@ class CreateSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => ['required','date_format:d-m-Y'],
-            'user_id' => ['required','string','max:255'],
-        
+            'client' => ['required', 'string', 'max:255'],
         ];
     }
 }
