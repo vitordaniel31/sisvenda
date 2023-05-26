@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,9 @@ class SaleFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->unique()->word(),
-            'date' => fake()->dateTimeBetween('1 year, now'),
+            'client' => fake()->name(),
+            'status_id' => random_int(0, 2),
+            'user_id' => User::all()->first()->id,
         ];
     }
 }
