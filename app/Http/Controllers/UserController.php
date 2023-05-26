@@ -55,8 +55,6 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]));
 
-        //$user->syncRoles($request->roles);
-
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'O usuário foi criado com sucesso.'
@@ -104,8 +102,6 @@ class UserController extends Controller
                 'password' => Hash::make($request->password)
             ]);
         }
-
-        //$user->syncRoles($request->roles);
 
         session()->flash('alert', [
             'type' => 'success',

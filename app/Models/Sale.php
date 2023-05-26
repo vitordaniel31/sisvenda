@@ -45,21 +45,27 @@ class Sale extends Model
 
     public function getStatusAttribute()
     {
+        $status = [];
+
         switch ($this->status_id) {
             case 0:
-                return self::STATUS_OPEN;
+                $status = self::STATUS_OPEN;
                 break;
 
             case 1:
-                return self::STATUS_FINISHED;
+                $status = self::STATUS_FINISHED;
                 break;
 
             case 2:
-                return self::STATUS_CANCELED;
+                $status = self::STATUS_CANCELED;
+                break;
+
+            default:
+                $status = null;
                 break;
         }
 
-        return null;
+        return $status;
     }
 
     /**

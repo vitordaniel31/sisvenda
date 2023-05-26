@@ -2,9 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Sale;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class SalePolicy
 {
@@ -19,7 +17,7 @@ class SalePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Sale $sale): bool
+    public function view(User $user): bool
     {
         return $user->can('sales.read');
     }
@@ -35,7 +33,7 @@ class SalePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Sale $sale): bool
+    public function update(User $user): bool
     {
         return $user->can('sales.update');
     }
@@ -43,7 +41,7 @@ class SalePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Sale $sale): bool
+    public function delete(User $user): bool
     {
         return $user->can('sales.delete');
     }
