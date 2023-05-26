@@ -74,3 +74,31 @@ it('show a not found sale', function () {
     $this->actingAs($user)->get(route('sales.show', $notFoundSaleId))
         ->assertStatus(404);
 });
+
+it('test sale status open', function () {
+    $sale = new Sale();
+    $sale->status_id = 0;
+
+    $this->assertEquals(Sale::STATUS_OPEN, $sale->status);
+});
+
+it('test sale status finished', function () {
+    $sale = new Sale();
+    $sale->status_id = 1;
+
+    $this->assertEquals(Sale::STATUS_FINISHED, $sale->status);
+});
+
+it('test sale status canceled', function () {
+    $sale = new Sale();
+    $sale->status_id = 2;
+
+    $this->assertEquals(Sale::STATUS_CANCELED, $sale->status);
+});
+
+it('test sale status nulled', function () {
+    $sale = new Sale();
+    $sale->status_id = 999;
+
+    $this->assertNull($sale->status);
+});

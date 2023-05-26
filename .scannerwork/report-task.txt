@@ -2,5 +2,5 @@ projectKey=sisvenda
 serverUrl=http://labens.dct.ufrn.br/sonarqube
 serverVersion=9.9.1.69595
 dashboardUrl=http://labens.dct.ufrn.br/sonarqube/dashboard?id=sisvenda
-ceTaskId=AYhVsZ4J1mz7s9Sy1nEz
-ceTaskUrl=http://labens.dct.ufrn.br/sonarqube/api/ce/task?id=AYhVsZ4J1mz7s9Sy1nEz
+ceTaskId=AYhV3RZT1mz7s9Sy1nIC
+ceTaskUrl=http://labens.dct.ufrn.br/sonarqube/api/ce/task?id=AYhV3RZT1mz7s9Sy1nIC
