@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Redirect;
@@ -27,6 +28,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('sales', SaleController::class)->except(['edit, update, destroy']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
