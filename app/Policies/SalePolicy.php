@@ -3,16 +3,15 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class UserPolicy
+class SalePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('users.read');
+        return $user->can('sales.read');
     }
 
     /**
@@ -20,7 +19,7 @@ class UserPolicy
      */
     public function view(User $user): bool
     {
-        return $user->can('users.read');
+        return $user->can('sales.read');
     }
 
     /**
@@ -28,15 +27,15 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('users.create');
+        return $user->can('sales.create');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $model): bool
+    public function update(User $user): bool
     {
-        return $user->can('users.update') && ($user->hasRole('Administrador') || $user->id === $model->id);
+        return $user->can('sales.update');
     }
 
     /**
@@ -44,6 +43,6 @@ class UserPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->hasRole('Administrador') && $user->can('users.delete');
+        return $user->can('sales.delete');
     }
 }
