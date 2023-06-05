@@ -45,9 +45,6 @@ export default {
 
         <title>{{ title }}</title>
 
-        <!-- Icons -->
-        <!--<link rel="shortcut icon" href="{{ asset('Imagens/favicon.png') }}" /> -->
-
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"

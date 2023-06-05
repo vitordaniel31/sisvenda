@@ -74,16 +74,20 @@ docker run --rm \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
     laravelsail/php82-composer:latest \
-    composer install --ignore-platform-reqs &&
-    cp .env.example .env &&
-    php artisan key:generate && 
-    npm install
+    composer install --ignore-platform-reqs
+
+docker compose up -d &&
+docker exec -it sisvenda-laravel-1 bash
+
+cp .env.example .env &&
+php artisan key:generate &&
+php artisan migrate --seed &&
+npm install
 
 ```
 ### Inicialização
 ```bash
-docker compose up -d
-
+docker compose up -d &&
 docker exec -it sisvenda-laravel-1 bash
 
 npm run dev
