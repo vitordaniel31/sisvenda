@@ -11,6 +11,14 @@ jobs:
 
     runs-on: ubuntu-latest
     
+    env:
+      DB_CONNECTION: 'mysql'
+      DB_HOST: 'mariadb'
+      DB_PORT: 3306
+      DB_DATABASE: 'testing'
+      DB_USERNAME: 'root'
+      DB_PASSWORD: 'password'
+    
     services:
       mariadb:
         image: mariadb:latest
@@ -29,8 +37,6 @@ jobs:
       with:
         php-version: '8.2.6'
     - uses: actions/checkout@v3
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.testing.example', '.env');"
     - name: Install Dependencies
       run: composer install --ignore-platform-reqs
     - name: Generate key
