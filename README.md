@@ -80,7 +80,9 @@ docker compose up -d &&
 docker exec -it sisvenda-laravel-1 bash
 
 cp .env.example .env &&
+cp .env.testing.example .env.testing &&
 php artisan key:generate &&
+php artisan key:generate --env=testing &&
 php artisan migrate --seed &&
 npm install
 
