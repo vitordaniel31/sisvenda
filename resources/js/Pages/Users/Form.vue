@@ -23,6 +23,10 @@ export default {
         form: {
             type: Object,
         },
+
+        roles: {
+            type: Object,
+        },
     },
 };
 </script>
@@ -107,6 +111,35 @@ export default {
                     class="mt-2"
                     :message="form.errors.password_confirmation"
                 />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-2">
+        <div class="col-lg-10">
+            <div class="form-group">
+                <InputLabel value="Perfil" :required="true" />
+                <div class="row">
+                    <div v-for="role in roles" class="col-lg-3">
+                        <div class="custom-control custom-switch">
+                            <input
+                                class="custom-control-input"
+                                type="radio"
+                                :id="'role' + role.id"
+                                name="role_id"
+                                v-model="form.role_id"
+                                :disabled="disabled"
+                                :value="role.id"
+                            />
+                            <InputLabel
+                                class="custom-control-label"
+                                :for="'role' + role.id"
+                                :value="role.name"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <InputError class="mt-2" :message="form.errors.role_id" />
             </div>
         </div>
     </div>

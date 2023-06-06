@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -43,7 +44,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Users/Create');
+        $roles = Role::all();
+
+        return Inertia::render('Users/Create', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -51,9 +56,11 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $user = User::create(array_merge($request->except('roles', 'password'), [
+        $user = User::create(array_merge($request->except('role_id', 'password'), [
             'password' => Hash::make($request->password),
         ]));
+
+        $user->syncRoles($request->role_id);
 
         session()->flash('alert', [
             'type' => 'success',
@@ -71,8 +78,11 @@ class UserController extends Controller
         $user['can_update'] = auth()->user()->can('update', $user);
         $user['can_delete'] = auth()->user()->can('delete', $user);
 
+        $roles = Role::all();
+
         return Inertia::render('Users/Show', [
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles,
         ]);
     }
 
@@ -81,8 +91,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $roles = Role::all();
+
         return Inertia::render('Users/Edit', [
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles,
         ]);
     }
 
@@ -91,7 +104,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update($request->except(['roles', 'password']));
+        $user->update($request->except(['role_id', 'password']));
 
         if ($request->password) {
             $request->validate([
@@ -102,6 +115,8 @@ class UserController extends Controller
                 'password' => Hash::make($request->password)
             ]);
         }
+
+        $user->syncRoles($request->role_id);
 
         session()->flash('alert', [
             'type' => 'success',

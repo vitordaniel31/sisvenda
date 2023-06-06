@@ -16,6 +16,10 @@ export default {
         user: {
             type: Object,
         },
+
+        roles: {
+            type: Object,
+        },
     },
 
     data() {
@@ -25,6 +29,7 @@ export default {
             form: useForm({
                 name: this.user.name,
                 email: this.user.email,
+                role_id: this.user.role_id,
             }),
         };
     },
@@ -66,7 +71,12 @@ export default {
                     </div>
                 </div>
                 <div class="card-body">
-                    <Form :form="form" :create="false" :disabled="true"></Form>
+                    <Form
+                        :form="form"
+                        :create="false"
+                        :disabled="true"
+                        :roles="roles"
+                    ></Form>
                 </div>
             </div>
         </template>

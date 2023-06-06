@@ -33,6 +33,7 @@ class UpdateUserRequest extends FormRequest
                 Rule::unique('users')->ignore($this->user->id),
             ],
             'password' => ['nullable', 'confirmed', Password::defaults()],
+            'role_id'   =>  ['required', 'integer', 'exists:roles,id'],
         ];
     }
 }

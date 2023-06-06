@@ -12,6 +12,12 @@ export default {
         PrimaryButton,
     },
 
+    props: {
+        roles: {
+            type: Object,
+        },
+    },
+
     data() {
         return {
             title: "Usuários",
@@ -21,6 +27,7 @@ export default {
                 email: "",
                 password: "",
                 password_confirmation: "",
+                role_id: null,
             }),
         };
     },
@@ -47,7 +54,12 @@ export default {
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
-                    <Form :form="form" :create="true" :disabled="false"></Form>
+                    <Form
+                        :form="form"
+                        :create="true"
+                        :disabled="false"
+                        :roles="roles"
+                    ></Form>
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">

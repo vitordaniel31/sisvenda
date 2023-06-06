@@ -16,6 +16,10 @@ export default {
         user: {
             type: Object,
         },
+
+        roles: {
+            type: Object,
+        },
     },
 
     data() {
@@ -27,6 +31,7 @@ export default {
                 email: this.user.email,
                 password: "",
                 password_confirmation: "",
+                role_id: this.user.role_id,
             }),
         };
     },
@@ -54,7 +59,12 @@ export default {
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
-                    <Form :form="form" :create="false" :disabled="false"></Form>
+                    <Form
+                        :form="form"
+                        :create="false"
+                        :disabled="false"
+                        :roles="roles"
+                    ></Form>
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">
