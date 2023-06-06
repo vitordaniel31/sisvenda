@@ -13,8 +13,8 @@ jobs:
 
     services:
       mariadb:
-        image: mariadb:latest
-        env:
+        image: mariadb:10
+        environment:
           MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_ROOT_HOST: 'localhost'
           MYSQL_DATABASE: 'testing'
