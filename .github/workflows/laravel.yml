@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-      - develop
 
 jobs:
   laravel-tests:
@@ -26,30 +25,10 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - uses: actions/cache@v2
-        id: actions-cache
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Cache PHP dependencies
-        uses: actions/cache@v2
-        id: vendor-cache
-        with:
-          path: vendor
-          key: ${{ runner.os }}-build-${{ hashFiles('**/composer.lock') }}
-
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      - name: Install Dependencies
+      - name: Install Dependencies (Laravel)
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
@@ -66,13 +45,7 @@ jobs:
           DB_DATABASE: ":memory:"
         run: php artisan migrate
 
-      - name: Show dir
-        run: pwd
-
-      - name: PHP Version
-        run: php --version
-
-      - name: npm install
+      - name: Install Dependencies (Node.js)
         run: npm install
         
       - name: Build assets (npm run prod)
