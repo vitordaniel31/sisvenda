@@ -1,43 +1,56 @@
-name: Laravel
+name: Laravel with Pest Tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
+    env:
+      DB_CONNECTION: sqlite
+      DB_DATABASE: ":memory:"
+
     services:
-      mariadb:
-        image: mariadb:10
-        env:
-          MYSQL_ROOT_PASSWORD: 'password'
-          MYSQL_ROOT_HOST: 'localhost'
-          MYSQL_DATABASE: 'testing'
-          MYSQL_USER: 'root'
-          MYSQL_PASSWORD: 'password'
+      sqlite:
+        image: mariadb:latest
         ports:
           - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: testing
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-    - name: Install dependencies
-      run: composer install --ignore-platform-reqs
-    - name: Copy .env
-      run: cp .env.testing.example .env
-    - name: Generate key
-      run: php artisan key:generate
-    - name: Directory permissions
-      run: chmod -R 777 storage bootstrap/cache
-    - name: Execute tests via PestPHP
-      run: vendor/bin/pest
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Set up SQLite database
+        run: touch database/database.sqlite
+
+      - name: Run migrations
+        run: php artisan migrate --env=testing
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run Pest tests
+        run: vendor/bin/pest
