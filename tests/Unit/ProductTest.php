@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Auth;
 
 uses(Tests\TestCase::class, RefreshDatabase::class);
 

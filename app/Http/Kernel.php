@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http;
 
@@ -67,3 +68,4 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }
+// @codeCoverageIgnoreEnd

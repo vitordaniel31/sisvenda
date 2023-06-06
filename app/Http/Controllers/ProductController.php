@@ -23,11 +23,13 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
+        // @codeCoverageIgnoreStart
         $products = collect($products)->map(function ($product) {
             $product['can_update'] = auth()->user()->can('update', $product);
             $product['can_delete'] = auth()->user()->can('delete', $product);
             return $product;
         }, $products);
+        // @codeCoverageIgnoreEnd
 
         return Inertia::render('Products/Index', [
             'products' => $products

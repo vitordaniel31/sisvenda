@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Sale;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(Tests\TestCase::class, RefreshDatabase::class);
@@ -101,4 +102,15 @@ it('test sale status nulled', function () {
     $sale->status_id = 999;
 
     $this->assertNull($sale->status);
+});
+
+it('can retrieve the user that owns the sale', function () {
+    $user = User::factory()->create();
+    $sale = Sale::factory()->create();
+
+    $creator = $sale->creator;
+
+    expect($creator)->toBeInstanceOf(User::class);
+
+    expect($creator->id)->toBe($user->id);
 });

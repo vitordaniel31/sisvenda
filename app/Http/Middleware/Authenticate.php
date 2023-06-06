@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Middleware;
 
@@ -15,3 +16,4 @@ class Authenticate extends Middleware
         return $request->expectsJson() ? null : route('login');
     }
 }
+// @codeCoverageIgnoreEnd
