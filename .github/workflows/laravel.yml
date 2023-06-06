@@ -18,7 +18,7 @@ jobs:
           - 3306:3306
         env:
             MYSQL_ROOT_PASSWORD: 'password'
-            MYSQL_ROOT_HOST: '%'
+            MYSQL_ROOT_HOST: 'localhost'
             MYSQL_DATABASE: 'testing'
             MYSQL_USER: 'root'
             MYSQL_PASSWORD: 'password'
