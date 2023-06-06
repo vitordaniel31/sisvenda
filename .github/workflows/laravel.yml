@@ -12,21 +12,16 @@ jobs:
   laravel-tests:
     runs-on: ubuntu-latest
 
-    env:
-      DB_CONNECTION: sqlite
-      DB_DATABASE: ":memory:"
-
     services:
-      sqlite:
-        image: mariadb:latest
-        ports:
-          - 3306:3306
+      mysql:
+        image: mysql:latest
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: testing
           MYSQL_USER: root
           MYSQL_PASSWORD: root
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+        ports:
+          - 3306:3306
 
     steps:
       - name: Checkout code
@@ -43,14 +38,11 @@ jobs:
       - name: Copy .env
         run: cp .env.example .env
 
-      - name: Set up SQLite database
-        run: touch database/database.sqlite
-
-      - name: Run migrations
-        run: php artisan migrate --env=testing
-
       - name: Generate application key
         run: php artisan key:generate
+
+      - name: Run database migrations
+        run: php artisan migrate --env=testing
 
       - name: Run Pest tests
         run: vendor/bin/pest
