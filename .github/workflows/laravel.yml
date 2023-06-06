@@ -20,6 +20,8 @@ jobs:
           MYSQL_DATABASE: 'testing'
           MYSQL_USER: 'root'
           MYSQL_PASSWORD: 'password'
+        ports:
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
@@ -37,5 +39,5 @@ jobs:
       run: php artisan key:generate
     - name: Directory permissions
       run: chmod -R 777 storage bootstrap/cache
-    - name: Run tests
-      run: vendor/bin/phpunit
+    - name: Execute tests via PestPHP
+      run: vendor/bin/pest
