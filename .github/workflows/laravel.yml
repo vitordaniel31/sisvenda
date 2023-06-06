@@ -22,7 +22,6 @@ jobs:
             MYSQL_DATABASE: 'testing'
             MYSQL_USER: 'root'
             MYSQL_PASSWORD: 'password'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
@@ -41,7 +40,7 @@ jobs:
     - name: Execute tests via PestPHP
       env:
         DB_CONNECTION: 'mysql'
-        DB_HOST: 'localhost'
+        DB_HOST: 'mariadb'
         DB_PORT: 3306
         DB_DATABASE: 'testing'
         DB_USERNAME: 'root'
