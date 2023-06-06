@@ -40,6 +40,6 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests via PestPHP
       env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
+        DB_CONNECTION: mariadb
+        DB_DATABASE: testing
       run: vendor/bin/pest
