@@ -107,7 +107,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 -   **[GitHub](https://github.com/)**
 -   **[Laravel](https://laravel.com/)**
--   **[MySQL](https://www.mysql.com/)**
+-   **[MariaDB](https://mariadb.org/)**
 -   **[Vue Js](https://vuejs.org/)**
 -   **[Inertia Js](https://inertiajs.com/)**
 -   **[Docker](https://www.docker.com/)**
