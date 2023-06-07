@@ -1,6 +1,9 @@
 name: Test Laravel Github action
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -12,7 +15,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ['8.2']
+        php-versions: ["8.2"]
         dependency-stability: [prefer-stable]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system }}
@@ -47,7 +50,7 @@ jobs:
 
       - name: Install Dependencies (Node.js)
         run: npm install
-        
+
       - name: Build assets (npm run prod)
         run: npm run prod
 
@@ -57,9 +60,9 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
         run: vendor/bin/pest --coverage-clover=clover.xml
-        
+
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
