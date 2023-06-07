@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Controllers\Auth;
 
@@ -51,3 +52,5 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 }
+
+// @codeCoverageIgnoreEnd

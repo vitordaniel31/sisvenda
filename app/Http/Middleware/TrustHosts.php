@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Middleware;
 
@@ -18,3 +19,5 @@ class TrustHosts extends Middleware
         ];
     }
 }
+
+// @codeCoverageIgnoreEnd

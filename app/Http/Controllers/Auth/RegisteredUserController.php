@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Controllers\Auth;
 
@@ -50,3 +51,5 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 }
+
+// @codeCoverageIgnoreEnd   

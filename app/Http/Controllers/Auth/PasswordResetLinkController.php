@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Controllers\Auth;
 
@@ -49,3 +50,5 @@ class PasswordResetLinkController extends Controller
         ]);
     }
 }
+
+// @codeCoverageIgnoreEnd

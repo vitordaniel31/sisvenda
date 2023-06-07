@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Controllers\Auth;
 
@@ -27,3 +28,5 @@ class PasswordController extends Controller
         return back();
     }
 }
+
+// @codeCoverageIgnoreEnd

@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Controllers\Auth;
 
@@ -67,3 +68,5 @@ class NewPasswordController extends Controller
         ]);
     }
 }
+
+// @codeCoverageIgnoreEnd

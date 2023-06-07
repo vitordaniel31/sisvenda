@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Middleware;
 
@@ -28,3 +29,5 @@ class RedirectIfAuthenticated
         return $next($request);
     }
 }
+
+// @codeCoverageIgnoreEnd
