@@ -84,7 +84,8 @@ cp .env.testing.example .env.testing &&
 php artisan key:generate &&
 php artisan key:generate --env=testing &&
 php artisan migrate --seed &&
-npm install
+npm install &&
+chmod -R 777 storage bootstrap/cache
 
 ```
 ### Inicialização
