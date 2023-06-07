@@ -56,7 +56,7 @@ jobs:
           SESSION_DRIVER: array
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-        run: vendor/bin/pest
+        run: vendor/bin/pest --coverage-clover=clover.xml
         
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
