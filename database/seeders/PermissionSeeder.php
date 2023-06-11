@@ -24,6 +24,10 @@ class PermissionSeeder extends Seeder
         'sales.create',
         'sales.update',
         'sales.delete',
+        'pixes.read',
+        'pixes.create',
+        'pixes.update',
+        'pixes.delete',
     ];
 
     /**
