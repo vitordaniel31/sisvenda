@@ -26,7 +26,11 @@ class RoleSeeder extends Seeder
                 'sales.read',
                 'sales.create',
                 'sales.update',
-                'sales.delete'
+                'sales.delete',
+                'pixes.read',
+                'pixes.create',
+                'pixes.update',
+                'pixes.delete'
             ]
         ],
         [
