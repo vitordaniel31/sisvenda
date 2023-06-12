@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('key');
-            $table->string('type');
+            $table->tinyInteger('type_id');
             $table->timestamps();
             $table->softDeletes();
         });
