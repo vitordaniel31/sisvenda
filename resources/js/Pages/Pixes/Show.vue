@@ -25,7 +25,7 @@ export default {
             form: useForm({
                 name: this.pix.name,
                 key: this.pix.key,
-                type: this.pix.type,
+                type_id: this.pix.type_id,
             }),
         };
     },

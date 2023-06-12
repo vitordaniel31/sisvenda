@@ -2,7 +2,6 @@
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { Link } from "@inertiajs/vue3";
 
 export default {
     components: {
@@ -23,6 +22,20 @@ export default {
         form: {
             type: Object,
         },
+    },
+
+    data() {
+        return {
+            formData: {
+                type_id: 0,
+            },
+            types: [
+                { id: 0, label: 'CPF/CNPJ' },
+                { id: 1, label: 'Celular' },
+                { id: 2, label: 'Email' },
+                { id: 3, label: 'Chave aleatória' },
+            ],
+        };
     },
 };
 </script>
@@ -66,20 +79,24 @@ export default {
         </div>
         <div class="col-lg-5">
             <div class="form-group">
-                <InputLabel for="type" value="Tipo" :required="true" />
-                <TextInput
-                    id="type"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.type"
+                <InputLabel for="type_id" value="Tipo" :required="true" />
+                <select
+                    id="type_id"
+                    class="mt-1 block w-full rounded"
+                    v-model="form.type_id"
                     required
                     autofocus
-                    autocomplete="type"
+                    autocomplete="type_id"
                     :disabled="disabled"
-                />
-
-                <InputError class="mt-2" :message="form.errors.type" />
+                >
+                    <option v-for="type in types" :value="type.id"> {{ type.label }} </option>
+                </select>
+                <InputError class="mt-2" :message="form.errors.type_id" />
             </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="form-group">
+            </div>    
         </div>
     </div>
 </template>

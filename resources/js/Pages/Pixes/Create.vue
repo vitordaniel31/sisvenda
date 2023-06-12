@@ -19,7 +19,7 @@ export default {
             form: useForm({
                 name: "",
                 key: "",
-                type: "",
+                type_id: "",
             }),
         };
     },

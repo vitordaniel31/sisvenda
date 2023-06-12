@@ -71,7 +71,7 @@ export default {
                                         {{ pix.key }}
                                     </td>
                                     <td>
-                                        {{ pix.type }}
+                                        {{ pix.type.label }}
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
