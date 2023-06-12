@@ -24,7 +24,7 @@ class UpdatePixRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'key' => ['required', 'string', 'max:255'],
-            'type' => ['required', 'string', 'max:255']
+            'type_id' => ['required', 'in:0,1,2,3']
         ];
     }
 }
