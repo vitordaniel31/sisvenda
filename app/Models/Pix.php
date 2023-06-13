@@ -16,7 +16,7 @@ class Pix extends Model
         'label' => 'CPF/CNPJ'
     ];
 
-    const TYPE_TELEPHONE = [
+    const TYPE_PHONE = [
         'id' => 1,
         'label' => 'Celular'
     ];
@@ -30,7 +30,7 @@ class Pix extends Model
         'id' => 3,
         'label' => 'Chave aleatória'
     ];
-    
+
     protected $fillable = [
         'name',
         'key',
@@ -51,7 +51,7 @@ class Pix extends Model
                 break;
 
             case 1:
-                $type = self::TYPE_TELEPHONE;
+                $type = self::TYPE_PHONE;
                 break;
 
             case 2:

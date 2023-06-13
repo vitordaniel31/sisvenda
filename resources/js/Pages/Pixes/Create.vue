@@ -12,6 +12,12 @@ export default {
         PrimaryButton,
     },
 
+    props: {
+        keyTypes: {
+            type: Object,
+        },
+    },
+
     data() {
         return {
             title: "Pix",
@@ -43,7 +49,12 @@ export default {
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
-                    <Form :form="form" :create="true" :disabled="false"></Form>
+                    <Form
+                        :form="form"
+                        :create="true"
+                        :disabled="false"
+                        :keyTypes="keyTypes"
+                    ></Form>
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">

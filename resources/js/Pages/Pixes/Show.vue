@@ -59,9 +59,7 @@ export default {
                             v-show="pix.can_delete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
-                                deleteAlert(
-                                    route('pixes.destroy', this.pix)
-                                )
+                                deleteAlert(route('pixes.destroy', this.pix))
                             "
                         >
                             <i class="fa fa-trash"></i>
@@ -69,7 +67,12 @@ export default {
                     </div>
                 </div>
                 <div class="card-body">
-                    <Form :form="form" :create="false" :disabled="true"></Form>
+                    <Form
+                        :form="form"
+                        :create="false"
+                        :disabled="true"
+                        :pix="pix"
+                    ></Form>
                 </div>
             </div>
         </template>

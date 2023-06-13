@@ -9,6 +9,8 @@ use App\Models\Pix;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
+use function App\Helpers\selectionPixTypes;
+
 class PixController extends Controller
 {
     public function __construct()
@@ -39,7 +41,11 @@ class PixController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Pixes/Create');
+        $keyTypes = selectionPixTypes();
+
+        return Inertia::render('Pixes/Create', [
+            'keyTypes' => $keyTypes,
+        ]);
     }
 
     /**
@@ -62,11 +68,14 @@ class PixController extends Controller
      */
     public function show(Pix $pix)
     {
+        $keyTypes = selectionPixTypes();
+
         $pix['can_update'] = auth()->user()->can('update', $pix);
         $pix['can_delete'] = auth()->user()->can('delete', $pix);
-        
+
         return Inertia::render('Pixes/Show', [
-            'pix' => $pix
+            'pix' => $pix,
+            'keyTypes' => $keyTypes,
         ]);
     }
 
@@ -75,8 +84,11 @@ class PixController extends Controller
      */
     public function edit(Pix $pix)
     {
+        $keyTypes = selectionPixTypes();
+
         return Inertia::render('Pixes/Edit', [
-            'pix' => $pix
+            'pix' => $pix,
+            'keyTypes' => $keyTypes,
         ]);
     }
 

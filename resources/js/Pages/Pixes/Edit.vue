@@ -16,6 +16,10 @@ export default {
         pix: {
             type: Object,
         },
+
+        keyTypes: {
+            type: Object,
+        },
     },
 
     data() {
@@ -55,7 +59,13 @@ export default {
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
-                    <Form :form="form" :create="false" :disabled="false"></Form>
+                    <Form
+                        :form="form"
+                        :create="false"
+                        :disabled="false"
+                        :keyTypes="keyTypes"
+                        :pix="pix"
+                    ></Form>
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">
