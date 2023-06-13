@@ -20,7 +20,7 @@ class PixFactory extends Factory
         return [
             'name' => fake()->name(),
             'key' => Str::random(2) . $this->faker->unique()->randomNumber(4),
-            'type' => fake()->unique()->word(),
+            'type_id' => fake()->randomElement([0, 1, 2, 3]),
         ];
     }
 }
