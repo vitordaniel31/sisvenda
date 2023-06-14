@@ -294,7 +294,7 @@
                                         </div>
                                         <div class="testimonial-body">
                                             <p class="mb-0">Essa loja de bottons superou todas as minhas expectativas! Os produtos são de alta qualidade e o preço é muito justo. Além disso, o envio foi muito rápido e a embalagem estava perfeita, garantindo que os bottons chegassem em perfeito estado. Com certeza indicarei essa loja para meus amigos e familiares.</p>
-                                        q</div>
+                                        </div>
                                     </div>
                                     <div class="testimonial-footer">
                                         <div class="testimonial-link">
