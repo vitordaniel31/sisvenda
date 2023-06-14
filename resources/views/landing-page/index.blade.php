@@ -23,7 +23,7 @@
                             </a>
                         </h1>
                     </div>
-                    <a class="button button-sm button-primary button-shadow" href="#">login</a>
+                    <a class="button button-sm button-primary button-shadow" href="{{ route('login') }}">login</a>
                 </div>
             </div>
         </header>
