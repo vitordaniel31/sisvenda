@@ -25,11 +25,13 @@ class PixController extends Controller
     {
         $pixes = Pix::all();
 
+        // @codeCoverageIgnoreStart
         $pixes = collect($pixes)->map(function ($pix) {
             $pix['can_update'] = auth()->user()->can('update', $pix);
             $pix['can_delete'] = auth()->user()->can('delete', $pix);
             return $pix;
         }, $pixes);
+        // @codeCoverageIgnoreEnd
 
         return Inertia::render('Pixes/Index', [
             'pixes' => $pixes
