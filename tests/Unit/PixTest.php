@@ -136,3 +136,38 @@ it('delete a pix without permission', function () {
     $this->actingAs($user)->delete(route('pixes.destroy', $pix))
         ->assertStatus(403);
 });
+
+it('test pix type cpf/cnpj', function () {
+    $pix = new Pix();
+    $pix->type_id = 0;
+
+    $this->assertEquals(Pix::TYPE_CPFCNPJ, $pix->type);
+});
+
+it('test pix type phone', function () {
+    $pix = new Pix();
+    $pix->type_id = 1;
+
+    $this->assertEquals(Pix::TYPE_PHONE, $pix->type);
+});
+
+it('test pix type email', function () {
+    $pix = new Pix();
+    $pix->type_id = 2;
+
+    $this->assertEquals(Pix::TYPE_EMAIL, $pix->type);
+});
+
+it('test pix type random key', function () {
+    $pix = new Pix();
+    $pix->type_id = 3;
+
+    $this->assertEquals(Pix::TYPE_RANDOMKEY, $pix->type);
+});
+
+it('test pix type nulled', function () {
+    $pix = new Pix();
+    $pix->type_id = 999;
+
+    $this->assertNull($pix->type);
+});
