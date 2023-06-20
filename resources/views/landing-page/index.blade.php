@@ -19,7 +19,7 @@
                     <div class="brand header-brand">
                         <h1 class="m-0">
                             <a href="#">
-                                <img src="{{ asset('template-landing-page/src/images/icon.png') }}" width="60px"/> 
+                                <img src="{{ asset('template-landing-page/src/images/icon.png') }}" width="60px" />
                             </a>
                         </h1>
                     </div>
@@ -33,30 +33,34 @@
                 <div class="container">
                     <div class="hero-inner">
                         <div class="hero-copy">
-                            <img src="{{ asset('template-landing-page/src/images/logo.png') }}"/>
+                            <img src="{{ asset('template-landing-page/src/images/logo.png') }}" />
                             <p class="hero-paragraph">Adquira bottons personalizados exclusivos para promover sua marca,
                                 causa ou evento! Nossos bottons são uma forma criativa e eficaz de destacar sua mensagem
                                 de forma visualmente atraente.</p>
                         </div>
                         <div class="hero-illustration">
                             <div class="hero-shape hero-shape-1">
-                                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
-                                    <circle class="anime-element fadeup-animation" cx="20" cy="20" r="20" fill="#F9A8C9"
-                                        fill-rule="evenodd" />
+                                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"
+                                    style="overflow:visible">
+                                    <circle class="anime-element fadeup-animation" cx="20" cy="20"
+                                        r="20" fill="#F9A8C9" fill-rule="evenodd" />
                                 </svg>
                             </div>
                             <div class="hero-shape hero-shape-2">
-                                <svg width="88" height="88" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
-                                    <circle class="anime-element fadeup-animation" cx="44" cy="44" r="44" fill="#F0F47E"
-                                        fill-rule="evenodd" />
+                                <svg width="88" height="88" xmlns="http://www.w3.org/2000/svg"
+                                    style="overflow:visible">
+                                    <circle class="anime-element fadeup-animation" cx="44" cy="44"
+                                        r="44" fill="#F0F47E" fill-rule="evenodd" />
                                 </svg>
                             </div>
                             <div class="hero-main-shape">
-                                <svg width="940" height="647" viewBox="0 0 940 647" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible">
+                                <svg width="940" height="647" viewBox="0 0 940 647"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    style="overflow:visible">
                                     <defs>
                                         <!-- Cor do circulo de fundo  -->
-                                        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="hero-illustration-a">
+                                        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%"
+                                            id="hero-illustration-a">
                                             <stop stop-color="#31AFF8" offset="0%" />
                                             <stop stop-color="#38B6FF" offset="100%" />
                                         </linearGradient>
@@ -79,7 +83,8 @@
 
                                         <circle id="hero-illustration-v" cx="28" cy="28" r="28" />
 
-                                        <circle id="hero-illustration-x" cx="24" cy="24" r="24" />
+                                        <circle id="hero-illustration-x" cx="24" cy="24"
+                                            r="24" />
 
                                     </defs>
                                     <g fill="none" fill-rule="evenodd">
@@ -89,11 +94,15 @@
                                             fill="url(#hero-illustration-a)" stroke="#4950F6" />
                                         <g transform="translate(435 518)">
                                             <circle class="anime-element fadeup-animation"
-                                                fill="url(#hero-illustration-b)" cx="106" cy="32" r="32" />
+                                                fill="url(#hero-illustration-b)" cx="106" cy="32"
+                                                r="32" />
                                             <circle class="anime-element fadeup-animation"
-                                                fill="url(#hero-illustration-c)" cx="12" cy="117" r="12" />
+                                                fill="url(#hero-illustration-c)" cx="12" cy="117"
+                                                r="12" />
                                         </g>
-                                        <image xlink:href="template-landing-page/src/images/bottons2.png" x="-270" y="-10" width="1000" height="600" />
+                                        <image
+                                            xlink:href="{{ asset('template-landing-page/src/images/bottons2.png') }}"
+                                            x="-270" y="-10" width="1000" height="600" />
                                     </g>
                                 </svg>
                             </div>
@@ -107,7 +116,8 @@
                         <div class="features-header text-center">
                             <div class="container-sm">
                                 <h2 class="section-title mt-0">Nosso produtos</h2>
-                                <p class="section-paragraph">Oferecemos uma ampla variedade de opções de personalização,
+                                <p class="section-paragraph">Oferecemos uma ampla variedade de opções de
+                                    personalização,
                                     incluindo diferentes tamanhos e designs. Você pode escolher entre uma
                                     variedade de materiais duráveis e de alta qualidade, garantindo que seus bottons
                                     tenham uma aparência profissional e resistam ao uso diário.</p>
@@ -116,7 +126,8 @@
                         <div class="features-wrap">
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner" style="text-align: center;">
-                                    <img src="{{ asset('template-landing-page/src/images/panda.png') }}" style="display: block; margin: 0 auto;"/>
+                                    <img src="{{ asset('template-landing-page/src/images/panda.png') }}"
+                                        style="display: block; margin: 0 auto;" />
                                     <h4 class="feature-title h3-mobile mb-8">Bottons 37mm</h4>
                                     <table class="table table-bordered">
                                         <thead>
@@ -152,7 +163,8 @@
                             </div>
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner" style="text-align: center;">
-                                    <image src="{{ asset('template-landing-page/src/images/porco.png') }}" style="display: block; margin: 0 auto;"/> 
+                                    <img src="{{ asset('template-landing-page/src/images/porco.png') }}"
+                                        style="display: block; margin: 0 auto;" />
                                     <h4 class="feature-title h3-mobile mb-8">Bottons 25mm</h4>
                                     <table class="table table-bordered">
                                         <thead>
@@ -180,7 +192,8 @@
                             </div>
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner" style="text-align: center;">
-                                    <img src="{{ asset('template-landing-page/src/images/borboleta.png') }}" style="display: block; margin: 0 auto;"/>
+                                    <img src="{{ asset('template-landing-page/src/images/borboleta.png') }}"
+                                        style="display: block; margin: 0 auto;" />
                                     <h4 class="feature-title h3-mobile mb-8">Bottons Holográficos</h4>
                                     <table class="table table-bordered">
                                         <thead>
@@ -207,7 +220,8 @@
                 <div class="testimonials-shape testimonials-shape-1">
                     <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="testimonials-shape-1">
+                            <linearGradient x1="100%" y1="0%" x2="0%" y2="100%"
+                                id="testimonials-shape-1">
                                 <stop stop-color="#31AFF8" offset="0%" />
                                 <stop stop-color="#38B6FF" offset="100%" />
                             </linearGradient>
@@ -238,8 +252,8 @@
                                 <stop stop-color="#FF6381" offset="100%" />
                             </linearGradient>
                         </defs>
-                        <circle cx="24" cy="434" r="24" transform="translate(0 -410)" fill="url(#testimonials-shape-3)"
-                            fill-rule="evenodd" />
+                        <circle cx="24" cy="434" r="24" transform="translate(0 -410)"
+                            fill="url(#testimonials-shape-3)" fill-rule="evenodd" />
                     </svg>
                 </div>
                 <div class="container">
@@ -255,7 +269,9 @@
                                                 alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
-                                            <p class="mb-0">Adorei a qualidade dos bottons que comprei nesta loja! Eles são duráveis e as cores são vibrantes. Com certeza voltarei a comprar mais para adicionar ao meu estilo único.</p>
+                                            <p class="mb-0">Adorei a qualidade dos bottons que comprei nesta loja!
+                                                Eles são duráveis e as cores são vibrantes. Com certeza voltarei a
+                                                comprar mais para adicionar ao meu estilo único.</p>
                                         </div>
                                     </div>
                                     <div class="testimonial-footer">
@@ -274,7 +290,11 @@
                                                 alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
-                                            <p class="mb-0">Fiquei impressionado com a variedade de opções disponíveis nesta loja de bottons. Desde os designs mais clássicos até os mais modernos, encontrei exatamente o que estava procurando. A entrega foi rápida e o atendimento ao cliente foi excelente. Recomendo!</p>
+                                            <p class="mb-0">Fiquei impressionado com a variedade de opções
+                                                disponíveis nesta loja de bottons. Desde os designs mais clássicos até
+                                                os mais modernos, encontrei exatamente o que estava procurando. A
+                                                entrega foi rápida e o atendimento ao cliente foi excelente. Recomendo!
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="testimonial-footer">
@@ -293,7 +313,11 @@
                                                 alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
-                                            <p class="mb-0">Essa loja de bottons superou todas as minhas expectativas! Os produtos são de alta qualidade e o preço é muito justo. Além disso, o envio foi muito rápido e a embalagem estava perfeita, garantindo que os bottons chegassem em perfeito estado. Com certeza indicarei essa loja para meus amigos e familiares.</p>
+                                            <p class="mb-0">Essa loja de bottons superou todas as minhas
+                                                expectativas! Os produtos são de alta qualidade e o preço é muito justo.
+                                                Além disso, o envio foi muito rápido e a embalagem estava perfeita,
+                                                garantindo que os bottons chegassem em perfeito estado. Com certeza
+                                                indicarei essa loja para meus amigos e familiares.</p>
                                         </div>
                                     </div>
                                     <div class="testimonial-footer">
@@ -313,8 +337,11 @@
                     <div class="newsletter-inner section-inner">
                         <div class="newsletter-header text-center">
                             <h2 class="section-title mt-0">Entre em Contato</h2>
-                            <p class="section-paragraph">Estamos aqui para atender às suas necessidades personalizadas! Entre em contato conosco agora mesmo e faça o seu pedido. Estamos ansiosos para criar algo especial para você!</p>
-                            <a class="button button-lg button-shadow" href="https://wa.me/c/558499292655">Chame no Whatsapp</a>
+                            <p class="section-paragraph">Estamos aqui para atender às suas necessidades personalizadas!
+                                Entre em contato conosco agora mesmo e faça o seu pedido. Estamos ansiosos para criar
+                                algo especial para você!</p>
+                            <a class="button button-lg button-shadow" href="https://wa.me/c/558499292655">Chame no
+                                Whatsapp</a>
                         </div>
                     </div>
                 </div>
@@ -326,21 +353,23 @@
                 <div class="site-footer-inner has-top-divider">
                     <div class="brand footer-brand">
                         <a href="#">
-                            <img src="{{ asset('template-landing-page/src/images/icon.png') }}" width="60px"/> 
+                            <img src="{{ asset('template-landing-page/src/images/icon.png') }}" width="60px" />
                         </a>
                     </div>
                     <ul class="footer-social-links list-reset">
                         <li>
                             <a href="https://www.instagram.com/menina_dos_bottons_/" target="_blank">
                                 <span class="screen-reader-text">Instagram</span>
-                                <img src="{{ asset('template-landing-page/src/images/instagram.svg') }}" width="16" height="16"/> 
-                                
+                                <img src="{{ asset('template-landing-page/src/images/instagram.svg') }}"
+                                    width="16" height="16" />
+
                             </a>
                         </li>
                         <li>
                             <a href="https://wa.me/c/558499292655">
                                 <span class="screen-reader-text">Whatsapp</span>
-                                <img src="{{ asset('template-landing-page/src/images/zap.svg') }}" width="16" height="16"/> 
+                                <img src="{{ asset('template-landing-page/src/images/zap.svg') }}" width="16"
+                                    height="16" />
                             </a>
                         </li>
                     </ul>
