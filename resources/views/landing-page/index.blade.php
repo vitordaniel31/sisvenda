@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Menina dos Bottons</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Fira+Sans:600" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('template-landing-page/dist/css/style.css') }}">
+    <link rel="stylesheet" href="template-landing-page/dist/css/style.cs">
     <script src="https://unpkg.com/animejs@2.2.0/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
@@ -19,7 +19,7 @@
                     <div class="brand header-brand">
                         <h1 class="m-0">
                             <a href="#">
-                                <img src="{{ asset('template-landing-page/src/images/icon.png') }}" width="60px"/> 
+                                <img src="template-landing-page/src/images/icon.png" width="60px"/> 
                             </a>
                         </h1>
                     </div>
@@ -33,7 +33,7 @@
                 <div class="container">
                     <div class="hero-inner">
                         <div class="hero-copy">
-                            <img src="{{ asset('template-landing-page/src/images/logo.png') }}"/>
+                            <img src="template-landing-page/src/images/logo.png"/>
                             <p class="hero-paragraph">Adquira bottons personalizados exclusivos para promover sua marca,
                                 causa ou evento! Nossos bottons são uma forma criativa e eficaz de destacar sua mensagem
                                 de forma visualmente atraente.</p>
@@ -116,7 +116,7 @@
                         <div class="features-wrap">
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner" style="text-align: center;">
-                                    <img src="{{ asset('template-landing-page/src/images/panda.png') }}" style="display: block; margin: 0 auto;"/>
+                                    <img src="template-landing-page/src/images/panda.png" style="display: block; margin: 0 auto;"/>
                                     <h4 class="feature-title h3-mobile mb-8">Bottons 37mm</h4>
                                     <table class="table table-bordered">
                                         <thead>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner" style="text-align: center;">
-                                    <image src="{{ asset('template-landing-page/src/images/porco.png') }}" style="display: block; margin: 0 auto;"/> 
+                                    <image src="template-landing-page/src/images/porco.png" style="display: block; margin: 0 auto;"/> 
                                     <h4 class="feature-title h3-mobile mb-8">Bottons 25mm</h4>
                                     <table class="table table-bordered">
                                         <thead>
@@ -180,7 +180,7 @@
                             </div>
                             <div class="feature text-center is-revealing">
                                 <div class="feature-inner" style="text-align: center;">
-                                    <img src="{{ asset('template-landing-page/src/images/borboleta.png') }}" style="display: block; margin: 0 auto;"/>
+                                    <img src="template-landing-page/src/images/borboleta.png" style="display: block; margin: 0 auto;"/>
                                     <h4 class="feature-title h3-mobile mb-8">Bottons Holográficos</h4>
                                     <table class="table table-bordered">
                                         <thead>
@@ -251,7 +251,7 @@
                                     <div class="testimonial-main">
                                         <div class="testimonial-header">
                                             <img class="mb-16"
-                                                src="{{ asset('template-landing-page/dist/images/testimonial-01.png') }}"
+                                                src="template-landing-page/dist/images/testimonial-01.png"
                                                 alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
@@ -270,7 +270,7 @@
                                     <div class="testimonial-main">
                                         <div class="testimonial-header">
                                             <img class="mb-16"
-                                                src="{{ asset('template-landing-page/dist/images/testimonial-02.png') }}"
+                                                src="template-landing-page/dist/images/testimonial-02.png') }}"
                                                 alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
@@ -289,7 +289,7 @@
                                     <div class="testimonial-main">
                                         <div class="testimonial-header">
                                             <img class="mb-16"
-                                                src="{{ asset('template-landing-page/dist/images/testimonial-03.png') }}"
+                                                src="template-landing-page/dist/images/testimonial-03.png"
                                                 alt="Testimonial">
                                         </div>
                                         <div class="testimonial-body">
@@ -326,21 +326,21 @@
                 <div class="site-footer-inner has-top-divider">
                     <div class="brand footer-brand">
                         <a href="#">
-                            <img src="{{ asset('template-landing-page/src/images/icon.png') }}" width="60px"/> 
+                            <img src="template-landing-page/src/images/icon.png" width="60px"/> 
                         </a>
                     </div>
                     <ul class="footer-social-links list-reset">
                         <li>
                             <a href="https://www.instagram.com/menina_dos_bottons_/" target="_blank">
                                 <span class="screen-reader-text">Instagram</span>
-                                <img src="{{ asset('template-landing-page/src/images/instagram.svg') }}" width="16" height="16"/> 
+                                <img src="template-landing-page/src/images/instagram.svg" width="16" height="16"/> 
                                 
                             </a>
                         </li>
                         <li>
                             <a href="https://wa.me/c/558499292655">
                                 <span class="screen-reader-text">Whatsapp</span>
-                                <img src="{{ asset('template-landing-page/src/images/zap.svg') }}" width="16" height="16"/> 
+                                <img src="template-landing-page/src/images/zap.svg" width="16" height="16"/> 
                             </a>
                         </li>
                     </ul>
@@ -350,7 +350,7 @@
         </footer>
     </div>
 
-    <script src="{{ asset('template-landing-page/dist/js/main.min.js') }}"></script>
+    <script src="template-landing-page/dist/js/main.min.js"></script>
 </body>
 
 </html>
