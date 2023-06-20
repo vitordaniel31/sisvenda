@@ -194,7 +194,7 @@ export default {
                                         </Link>
                                         <div class="dropdown-divider"></div>
                                         <Link
-                                            href="/logout"
+                                            :href="route('logout')"
                                             method="post"
                                             as="button"
                                             type="button"

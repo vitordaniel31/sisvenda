@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app['url']->forceRootUrl(config('app.url'));
+        
         User::observe(BaseObserver::class);
         Product::observe(BaseObserver::class);
         Sale::observe(BaseObserver::class);
