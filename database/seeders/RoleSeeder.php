@@ -30,7 +30,11 @@ class RoleSeeder extends Seeder
                 'pixes.read',
                 'pixes.create',
                 'pixes.update',
-                'pixes.delete'
+                'pixes.delete',
+                'paymentmethods.read',
+                'paymentmethods.create',
+                'paymentmethods.update',
+                'paymentmethods.delete'
             ]
         ],
         [
