@@ -137,11 +137,11 @@ export default {
                         </li>
                         <hr class="sidebar-divider my-0" />
                     </div>
-                    <div v-if="can('paymentmethods.read')">
+                    <div v-if="can('paymentMethods.read')">
                         <li class="nav-item active">
                             <Link
                                 class="nav-link collapsed"
-                                :href="route('paymentmethods.index')"
+                                :href="route('paymentMethods.index')"
                             >
                                 <i class="fas fa-money-check-alt"></i>
                                 <span>Formas de Pagamento</span>

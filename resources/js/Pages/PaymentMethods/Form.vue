@@ -27,7 +27,7 @@ export default {
             type: Object,
         },
 
-        method: {
+        paymentMethod: {
             type: Object,
         },
     },
@@ -40,7 +40,7 @@ export default {
             <div class="form-group">
                 <InputLabel
                     for="name_id"
-                    value="Tipo da Forma de Pagamento"
+                    value="Forma de Pagamento"
                     :required="true"
                 />
                 <v-select
@@ -57,7 +57,7 @@ export default {
                     id="name"
                     type="text"
                     class="mt-1 block w-full"
-                    v-model="method.name.label"
+                    v-model="paymentMethod.name.label"
                     required
                     autocomplete="name"
                     :disabled="disabled"
@@ -65,9 +65,7 @@ export default {
                 <InputError class="mt-2" :message="form.errors.name_id" />
             </div>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-5">
             <div class="form-group">
                 <InputLabel for="pix_id" value="Chave Pix" :required="false" />
                 <TextInput
@@ -75,9 +73,10 @@ export default {
                     type="text"
                     class="mt-1 block w-full"
                     v-model="form.pix_id"
+                    autofocus
+                    autocomplete="pix_id"
                     :disabled="disabled"
                 />
-
                 <InputError class="mt-2" :message="form.errors.pix_id" />
             </div>
         </div>

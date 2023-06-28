@@ -11,12 +11,12 @@ export default {
     data() {
         return {
             title: "Forma de Pagamento",
-            description: "Uma lista de todas as Formas de Pagamento",
+            description: "Uma lista de todos as formas de pagamento",
         };
     },
 
     props: {
-        paymentmethods: {
+        paymentMethods: {
             type: Object,
         },
     },
@@ -26,7 +26,7 @@ export default {
 <template>
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
-            <li class="breadcrumb-item active">Pix</li>
+            <li class="breadcrumb-item active">Forma de Pagamento</li>
         </template>
         <template #content>
             <div class="card shadow mb-4">
@@ -36,8 +36,8 @@ export default {
                             {{ title }}
                         </h6>
                         <Link
-                            v-show="can('paymentmethods.create')"
-                            :href="route('paymentmethods.create')"
+                            v-show="can('paymentMethods.create')"
+                            :href="route('paymentMethods.create')"
                             class="btn btn-capelli btn-sm mb-2"
                         >
                             <i class="fa fa-fw fa-plus"></i>Cadastrar Forma de Pagamento
@@ -56,24 +56,24 @@ export default {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(method, index) in paymentmethods">
+                                <tr v-for="(paymentMethod, index) in paymentMethods">
                                     <td>
                                         <Link
                                             :href="
-                                                route('paymentmethods.show', method)
+                                                route('paymentMethods.show', paymentMethod)
                                             "
-                                            >{{ method.name.label }} | {{ method.pix_id }}
+                                            >{{ paymentMethod.name.label }} | {{ paymentMethod.pix_id }}
                                         </Link>
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="method.can_update"
+                                                v-show="paymentMethod.can_update"
                                                 class="btn btn-sm btn-outline-secondary"
                                                 :href="
                                                     route(
-                                                        'paymentmethods.edit',
-                                                        method
+                                                        'paymentMethods.edit',
+                                                        paymentMethod
                                                     )
                                                 "
                                             >
@@ -82,13 +82,13 @@ export default {
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="method.can_delete"
+                                                v-show="paymentMethod.can_delete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(
                                                         route(
-                                                            'paymentmethods.destroy',
-                                                            method
+                                                            'paymentMethods.destroy',
+                                                            paymentMethod
                                                         )
                                                     )
                                                 "

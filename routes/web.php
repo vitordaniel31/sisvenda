@@ -29,7 +29,7 @@ Route::prefix('backoffice')->middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('sales', SaleController::class)->except(['edit, update, destroy']);
     Route::resource('pixes', PixController::class);
-    Route::resource('paymentmethods', PaymentMethodController::class);
+    Route::resource('paymentMethods', PaymentMethodController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 

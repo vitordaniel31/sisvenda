@@ -31,7 +31,7 @@ export default {
 
     methods: {
         submit() {
-            this.form.post(route("paymentmethods.store"));
+            this.form.post(route("paymentMethods.store"));
         },
     },
 };
@@ -41,7 +41,7 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('paymentmethods.index')">Forma de Pagamento</Link>
+                <Link :href="route('paymentMethods.index')">Forma de Pagamento</Link>
             </li>
             <li class="breadcrumb-item active">Cadastrar Forma de Pagamento</li>
         </template>

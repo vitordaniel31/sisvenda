@@ -22,18 +22,18 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        $paymeths = PaymentMethod::all();
+        $paymentMethods = PaymentMethod::all();
 
         // @codeCoverageIgnoreStart
-        $paymeths = collect($paymeths)->map(function ($paymeth) {
-            $paymeth['can_update'] = auth()->user()->can('update', $paymeth);
-            $paymeth['can_delete'] = auth()->user()->can('delete', $paymeth);
-            return $paymeth;
-        }, $paymeths);
+        $paymentMethods = collect($paymentMethods)->map(function ($paymentMethod) {
+            $paymentMethod['can_update'] = auth()->user()->can('update', $paymentMethod);
+            $paymentMethod['can_delete'] = auth()->user()->can('delete', $paymentMethod);
+            return $paymentMethod;
+        }, $paymentMethods);
         // @codeCoverageIgnoreEnd
 
         return Inertia::render('PaymentMethods/Index', [
-            'paymentmethods' => $paymeths
+            'paymentMethods' => $paymentMethods
         ]);
     }
 
@@ -54,28 +54,28 @@ class PaymentMethodController extends Controller
      */
     public function store(CreatePaymentMethodRequest $request)
     {
-        $paymeth = PaymentMethod::create($request->validated());
+        $paymentMethod = PaymentMethod::create($request->validated());
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A forma de pagamento foi cadastrada com sucesso.'
+            'message' => 'A forma de pagamento foi cadastrado com sucesso.'
         ]);
 
-        return Redirect::route('paymentmethods.show', $paymeth);
+        return Redirect::route('paymentMethods.show', $paymentMethod);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(PaymentMethod $paymeth)
+    public function show(PaymentMethod $paymentMethod)
     {
         $keyNames = selectionPaymentMethodsNames();
 
-        $paymeth['can_update'] = auth()->user()->can('update', $paymeth);
-        $paymeth['can_delete'] = auth()->user()->can('delete', $paymeth);
+        $paymentMethod['can_update'] = auth()->user()->can('update', $paymentMethod);
+        $paymentMethod['can_delete'] = auth()->user()->can('delete', $paymentMethod);
 
         return Inertia::render('PaymentMethods/Show', [
-            'paymentmethod' => $paymeth,
+            'paymentMethod' => $paymentMethod,
             'keyNames' => $keyNames,
         ]);
     }
@@ -83,12 +83,12 @@ class PaymentMethodController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PaymentMethod $paymeth)
+    public function edit(PaymentMethod $paymentMethod)
     {
         $keyNames = selectionPaymentMethodsNames();
 
         return Inertia::render('PaymentMethods/Edit', [
-            'paymentmethod' => $paymeth,
+            'paymentMethod' => $paymentMethod,
             'keyNames' => $keyNames,
         ]);
     }
@@ -96,30 +96,30 @@ class PaymentMethodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePaymentMethodRequest $request, PaymentMethod $paymeth)
+    public function update(UpdatePaymentMethodRequest $request, PaymentMethod $paymentMethod)
     {
-        $paymeth->update($request->validated());
+        $paymentMethod->update($request->validated());
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A forma de pagamento foi atualizada com sucesso.'
+            'message' => 'A forma de pagamento foi atualizado com sucesso.'
         ]);
 
-        return Redirect::route('paymentmethods.show', $paymeth);
+        return Redirect::route('paymentMethods.show', $paymentMethod);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PaymentMethod $paymeth)
+    public function destroy(PaymentMethod $paymentMethod)
     {
-        $paymeth->delete();
+        $paymentMethod->delete();
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A forma de pagamento foi deletada com sucesso.'
+            'message' => 'A forma de pagamento foi deletado com sucesso.'
         ]);
 
-        return Redirect::route('paymentmethods.index');
+        return Redirect::route('paymentMethods.index');
     }
 }

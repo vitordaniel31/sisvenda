@@ -13,7 +13,7 @@ class PaymentMethodPolicy
      */
     public function viewAny(User $user): bool
     {        
-        return $user->can('paymentmethods.read');
+        return $user->can('paymentMethods.read');
     }
 
     /**
@@ -21,7 +21,7 @@ class PaymentMethodPolicy
      */
     public function view(User $user): bool
     {
-        return $user->can('paymentmethods.read');
+        return $user->can('paymentMethods.read');
     }
 
     /**
@@ -29,7 +29,7 @@ class PaymentMethodPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('paymentmethods.create');
+        return $user->can('paymentMethods.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class PaymentMethodPolicy
      */
     public function update(User $user): bool
     {
-        return $user->can('paymentmethods.update');
+        return $user->can('paymentMethods.update');
     }
 
     /**
@@ -45,6 +45,6 @@ class PaymentMethodPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->can('paymentmethods.delete');
+        return $user->can('paymentMethods.delete');
     }
 }

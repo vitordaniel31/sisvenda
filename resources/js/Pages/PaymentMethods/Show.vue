@@ -13,7 +13,7 @@ export default {
     },
 
     props: {
-        method: {
+        paymentMethod: {
             type: Object,
         },
     },
@@ -23,8 +23,8 @@ export default {
             title: "Forma de Pagamento",
             description: "Detalhar Forma de Pagamento",
             form: useForm({
-                name_id: this.method.name_id,
-                pix_id: this.method.pix_id,
+                name_id: this.paymentMethod.name_id,
+                pix_id: this.paymentMethod.pix_id,
             }),
         };
     },
@@ -35,10 +35,10 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('paymentmethods.index')">Forma de Pagamento</Link>
+                <Link :href="route('paymentMethods.index')">Forma de Pagamento</Link>
             </li>
             <li class="breadcrumb-item active">Detalhar Forma de Pagamento</li>
-            <li class="breadcrumb-item active">{{ method.id }}</li>
+            <li class="breadcrumb-item active">{{ paymentMethod.id }}</li>
         </template>
         <template #content>
             <div class="card">
@@ -48,17 +48,17 @@ export default {
                     </h5>
                     <div class="btn-group float-right">
                         <Link
-                            v-show="method.can_update"
+                            v-show="paymentMethod.can_update"
                             class="btn btn-sm ms-1 btn-outline-secondary"
-                            :href="route('paymentmethods.edit', method)"
+                            :href="route('paymentMethods.edit', paymentMethod)"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </Link>
                         <button
-                            v-show="method.can_delete"
+                            v-show="paymentMethod.can_delete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
-                                deleteAlert(route('paymentmethods.destroy', this.method))
+                                deleteAlert(route('paymentMethods.destroy', this.paymentMethod))
                             "
                         >
                             <i class="fa fa-trash"></i>
@@ -70,7 +70,7 @@ export default {
                         :form="form"
                         :create="false"
                         :disabled="true"
-                        :method="method"
+                        :paymentMethod="paymentMethod"
                     ></Form>
                 </div>
             </div>

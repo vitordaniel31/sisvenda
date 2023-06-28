@@ -70,7 +70,7 @@ class PaymentMethod extends Model
         return $name;
     }
 
-    public function creator(): BelongsTo
+    public function pix(): BelongsTo
     {
         return $this->belongsTo(Pix::class, 'pix_id');
     }
