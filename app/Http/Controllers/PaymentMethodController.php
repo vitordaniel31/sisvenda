@@ -15,7 +15,7 @@ class PaymentMethodController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(PaymentMethod::class);
+        $this->authorizeResource(PaymentMethod::class, 'paymentMethod');
     }
     /**
      * Display a listing of the resource.
