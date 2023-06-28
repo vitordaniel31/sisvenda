@@ -22,6 +22,14 @@ class SaleController extends Controller
     {
         $sales = Sale::all();
 
+        // @codeCoverageIgnoreStart
+        $sales = collect($sales)->map(function ($sale) {
+            $sale['canUpdate'] = auth()->user()->can('update', $sale);
+            $sale['canDelete'] = auth()->user()->can('delete', $sale);
+            return $sale;
+        }, $sales);
+        // @codeCoverageIgnoreEnd
+
         return Inertia::render('Sales/Index', [
             'sales' => $sales
         ]);
@@ -58,11 +66,40 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        $sale['can_update'] = auth()->user()->can('update', $sale);
-        $sale['can_delete'] = auth()->user()->can('delete', $sale);
+        $sale['canUpdate'] = auth()->user()->can('update', $sale);
+        $sale['canDelete'] = auth()->user()->can('delete', $sale);
+
+        $sale->load('products');
 
         return Inertia::render('Sales/Show', [
             'sale' => $sale
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Sale $sale)
+    {
+        $sale->load('products');
+
+        return Inertia::render('Sales/Edit', [
+            'sale' => $sale
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateSaleRequest $request, Sale $sale)
+    {
+        $sale->update($request->validated());
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'A venda foi atualizada com sucesso.'
+        ]);
+
+        return Redirect::route('sales.show', $sale);
     }
 }

@@ -38,10 +38,7 @@ export default {
 
     methods: {
         submit() {
-            this.form.put(route("pixes.update", this.pix), {
-                onFinish: () =>
-                    this.form.reset("password", "password_confirmation"),
-            });
+            this.form.put(route("pixes.update", this.pix));
         },
     },
 };

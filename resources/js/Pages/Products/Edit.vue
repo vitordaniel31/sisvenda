@@ -33,10 +33,7 @@ export default {
 
     methods: {
         submit() {
-            this.form.put(route("products.update", this.product), {
-                onFinish: () =>
-                    this.form.reset("password", "password_confirmation"),
-            });
+            this.form.put(route("products.update", this.product));
         },
     },
 };

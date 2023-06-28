@@ -49,14 +49,14 @@ export default {
                     </h5>
                     <div class="btn-group float-right">
                         <Link
-                            v-show="pix.can_update"
+                            v-show="pix.canUpdate"
                             class="btn btn-sm ms-1 btn-outline-secondary"
                             :href="route('pixes.edit', pix)"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </Link>
                         <button
-                            v-show="pix.can_delete"
+                            v-show="pix.canDelete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
                                 deleteAlert(route('pixes.destroy', this.pix))

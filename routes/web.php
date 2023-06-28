@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::prefix('backoffice')->middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
-    Route::resource('sales', SaleController::class)->except(['edit, update, destroy']);
+    Route::resource('sales', SaleController::class)->except(['destroy']);
     Route::resource('pixes', PixController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

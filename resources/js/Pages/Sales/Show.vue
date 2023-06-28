@@ -47,7 +47,15 @@ export default {
                     <h5 class="card-title h5 mb-4 text-dark d-inline">
                         Dados Gerais
                     </h5>
-                    <div class="btn-group float-right"></div>
+                    <div class="btn-group float-right">
+                        <Link
+                            v-show="sale.canUpdate"
+                            class="btn btn-sm ms-1 btn-outline-secondary"
+                            :href="route('sales.edit', sale)"
+                        >
+                            <i class="fa fa-pencil-alt"></i>
+                        </Link>
+                    </div>
                 </div>
                 <div class="card-body">
                     <Form :form="form" :create="false" :disabled="true"></Form>
