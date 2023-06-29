@@ -16,6 +16,10 @@ export default {
         pix: {
             type: Object,
         },
+
+        keyTypes: {
+            type: Object,
+        },
     },
 
     data() {
@@ -71,6 +75,7 @@ export default {
                         :form="form"
                         :create="false"
                         :disabled="true"
+                        :keyTypes="keyTypes"
                         :pix="pix"
                     ></Form>
                 </div>

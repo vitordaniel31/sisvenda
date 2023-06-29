@@ -13,22 +13,30 @@ class Pix extends Model
 
     const TYPE_CPFCNPJ = [
         'id' => 0,
-        'label' => 'CPF/CNPJ'
+        'label' => 'CPF/CNPJ',
+        'mask' => ['###.###.###-##', '##.###.###/####-##'],
+        'type' => 'text',
     ];
 
     const TYPE_PHONE = [
         'id' => 1,
-        'label' => 'Celular'
+        'label' => 'Celular',
+        'mask' => '(##)#####-####',
+        'type' => 'text',
     ];
 
     const TYPE_EMAIL = [
         'id' => 2,
-        'label' => 'Email'
+        'label' => 'Email',
+        'mask' => null,
+        'type' => 'email',
     ];
 
     const TYPE_RANDOMKEY = [
         'id' => 3,
-        'label' => 'Chave aleatória'
+        'label' => 'Chave aleatória',
+        'mask' => null,
+        'type' => 'text',
     ];
 
     protected $fillable = [
