@@ -20,6 +20,10 @@ export default {
         keyNames: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        }
     },
 
     data() {
@@ -63,6 +67,7 @@ export default {
                         :create="false"
                         :disabled="false"
                         :keyNames="keyNames"
+                        :pixKeys="pixKeys"
                         :paymentMethod="paymentMethod"
                     ></Form>
                 </div>

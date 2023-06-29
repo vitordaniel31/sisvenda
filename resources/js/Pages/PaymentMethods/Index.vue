@@ -19,6 +19,10 @@ export default {
         paymentMethods: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        }
     },
 };
 </script>
@@ -57,12 +61,20 @@ export default {
                             </thead>
                             <tbody>
                                 <tr v-for="(paymentMethod, index) in paymentMethods">
-                                    <td>
+                                    <td v-if="paymentMethod.pix_id != null">
                                         <Link
                                             :href="
                                                 route('paymentMethods.show', paymentMethod)
                                             "
-                                            >{{ paymentMethod.name.label }} | {{ paymentMethod.pix_id }}
+                                            >{{ paymentMethod.name.label }} | {{ pixKeys.key }}
+                                        </Link>
+                                    </td>
+                                    <td v-else>
+                                        <Link
+                                            :href="
+                                                route('paymentMethods.show', paymentMethod)
+                                            "
+                                            >{{ paymentMethod.name.label }}
                                         </Link>
                                     </td>
                                     <td class="text-center">

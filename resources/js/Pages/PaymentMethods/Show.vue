@@ -16,6 +16,14 @@ export default {
         paymentMethod: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        },
+    },
+
+    mounted(){
+        console.log(this.paymentMethod);
     },
 
     data() {
@@ -71,6 +79,7 @@ export default {
                         :create="false"
                         :disabled="true"
                         :paymentMethod="paymentMethod"
+                        :pixKeys="pixKeys"
                     ></Form>
                 </div>
             </div>

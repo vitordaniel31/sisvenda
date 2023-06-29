@@ -16,6 +16,10 @@ export default {
         keyNames: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        }
     },
 
     data() {
@@ -53,6 +57,7 @@ export default {
                         :create="true"
                         :disabled="false"
                         :keyNames="keyNames"
+                        :pixKeys="pixKeys"
                     ></Form>
                 </div>
                 <div class="col-lg-12">

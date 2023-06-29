@@ -30,6 +30,10 @@ export default {
         paymentMethod: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        }
     },
 };
 </script>
@@ -65,20 +69,37 @@ export default {
                 <InputError class="mt-2" :message="form.errors.name_id" />
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5" v-if="form.name_id === 4">
             <div class="form-group">
-                <InputLabel for="pix_id" value="Chave Pix" :required="false" />
+                <InputLabel
+                    for="pix_id"
+                    value="Chave Pix"
+                    :required="true"
+                />
+                <v-select
+                    v-if="!disabled"
+                    id="pix_id"
+                    required
+                    v-model="form.pix_id"
+                    :disabled="disabled"
+                    :options="pixKeys"
+                    :reduce="(pixKey) => pixKey.id"
+                ></v-select>
                 <TextInput
+                    v-else
                     id="pix_id"
                     type="text"
                     class="mt-1 block w-full"
-                    v-model="form.pix_id"
-                    autofocus
+                    v-model="paymentMethod.pix.key"
+                    required
                     autocomplete="pix_id"
                     :disabled="disabled"
                 />
                 <InputError class="mt-2" :message="form.errors.pix_id" />
             </div>
+        </div>
+        <div class="col-lg-5" v-else>
+            {{ form.pix_id = null }}
         </div>
     </div>
 </template>

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CreatePaymentMethodRequest;
 use App\Http\Requests\UpdatePaymentMethodRequest;
 use App\Models\PaymentMethod;
+use App\Models\Pix;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 use function App\Helpers\selectionPaymentMethodsNames;
@@ -15,14 +16,21 @@ class PaymentMethodController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(PaymentMethod::class);
+        $this->authorizeResource(PaymentMethod::class, 'paymentMethod');
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $paymentMethods = PaymentMethod::all();
+        $pixKeys = Pix::all()->map(function ($pix) {
+            return [
+                'id' => $pix->id,
+                'label' => $pix->key,
+            ];
+        });
 
         // @codeCoverageIgnoreStart
         $paymentMethods = collect($paymentMethods)->map(function ($paymentMethod) {
@@ -33,7 +41,8 @@ class PaymentMethodController extends Controller
         // @codeCoverageIgnoreEnd
 
         return Inertia::render('PaymentMethods/Index', [
-            'paymentMethods' => $paymentMethods
+            'paymentMethods' => $paymentMethods,
+            'pixKeys' => $pixKeys,
         ]);
     }
 
@@ -43,9 +52,16 @@ class PaymentMethodController extends Controller
     public function create()
     {
         $keyNames = selectionPaymentMethodsNames();
+        $pixKeys = Pix::all()->map(function ($pix) {
+            return [
+                'id' => $pix->id,
+                'label' => $pix->key,
+            ];
+        });
 
         return Inertia::render('PaymentMethods/Create', [
             'keyNames' => $keyNames,
+            'pixKeys' => $pixKeys,
         ]);
     }
 
@@ -55,10 +71,10 @@ class PaymentMethodController extends Controller
     public function store(CreatePaymentMethodRequest $request)
     {
         $paymentMethod = PaymentMethod::create($request->validated());
-
+        
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A forma de pagamento foi cadastrado com sucesso.'
+            'message' => 'A forma de pagamento foi cadastrada com sucesso.'
         ]);
 
         return Redirect::route('paymentMethods.show', $paymentMethod);
@@ -70,13 +86,22 @@ class PaymentMethodController extends Controller
     public function show(PaymentMethod $paymentMethod)
     {
         $keyNames = selectionPaymentMethodsNames();
+        $pixKeys = Pix::all()->map(function ($pix) {
+            return [
+                'id' => $pix->id,
+                'label' => $pix->key,
+            ];
+        });
 
+        $paymentMethod->load('pix');
+        
         $paymentMethod['can_update'] = auth()->user()->can('update', $paymentMethod);
         $paymentMethod['can_delete'] = auth()->user()->can('delete', $paymentMethod);
 
         return Inertia::render('PaymentMethods/Show', [
             'paymentMethod' => $paymentMethod,
             'keyNames' => $keyNames,
+            'pixKeys' => $pixKeys
         ]);
     }
 
@@ -86,10 +111,17 @@ class PaymentMethodController extends Controller
     public function edit(PaymentMethod $paymentMethod)
     {
         $keyNames = selectionPaymentMethodsNames();
-
+        $pixKeys = Pix::all()->map(function ($pix) {
+            return [
+                'id' => $pix->id,
+                'label' => $pix->key,
+            ];
+        });
+        
         return Inertia::render('PaymentMethods/Edit', [
             'paymentMethod' => $paymentMethod,
             'keyNames' => $keyNames,
+            'pixKeys' => $pixKeys,
         ]);
     }
 
@@ -102,7 +134,7 @@ class PaymentMethodController extends Controller
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A forma de pagamento foi atualizado com sucesso.'
+            'message' => 'A forma de pagamento foi atualizada com sucesso.'
         ]);
 
         return Redirect::route('paymentMethods.show', $paymentMethod);
@@ -117,7 +149,7 @@ class PaymentMethodController extends Controller
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A forma de pagamento foi deletado com sucesso.'
+            'message' => 'A forma de pagamento foi deletada com sucesso.'
         ]);
 
         return Redirect::route('paymentMethods.index');
