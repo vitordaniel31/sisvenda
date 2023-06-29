@@ -35,12 +35,43 @@ export default {
             type: Object,
         }
     },
+
+    data() {
+        return {
+            keyName: this.paymentMethod
+                ? this.searchkeyName(this.paymentMethod.name_id)
+                : this.keyNames[0],
+        };
+    },
+
+    watch: {
+        form: {
+            handler: function (name) {
+                this.keyName = this.searchKeyName(name.name_id);
+            },
+            deep: true,
+        },
+    },
+
+    methods: {
+        searchKeyName(name_id) {
+            let keyName = null;
+            this.keyNames.forEach((name) => {
+                if (name.id == name_id.id && name_id === 4){
+                    keyName = 'required';
+                }else{
+                    keyName = 'nullable';
+                }
+            });
+            return keyName;
+        },
+    },
 };
 </script>
 
 <template>
     <div class="row justify-content-center">
-        <div class="col-lg-5">
+        <div class="col-lg-10">
             <div class="form-group">
                 <InputLabel
                     for="name_id"
@@ -69,7 +100,7 @@ export default {
                 <InputError class="mt-2" :message="form.errors.name_id" />
             </div>
         </div>
-        <div class="col-lg-5" v-if="form.name_id === 4">
+        <div class="col-lg-10" v-if="form.name_id === 4">
             <div class="form-group">
                 <InputLabel
                     for="pix_id"

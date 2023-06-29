@@ -15,6 +15,10 @@ export default {
         };
     },
 
+    mounted() {
+        console.log(this.paymentMethods);
+    },
+
     props: {
         paymentMethods: {
             type: Object,
@@ -66,7 +70,7 @@ export default {
                                             :href="
                                                 route('paymentMethods.show', paymentMethod)
                                             "
-                                            >{{ paymentMethod.name.label }} | {{ pixKeys.key }}
+                                            >{{ paymentMethod.name.label }} | {{ paymentMethod.pix.key }}
                                         </Link>
                                     </td>
                                     <td v-else>

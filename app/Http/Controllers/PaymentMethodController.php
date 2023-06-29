@@ -32,6 +32,8 @@ class PaymentMethodController extends Controller
             ];
         });
 
+        $paymentMethods->load('pix');
+
         // @codeCoverageIgnoreStart
         $paymentMethods = collect($paymentMethods)->map(function ($paymentMethod) {
             $paymentMethod['can_update'] = auth()->user()->can('update', $paymentMethod);
