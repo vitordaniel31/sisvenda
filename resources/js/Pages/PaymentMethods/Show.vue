@@ -22,10 +22,6 @@ export default {
         },
     },
 
-    mounted(){
-        console.log(this.paymentMethod);
-    },
-
     data() {
         return {
             title: "Forma de Pagamento",
@@ -43,7 +39,9 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('paymentMethods.index')">Forma de Pagamento</Link>
+                <Link :href="route('paymentMethods.index')"
+                    >Forma de Pagamento</Link
+                >
             </li>
             <li class="breadcrumb-item active">Detalhar Forma de Pagamento</li>
             <li class="breadcrumb-item active">{{ paymentMethod.id }}</li>
@@ -66,7 +64,12 @@ export default {
                             v-show="paymentMethod.can_delete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
-                                deleteAlert(route('paymentMethods.destroy', this.paymentMethod))
+                                deleteAlert(
+                                    route(
+                                        'paymentMethods.destroy',
+                                        this.paymentMethod
+                                    )
+                                )
                             "
                         >
                             <i class="fa fa-trash"></i>
