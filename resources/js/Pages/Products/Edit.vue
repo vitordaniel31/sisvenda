@@ -25,18 +25,13 @@ export default {
             form: useForm({
                 name: this.product.name,
                 price: this.product.price,
-                password: "",
-                password_confirmation: "",
             }),
         };
     },
 
     methods: {
         submit() {
-            this.form.put(route("products.update", this.product), {
-                onFinish: () =>
-                    this.form.reset("password", "password_confirmation"),
-            });
+            this.form.put(route("products.update", this.product));
         },
     },
 };

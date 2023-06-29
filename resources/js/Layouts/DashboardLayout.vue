@@ -89,6 +89,18 @@ export default {
                         </li>
                         <hr class="sidebar-divider my-0" />
                     </div>
+                    <div v-if="can('pixes.read')">
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('pixes.index')"
+                            >
+                                <i class="fas fa-money-check-alt"></i>
+                                <span>Pix</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
                     <div v-if="can('products.read')">
                         <li class="nav-item active">
                             <Link

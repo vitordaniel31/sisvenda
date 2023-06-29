@@ -72,7 +72,7 @@ export default {
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="product.can_update"
+                                                v-show="product.canUpdate"
                                                 class="btn btn-sm btn-outline-secondary"
                                                 :href="
                                                     route(
@@ -86,7 +86,7 @@ export default {
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="product.can_delete"
+                                                v-show="product.canDelete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(

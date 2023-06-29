@@ -60,10 +60,7 @@ export default {
                             <tbody>
                                 <tr v-for="(pix, index) in pixes">
                                     <td>
-                                        <Link
-                                            :href="
-                                                route('pixes.show', pix)
-                                            "
+                                        <Link :href="route('pixes.show', pix)"
                                             >{{ pix.name }}
                                         </Link>
                                     </td>
@@ -76,21 +73,16 @@ export default {
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="pix.can_update"
+                                                v-show="pix.canUpdate"
                                                 class="btn btn-sm btn-outline-secondary"
-                                                :href="
-                                                    route(
-                                                        'pixes.edit',
-                                                        pix
-                                                    )
-                                                "
+                                                :href="route('pixes.edit', pix)"
                                             >
                                                 <i
                                                     class="fa fa-fw fa-pencil-alt"
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="pix.can_delete"
+                                                v-show="pix.canDelete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(

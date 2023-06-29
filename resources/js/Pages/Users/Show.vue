@@ -53,14 +53,14 @@ export default {
                     </h5>
                     <div class="btn-group float-right">
                         <Link
-                            v-show="user.can_update"
+                            v-show="user.canUpdate"
                             class="btn btn-sm ms-1 btn-outline-secondary"
                             :href="route('users.edit', user)"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </Link>
                         <button
-                            v-show="user.can_delete"
+                            v-show="user.canDelete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
                                 deleteAlert(route('users.destroy', this.user))
