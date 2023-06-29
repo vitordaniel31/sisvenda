@@ -18,6 +18,7 @@ import "dayjs/locale/pt-br";
 import "vue3-toastify/dist/index.css";
 import VueSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
+import VueTheMask from "vue-the-mask";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -39,6 +40,7 @@ createInertiaApp({
                 autoClose: 5000,
                 theme: "colored",
             })
+            .use(VueTheMask)
             .mixin(permissionsMixin)
             .mixin(sweetAlertMixin)
             .mixin(dayJsMixin)
