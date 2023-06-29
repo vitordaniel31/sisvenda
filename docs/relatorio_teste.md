@@ -8,8 +8,7 @@ Responsabilidade do Testador
 
 **Descrição**: Criação, listagem, edição e exclusão de dados de um usuário, quando requisitado pelo administrador
 
-
-**Especificação**:Após o usuário entrar no sistema na barra lateral tem o icone de usuarios, onde ao clicar ele verá a listagem de usuários cadastrado, podendo editas, excluir e adicionar os outros usuários. 
+**Especificação**:Após o usuário entrar no sistema na barra lateral tem o icone de usuarios, onde ao clicar ele verá a listagem de usuários cadastrado, podendo editas, excluir e adicionar os outros usuários.
 
 **Resultado**: O que foi executado está de acordo com o userstory.
 
@@ -82,14 +81,14 @@ do servidor de email ainda não está implementada, gerando essa exception
 
 **Especificação**:Após o usuário entrar no sistema na barra lateral tem o icone de pixs, onde ao clicar ele verá a listagem de pixs cadastrado, podendo editar, excluir e adicionar os outros pixs.
 
-**Resultado**: O que foi falta apenas a validação das informações da chave pix, fora isso está tudo de acordo com o userStory.
+**Resultado**: As funcionalidades estão de acordo ao userStory.
 
 **US03 - Manter Pix**
 
 | **Teste** | **Descrição** | **Especificação** | **Resultado** |
 | :--------- | :--------------- | :-------------- | :--------------- |
 | Teste 01: Listar | A1 -Listar  <br>A1.1 O administrador clica no icone de pixs na para lateral dos sistema <br> A1.2 Após clicar aprece a página principal do pix, listando todos eles, tendo as informações de Nome, cahve e tipo e as açõs (editar e deletar), além do botão no  canto superior de adicionar um novo pix e um campo de busca.<br>A1.3. Fim do fluxo.| A implementação está de acordo com a especificação do User Story. | O listar está funcionando.  |
-| Teste 02: Cadastrar | A2 -Cadastro  <br>A2.1 Clico no botão cadatrar no canto superior. <br> A2.2 Usuário é direcionando a página de cadastro. <br> A2.3 Preenche todos os dados requisitados pelo sistema, nome, chave e tipo <br> A2.4 Se algum item estiver incorreto, não apresenta erro e deixa cadastrar mesmo assim, está faltando as máscaras. <br> A2.5 Colocando os dados ele será direcionando para a página de detalhes do pix, onde, tem a opção de deletar ou editar as informações.<br>A2.6 Fim do fluxo.| A função implementada não segue os passos A2.4. A implementação não está de acordo com a especificação do User Story. | Falta adicionar as máscaras |
+| Teste 02: Cadastrar | A2 -Cadastro  <br>A2.1 Clico no botão cadatrar no canto superior. <br> A2.2 Usuário é direcionando a página de cadastro. <br> A2.3 Preenche todos os dados requisitados pelo sistema, nome, chave e tipo <br> A2.4 Se algum item estiver incorreto, ele avisa e deixa o usuário digitar novamente. <br> A2.5 Colocando os dados ele será direcionando para a página de detalhes do pix, onde, tem a opção de deletar ou editar as informações.<br>A2.6 Fim do fluxo.| A função implementada não segue os passos A2.4. A implementação não está de acordo com a especificação do User Story. | Funcionando perfeitamente |
 | Teste 03: Excluir | A3 - Exclusão  <br>A3.1 Quando está na página de listar pix, ou no de detalhe, é possível ver o botão com icone de lixeira, que é o que vamos clicar para excluir o pix <br> A3.2 Só é possóvel excluir se o ator foi um administrador <br> A3.3 Escolhedo o pix e clicando no botão de lixeira, aparece uma notificão de confirmação, para ter certeza que vai excluir <br> A3.4 Clicando no botão de confirmar, o pix some da listagem. <br> A3.5 Caso saia do sistema antes de finalizar a exclusão, ela não é realizada. <br> A3.6 Fim do fluxo|A implementação está de acordo com a especificação do User Story. | O Excluir está funcionando corretamente |
 | Teste 04: Editar | A4 -  Editar <br> A4.1 A edição é feita na página de listagem <br>A4.2 Clica no botão com o icone de lápis <br> A4.3 Usuario é direcionando para a página de edição <br>A4.5 É possível editar o nome e o preço <br> A4.6 Após clicar no botão de confirmar, vai para a página de detalhes com a notificação temporária avisando que as alterações foram realizada com sucesso <br> A4.7 fim do fluxo| A implementação está de acordo com a especificação do User Story. | O Eeditar está funcionando corretamente.  |
 
@@ -99,6 +98,4 @@ Responsabilidade do Gerente
 
  | **Teste**       |        **Providência**     |    **Tarefas/Tipo**|
  | :--------- | :--------------- | :--------------
- | Teste 01 - Cadastrar Usuário |    Adicionar as máscaras no campo da chave pix, dependendo do tipo. |  Tarefa: Providenciar de Implementação.|
   | Teste 02 - Login |    Configurar servidor de email. |  Tarefa: Providenciar de Implementação.
-
