@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -82,9 +83,11 @@ class SaleController extends Controller
     public function edit(Sale $sale)
     {
         $sale->load('products');
+        $products = Product::all();
 
         return Inertia::render('Sales/Edit', [
-            'sale' => $sale
+            'sale' => $sale,
+            'products' => $products,
         ]);
     }
 

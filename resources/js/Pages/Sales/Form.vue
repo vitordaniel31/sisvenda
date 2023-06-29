@@ -39,7 +39,7 @@ export default {
                     class="mt-1 block w-full"
                     v-model="form.client"
                     required
-                    autofocus
+                    :autofocus="create"
                     autocomplete="client"
                     :disabled="disabled"
                 />
