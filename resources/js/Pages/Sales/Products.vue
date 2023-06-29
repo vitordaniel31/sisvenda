@@ -2,11 +2,16 @@
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 export default {
     components: {
+        Link,
         TextInput,
+        InputLabel,
+        InputError,
+        PrimaryButton,
     },
 
     props: {
@@ -18,6 +23,10 @@ export default {
             type: Boolean,
         },
 
+        sale: {
+            type: Object,
+        },
+
         products: {
             type: Object,
         },
@@ -27,9 +36,26 @@ export default {
         },
     },
 
+    data() {
+        return {
+            form: useForm({
+                product_id: 1,
+                quantity: "1",
+            }),
+        };
+    },
+
+    methods: {
+        submit() {
+            this.form.post(route("sales.products.store", this.sale));
+        },
+    },
+
     mounted() {
         $("#dataTable").DataTable({
             ordering: false,
+            paging: false,
+            dom: "rtp",
         });
     },
 };
@@ -38,51 +64,63 @@ export default {
 <template>
     <div class="row justify-content-center">
         <div class="col-lg-12">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="form-group">
-                        <InputLabel
-                            for="client"
-                            value="Cliente"
-                            :required="true"
-                        />
+            <form @submit.prevent="submit">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        <div class="form-group">
+                            <InputLabel
+                                for="product_id"
+                                value="Produto"
+                                :required="true"
+                            />
 
-                        <v-select
-                            id="product_id"
-                            required
-                            :disabled="disabled"
-                            :options="products"
-                            label="name"
-                            :reduce="(product) => product.id"
-                        ></v-select>
+                            <v-select
+                                id="product_id"
+                                v-model="form.product_id"
+                                label="label"
+                                required
+                                :disabled="disabled"
+                                :options="products"
+                                :reduce="(product) => product.id"
+                            ></v-select>
 
-                        <InputError class="mt-2" />
+                            <InputError class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-lg-2">
+                        <div class="form-group">
+                            <InputLabel
+                                for="quantity"
+                                value="Quantidade"
+                                :required="true"
+                            />
+
+                            <TextInput
+                                id="quantity"
+                                v-model="form.quantity"
+                                type="number"
+                                min="1"
+                                class="mt-1 block w-full"
+                                required
+                                :disabled="disabled"
+                                style="height: 32px"
+                            />
+
+                            <InputError class="mt-2" />
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        <InputLabel
-                            for="client"
-                            value="Cliente"
-                            :required="true"
-                        />
-
-                        <TextInput
-                            id="client"
-                            type="text"
-                            class="mt-1 block w-full"
-                            required
-                            :autofocus="create"
-                            autocomplete="client"
-                            :disabled="disabled"
-                        />
-
-                        <InputError class="mt-2" />
-                    </div>
+                <div class="row justify-content-center">
+                    <PrimaryButton
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Adicionar
+                    </PrimaryButton>
                 </div>
-            </div>
+            </form>
             <div class="row justify-content-center">
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     <div class="table-responsive">
                         <table
                             id="dataTable"
@@ -115,8 +153,13 @@ export default {
                                         </Link>
                                     </td>
                                     <td>{{ productSale.quantity }}</td>
-                                    <td>{{ productSale.price }}</td>
-                                    <td>{{ productSale.total }}</td>
+                                    <td>
+                                        R$
+                                        {{
+                                            productSale.price.replace(".", ",")
+                                        }}
+                                    </td>
+                                    <td>R$ {{ productSale.total }}</td>
                                     <td class="text-center">
                                         <div class="btn-group"></div>
                                     </td>

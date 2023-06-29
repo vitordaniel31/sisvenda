@@ -24,6 +24,10 @@ class ProductSale extends Model
         'price',
     ];
 
+    protected $appends = [
+        'total',
+    ];
+
     public function getTotalAttribute()
     {
         return $this->quantity * $this->price;

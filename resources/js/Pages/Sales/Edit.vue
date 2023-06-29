@@ -54,33 +54,34 @@ export default {
             </li>
         </template>
         <template #content>
-            <form @submit.prevent="submit">
-                <div class="col-lg-12">
+            <div class="col-lg-12">
+                <form @submit.prevent="submit">
                     <Form :form="form" :create="false" :disabled="false"></Form>
-                </div>
-                <div class="col-lg-12">
-                    <div class="row justify-content-center">
-                        <PrimaryButton
-                            :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing"
-                        >
-                            Confirmar
-                        </PrimaryButton>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <ListProducts
+                            :products="products"
+                            :productSales="sale.products"
+                            :create="false"
+                            :disabled="false"
+                            :sale="sale"
+                        ></ListProducts>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <ListProducts
-                                :products="products"
-                                :productSales="sale.products"
-                                :create="false"
-                                :disabled="false"
-                            ></ListProducts>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <PrimaryButton
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Confirmar
+                    </PrimaryButton>
                 </div>
-            </form>
+            </div>
         </template>
     </DashboardLayout>
 </template>
