@@ -16,7 +16,6 @@ Membro     |     Papel   |   E-mail   |
 José Marques     | Desenvolvedor e Testador             | jose.marques.707@ufrn.edu.br
 Ketlly Azevedo   | Gerente de Projetos e Desenvolvedora | ketlly.azevedo.090@ufrn.edu.br
 Vitor Daniel     | Analista, Testador                   | vitor.medeiros.709@ufrn.edu.br
-Hugo Maia        | Analista e Desenvolvedor             | hugo2mufrn@gmail.com
 Taciano          | Analista e Desenvolvedor             | taciano@bsi.ufrn.br
 
 ## Matriz de Competências
@@ -26,7 +25,6 @@ Membro     |     Competências   |
 José Marques     | Desenvolvedor PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript; Especialista em testes de software.
 Ketlly Azevedo   | Desenvolvedora PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript, Vue.
 Vitor Daniel     | Analista de Sistemas; Desenvolvedor PHP, Laravel, Python, Django, SQL, HTML, CSS, JavaScript, AngularJS e Ionic.
-Hugo Maia        | Desenvolveddor HTML, CSS, JavaScript, Python
 Taciano          | Desenvolvedor Java, Junit, Eclipse, JSP, JSF, Hibernate, Matemática, Latex, etc;
 
 ## Perfis dos Usuários
@@ -67,6 +65,14 @@ RF022 - Relatórios Periódicos | <p align="justify">O usuário poderá gerar um
 RF023 - Estatísticas no Dashboard | <p align="justify">No dashboard, o usuário deve ter acesso a estatísticas, uma espécie de "mini relatórios" que ficarão disponivéis na página principal, como: número de vendas no dia, produtos mais vendidos na semana etc. </p> | Administrador ou Gerente |
 RF024 - Histórico de Ações | <p align="justify">O sistema deve registrar no banco de dados todas as movimentações feitas por quaisquer usuários, como: alteração do preço de um produto, alteração de dados de um usuário, cadastro de vendas etc., para que fique registrado e em eventuais erros dos usuários, esse histórico possa ajudar a indetificá-los. </p> | Administrador ou Gerente |
 RF025 - Lista de Histórico de Ações | <p align="justify">O sistema deverá ter uma página que liste o histórico de ações. </p> | Administrador |
+RF026 - Cadastro de Pix | <p align="justify">O sistema deve permitir que um usuário cadastre novas chaves de Pix. </p> | Administrador |
+RF027 - Edição de Pix | <p align="justify">O sistema deverá permitir a alteração de dados dos pix. </p> | Administrador |
+RF028 - Listar Pix | <p align="justify">O sistema deverá ter uma página que liste todos os Pix. </p> | Administrador |
+RF029 - Excluir Pix | <p align="justify">O sistema deverá permitir apagar um pix, no entanto, esse registro não será apagado do banco de dados, mas sim inativado. Essa funcionalidade poderá ser usada quando um pix não estiver mais sendo utilizado na loja, por exemplo. </p> | Administrador |
+RF030 - Cadastro de Item do pedido | <p align="justify">O sistema deve permitir que um usuário cadastre os itens que farão parde do pedido para poder ser feito a venda. </p> | Administrador |
+RF031 - Edição de Item do pedido | <p align="justify">O sistema deverá permitir a alteração dos itens pedidos. </p> | Administrador |
+RF032 - Listar Itens do pedido | <p align="justify">O sistema deverá terá que listar todos os itens. </p> | Administrador |
+RF033 - Remover Item do pedido | <p align="justify">O sistema deverá permitir a remoção de itens que foram posteriormente removido da venda. </p> | Administrador |
 
 ## Lista de Requisitos Não-Funcionais
 
