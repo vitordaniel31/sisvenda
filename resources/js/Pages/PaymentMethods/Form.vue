@@ -35,37 +35,6 @@ export default {
             type: Object,
         }
     },
-
-    data() {
-        return {
-            keyName: this.paymentMethod
-                ? this.searchkeyName(this.paymentMethod.name_id)
-                : this.keyNames[0],
-        };
-    },
-
-    watch: {
-        form: {
-            handler: function (name) {
-                this.keyName = this.searchKeyName(name.name_id);
-            },
-            deep: true,
-        },
-    },
-
-    methods: {
-        searchKeyName(name_id) {
-            let keyName = null;
-            this.keyNames.forEach((name) => {
-                if (name.id == name_id.id && name_id === 4){
-                    keyName = 'required';
-                }else{
-                    keyName = 'nullable';
-                }
-            });
-            return keyName;
-        },
-    },
 };
 </script>
 
@@ -101,36 +70,51 @@ export default {
             </div>
         </div>
         <div class="col-lg-10" v-if="form.name_id === 4">
-            <div class="form-group">
+            <div v-if="!disabled" class="form-group">
                 <InputLabel
                     for="pix_id"
                     value="Chave Pix"
                     :required="true"
                 />
                 <v-select
-                    v-if="!disabled"
                     id="pix_id"
-                    required
                     v-model="form.pix_id"
                     :disabled="disabled"
                     :options="pixKeys"
-                    :reduce="(pixKey) => pixKey.id"
+                    :reduce="(keyName) => keyName.id"
                 ></v-select>
+                <InputError class="mt-2" :message="form.errors.pix_id" />
+            </div>
+            <div v-else-if="paymentMethod.pix" class="form-group">
+                <InputLabel for="pix_id" value="Chave Pix" :required="true" />
                 <TextInput
-                    v-else
                     id="pix_id"
                     type="text"
                     class="mt-1 block w-full"
                     v-model="paymentMethod.pix.key"
-                    required
-                    autocomplete="pix_id"
                     :disabled="disabled"
                 />
-                <InputError class="mt-2" :message="form.errors.pix_id" />
             </div>
         </div>
         <div class="col-lg-5" v-else>
-            {{ form.pix_id = null }}
+            {{ (form.pix_id = null) }}
+        </div>
+        <div class="col-lg-10">
+            <div class="form-group">
+                <InputLabel for="notes" value="Observação" />
+
+                <TextInput
+                    id="notes"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.notes"
+                    autofocus
+                    autocomplete="notes"
+                    :disabled="disabled"
+                />
+
+                <InputError class="mt-2" :message="form.errors.notes" />
+            </div>
         </div>
     </div>
 </template>

@@ -33,8 +33,7 @@ export default {
             form: useForm({
                 name_id: this.paymentMethod.name_id,
                 pix_id: this.paymentMethod.pix_id,
-                password: "",
-                password_confirmation: "",
+                notes: this.paymentMethod.notes,
             }),
         };
     },

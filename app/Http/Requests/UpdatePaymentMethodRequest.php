@@ -23,7 +23,8 @@ class UpdatePaymentMethodRequest extends FormRequest
     {
         return [
             'name_id' => ['required', 'integer', 'in:0,1,2,3,4'],
-            'pix_id' => ['nullable', 'integer', 'exists:pixes,id']
+            'pix_id' => ['nullable', 'required_if:name_id,4', 'integer', 'exists:pixes,id'],
+            'notes' => ['nullable', 'string', 'max: 255']
         ];
     }
 }

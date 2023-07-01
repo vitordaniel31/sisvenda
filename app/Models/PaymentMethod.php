@@ -36,7 +36,8 @@ class PaymentMethod extends Model
 
     protected $fillable = [
         'name_id',
-        'pix_id'
+        'pix_id',
+        'notes'
     ];
 
     protected $appends = [

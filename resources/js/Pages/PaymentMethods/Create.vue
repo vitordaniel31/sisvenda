@@ -29,6 +29,7 @@ export default {
             form: useForm({
                 name_id: "",
                 pix_id: "",
+                notes: "",
             }),
         };
     },

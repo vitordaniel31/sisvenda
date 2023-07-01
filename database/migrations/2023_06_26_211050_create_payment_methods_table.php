@@ -16,6 +16,7 @@ return new class extends Migration
             $table->tinyInteger('name_id');
             $table->unsignedBigInteger('pix_id')->nullable();
             $table->foreign('pix_id')->references('id')->on('pixes');
+            $table->string('notes');
             $table->timestamps();
             $table->softDeletes();
         });

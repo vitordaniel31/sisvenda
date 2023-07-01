@@ -15,10 +15,6 @@ export default {
         };
     },
 
-    mounted() {
-        console.log(this.paymentMethods);
-    },
-
     props: {
         paymentMethods: {
             type: Object,
@@ -26,7 +22,7 @@ export default {
 
         pixKeys: {
             type: Object,
-        }
+        },
     },
 };
 </script>
@@ -48,7 +44,8 @@ export default {
                             :href="route('paymentMethods.create')"
                             class="btn btn-capelli btn-sm mb-2"
                         >
-                            <i class="fa fa-fw fa-plus"></i>Cadastrar Forma de Pagamento
+                            <i class="fa fa-fw fa-plus"></i>
+                            Cadastrar Forma de Pagamento
                         </Link>
                     </div>
                 </div>
@@ -60,31 +57,53 @@ export default {
                             <thead>
                                 <tr>
                                     <th>Nome</th>
+                                    <th>Observação</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(paymentMethod, index) in paymentMethods">
+                                <tr v-for="
+                                    (paymentMethod, index) 
+                                    in paymentMethods"
+                                >
                                     <td v-if="paymentMethod.pix_id != null">
                                         <Link
                                             :href="
-                                                route('paymentMethods.show', paymentMethod)
+                                                route('paymentMethods.show', 
+                                                paymentMethod)
                                             "
-                                            >{{ paymentMethod.name.label }} | {{ paymentMethod.pix.key }}
+                                            >{{ paymentMethod.name.label }} | 
+                                            {{ paymentMethod.pix.key }}
                                         </Link>
                                     </td>
                                     <td v-else>
                                         <Link
                                             :href="
-                                                route('paymentMethods.show', paymentMethod)
+                                                route(
+                                                    'paymentMethods.show', 
+                                                    paymentMethod
+                                                )
                                             "
                                             >{{ paymentMethod.name.label }}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'paymentMethods.show', 
+                                                    paymentMethod
+                                                )
+                                            "
+                                            >{{ paymentMethod.notes }}
                                         </Link>
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="paymentMethod.can_update"
+                                                v-show="
+                                                    paymentMethod.can_update
+                                                "
                                                 class="btn btn-sm btn-outline-secondary"
                                                 :href="
                                                     route(
@@ -98,7 +117,9 @@ export default {
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="paymentMethod.can_delete"
+                                                v-show="
+                                                    paymentMethod.can_delete
+                                                "
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(
