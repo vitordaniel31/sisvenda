@@ -59,7 +59,7 @@ class SaleController extends Controller
             'message' => 'A venda foi criada com sucesso.'
         ]);
 
-        return Redirect::route('sales.show', $sale);
+        return Redirect::route('sales.edit', $sale);
     }
 
     /**

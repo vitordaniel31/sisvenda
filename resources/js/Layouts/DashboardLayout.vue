@@ -89,13 +89,25 @@ export default {
                         </li>
                         <hr class="sidebar-divider my-0" />
                     </div>
+                    <div v-if="can('paymentMethods.read')">
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('paymentMethods.index')"
+                            >
+                                <i class="fas fa-money-check-alt"></i>
+                                <span>Formas de Pagamento</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
                     <div v-if="can('pixes.read')">
                         <li class="nav-item active">
                             <Link
                                 class="nav-link collapsed"
                                 :href="route('pixes.index')"
                             >
-                                <i class="fas fa-money-check-alt"></i>
+                                <i class="fas fa-qrcode"></i>
                                 <span>Pix</span>
                             </Link>
                         </li>
@@ -133,30 +145,6 @@ export default {
                             >
                                 <i class="fas fa-users"></i>
                                 <span>Usuários</span>
-                            </Link>
-                        </li>
-                        <hr class="sidebar-divider my-0" />
-                    </div>
-                    <div v-if="can('pixes.read')">
-                        <li class="nav-item active">
-                            <Link
-                                class="nav-link collapsed"
-                                :href="route('pixes.index')"
-                            >
-                                <i class="fas fa-qrcode"></i>
-                                <span>Pix</span>
-                            </Link>
-                        </li>
-                        <hr class="sidebar-divider my-0" />
-                    </div>
-                    <div v-if="can('paymentMethods.read')">
-                        <li class="nav-item active">
-                            <Link
-                                class="nav-link collapsed"
-                                :href="route('paymentMethods.index')"
-                            >
-                                <i class="fas fa-money-check-alt"></i>
-                                <span>Formas de Pagamento</span>
                             </Link>
                         </li>
                         <hr class="sidebar-divider my-0" />
