@@ -30,8 +30,6 @@ export default {
                 name: this.pix.name,
                 key: this.pix.key,
                 type_id: this.pix.type_id,
-                password: "",
-                password_confirmation: "",
             }),
         };
     },
