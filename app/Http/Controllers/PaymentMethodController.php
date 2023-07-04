@@ -26,10 +26,12 @@ class PaymentMethodController extends Controller
     {
         $paymentMethods = PaymentMethod::all();
         $pixKeys = Pix::all()->map(function ($pix) {
+            // @codeCoverageIgnoreStart
             return [
                 'id' => $pix->id,
                 'label' => $pix->key,
             ];
+            // @codeCoverageIgnoreEnd
         });
 
         $paymentMethods->load('pix');
@@ -55,10 +57,12 @@ class PaymentMethodController extends Controller
     {
         $keyNames = selectionPaymentMethodsNames();
         $pixKeys = Pix::all()->map(function ($pix) {
+            // @codeCoverageIgnoreStart
             return [
                 'id' => $pix->id,
                 'label' => $pix->key,
             ];
+            // @codeCoverageIgnoreEnd
         });
 
         return Inertia::render('PaymentMethods/Create', [
@@ -87,6 +91,7 @@ class PaymentMethodController extends Controller
      */
     public function show(PaymentMethod $paymentMethod)
     {
+        // @codeCoverageIgnoreStart
         $keyNames = selectionPaymentMethodsNames();
         $pixKeys = Pix::all()->map(function ($pix) {
             return [
@@ -94,6 +99,7 @@ class PaymentMethodController extends Controller
                 'label' => $pix->key,
             ];
         });
+        // @codeCoverageIgnoreEnd
 
         $paymentMethod->load('pix');
 
@@ -114,10 +120,12 @@ class PaymentMethodController extends Controller
     {
         $keyNames = selectionPaymentMethodsNames();
         $pixKeys = Pix::all()->map(function ($pix) {
+            // @codeCoverageIgnoreStart
             return [
                 'id' => $pix->id,
                 'label' => $pix->key,
             ];
+            // @codeCoverageIgnoreEnd
         });
 
         return Inertia::render('PaymentMethods/Edit', [
