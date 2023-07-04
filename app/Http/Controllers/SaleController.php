@@ -62,12 +62,7 @@ class SaleController extends Controller
             'user_id' => auth()->user()->id,
         ]));
 
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'A venda foi criada com sucesso.'
-        ]);
-
-        return Redirect::route('sales.show', $sale);
+        return Redirect::route('sales.edit', $sale);
     }
 
     /**
@@ -78,7 +73,7 @@ class SaleController extends Controller
         $sale['canUpdate'] = auth()->user()->can('update', $sale);
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
-        $sale->load('products');
+        $sale->load('products.product');
 
         return Inertia::render('Sales/Show', [
             'sale' => $sale
@@ -108,17 +103,25 @@ class SaleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Cancel the specified resource in storage.
      */
-    public function update(UpdateSaleRequest $request, Sale $sale)
+    public function cancel(Sale $sale)
     {
-        $sale->update($request->validated());
+        $this->authorize('cancel', $sale);
+
+        if ($sale->products()->count() > 0) {
+            $sale->update([
+                'status_id' => Sale::STATUS_CANCELED['id']
+            ]);
+        } else {
+            $sale->delete();
+        }
 
         session()->flash('alert', [
             'type' => 'success',
-            'message' => 'A venda foi atualizada com sucesso.'
+            'message' => 'A venda foi cancelada com sucesso.'
         ]);
 
-        return Redirect::route('sales.show', $sale);
+        return Redirect::route('sales.index');
     }
 }

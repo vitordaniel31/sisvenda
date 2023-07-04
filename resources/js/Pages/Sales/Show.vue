@@ -3,6 +3,8 @@ import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Link, useForm } from "@inertiajs/vue3";
 import Form from "./Form.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import ListProducts from "./Products.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 
 export default {
     components: {
@@ -10,6 +12,8 @@ export default {
         Link,
         Form,
         PrimaryButton,
+        ListProducts,
+        DangerButton,
     },
 
     props: {
@@ -23,7 +27,7 @@ export default {
             title: "Vendas",
             description: "Detalhar Venda",
             form: useForm({
-                client: this.sale.client,
+                client: this.sale.client ? this.sale.client : "",
             }),
         };
     },
@@ -59,6 +63,22 @@ export default {
                 </div>
                 <div class="card-body">
                     <Form :form="form" :create="false" :disabled="true"></Form>
+                    <ListProducts
+                        :productSales="sale.products"
+                        :create="false"
+                        :disabled="true"
+                        :sale="sale"
+                    ></ListProducts>
+                    <div class="row justify-content-center">
+                        <DangerButton
+                            v-show="sale.status_id != 2"
+                            v-on:click="
+                                cancelAlert(route('sales.cancel', sale))
+                            "
+                        >
+                            Cancelar
+                        </DangerButton>
+                    </div>
                 </div>
             </div>
         </template>

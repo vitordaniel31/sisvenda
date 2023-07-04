@@ -4,6 +4,7 @@ import { Link, useForm } from "@inertiajs/vue3";
 import Form from "./Form.vue";
 import ListProducts from "./Products.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 
 export default {
     components: {
@@ -12,6 +13,7 @@ export default {
         Form,
         ListProducts,
         PrimaryButton,
+        DangerButton,
     },
 
     props: {
@@ -56,7 +58,12 @@ export default {
         <template #content>
             <div class="col-lg-12">
                 <form @submit.prevent="submit">
-                    <Form :form="form" :create="false" :disabled="false"></Form>
+                    <Form
+                        :form="form"
+                        :create="false"
+                        :disabled="false"
+                        :sale="sale"
+                    ></Form>
                 </form>
             </div>
             <div class="col-lg-12">
@@ -74,11 +81,18 @@ export default {
             </div>
             <div class="col-lg-12">
                 <div class="row justify-content-center">
+                    <DangerButton
+                        v-show="sale.status_id != 2"
+                        v-on:click="cancelAlert(route('sales.cancel', sale))"
+                    >
+                        Cancelar
+                    </DangerButton>
                     <PrimaryButton
+                        v-show="sale.status_id == 0"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
-                        Confirmar
+                        Finalizar
                     </PrimaryButton>
                 </div>
             </div>

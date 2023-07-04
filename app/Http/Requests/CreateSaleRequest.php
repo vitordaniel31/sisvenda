@@ -22,7 +22,7 @@ class CreateSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client' => ['required', 'string', 'max:255'],
+            'client' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

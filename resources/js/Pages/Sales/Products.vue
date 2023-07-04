@@ -40,7 +40,7 @@ export default {
         return {
             form: useForm({
                 product_id:
-                    this.products.length > 0 ? this.products[0].id : null,
+                    this.products?.length > 0 ? this.products[0].id : null,
                 quantity: "1",
             }),
 
@@ -56,31 +56,33 @@ export default {
     methods: {
         submit() {
             if (this.sale) {
-                this.form.post(route("sales.products.save", this.sale));
+                this.form.post(route("sales.products.save", this.sale), {
+                    preserveScroll: true,
+                });
             } else {
-                this.form.post(route("sales.products.save"));
+                this.form.post(route("sales.products.save"), {
+                    preserveScroll: true,
+                });
             }
         },
 
         add(productSale) {
             this.form.put(
-                route("sales.products.add", [this.sale, productSale])
+                route("sales.products.add", [this.sale, productSale]),
+                {
+                    preserveScroll: true,
+                }
             );
         },
 
         remove(productSale) {
             this.form.put(
-                route("sales.products.remove", [this.sale, productSale])
+                route("sales.products.remove", [this.sale, productSale]),
+                {
+                    preserveScroll: true,
+                }
             );
         },
-    },
-
-    mounted() {
-        $("#dataTable").DataTable({
-            ordering: false,
-            paging: false,
-            dom: "rtp",
-        });
     },
 };
 </script>
@@ -88,7 +90,10 @@ export default {
 <template>
     <div class="row justify-content-center">
         <div class="col-lg-12">
-            <form @submit.prevent="submit">
+            <form
+                v-show="!disabled && ((sale && sale.status_id == 0) || create)"
+                @submit.prevent="submit"
+            >
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-8">
                         <div class="form-group">
@@ -147,7 +152,6 @@ export default {
                 <div class="col-lg-10 mt-2">
                     <div class="table-responsive">
                         <table
-                            id="dataTable"
                             class="table table-striped table-vcenter table-bordered hover"
                         >
                             <thead>
@@ -156,7 +160,15 @@ export default {
                                     <th width="10">Quantidade</th>
                                     <th width="120">Valor Unitário</th>
                                     <th width="120">Valor Total</th>
-                                    <th width="10" class="text-center">
+                                    <th
+                                        v-show="
+                                            !disabled &&
+                                            ((sale && sale.status_id == 0) ||
+                                                create)
+                                        "
+                                        width="10"
+                                        class="text-center"
+                                    >
                                         Ações
                                     </th>
                                 </tr>
@@ -177,39 +189,7 @@ export default {
                                         </Link>
                                     </td>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                {{ productSale.quantity }}
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div
-                                                    class="row justify-content-end"
-                                                >
-                                                    <button
-                                                        v-show="sale.canUpdate"
-                                                        class="btn btn-sm ms-1 ml-1 btn-outline-success"
-                                                        v-on:click="
-                                                            add(productSale)
-                                                        "
-                                                    >
-                                                        <i
-                                                            class="fa fa-plus"
-                                                        ></i>
-                                                    </button>
-                                                    <button
-                                                        v-show="sale.canUpdate"
-                                                        class="btn btn-sm ms-1 ml-1 btn-outline-secondary"
-                                                        v-on:click="
-                                                            remove(productSale)
-                                                        "
-                                                    >
-                                                        <i
-                                                            class="fa fa-minus"
-                                                        ></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {{ productSale.quantity }}
                                     </td>
                                     <td>
                                         R$
@@ -231,8 +211,29 @@ export default {
                                             )
                                         }}
                                     </td>
-                                    <td class="text-center">
+                                    <td
+                                        v-show="
+                                            !disabled &&
+                                            ((sale && sale.status_id == 0) ||
+                                                create)
+                                        "
+                                        class="text-center"
+                                    >
                                         <div class="btn-group">
+                                            <button
+                                                v-show="sale.canUpdate"
+                                                class="btn btn-sm ms-1 ml-1 btn-outline-success"
+                                                v-on:click="add(productSale)"
+                                            >
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button
+                                                v-show="sale.canUpdate"
+                                                class="btn btn-sm ms-1 ml-1 btn-outline-secondary"
+                                                v-on:click="remove(productSale)"
+                                            >
+                                                <i class="fa fa-minus"></i>
+                                            </button>
                                             <button
                                                 v-show="sale.canDelete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
@@ -248,6 +249,20 @@ export default {
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr
+                                    v-show="
+                                        !productSales || productSales.length < 1
+                                    "
+                                    class="odd"
+                                >
+                                    <td
+                                        valign="top"
+                                        colspan="5"
+                                        class="dataTables_empty text-center"
+                                    >
+                                        Sem dados disponíveis na tabela
                                     </td>
                                 </tr>
                             </tbody>
@@ -282,10 +297,15 @@ export default {
                                     >
                                         R$
                                         {{
-                                            sale.total.toLocaleString(
-                                                "pt-BR",
-                                                numberOptions
-                                            )
+                                            sale
+                                                ? sale.total.toLocaleString(
+                                                      "pt-BR",
+                                                      numberOptions
+                                                  )
+                                                : parseFloat(0).toLocaleString(
+                                                      "pt-BR",
+                                                      numberOptions
+                                                  )
                                         }}
                                     </div>
                                 </div>

@@ -29,14 +29,16 @@ class ProductSaleController extends Controller
 
         $product = Product::findOrFail($request->product_id);
 
-        $sale->products()->create(array_merge($request->validated(), [
-            'price' => $product->price,
-        ]));
-
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'O produto foi inserido na venda com sucesso.'
-        ]);
+        $productSale = $sale->products()->where('product_id', $product->id)->first();
+        if ($productSale) {
+            $productSale->update([
+                'quantity' => $productSale->quantity + $request->quantity
+            ]);
+        } else {
+            $sale->products()->create(array_merge($request->validated(), [
+                'price' => $product->price,
+            ]));
+        }
 
         return Redirect::route('sales.edit', $sale);
     }
@@ -52,9 +54,18 @@ class ProductSaleController extends Controller
 
     public function remove(Sale $sale, ProductSale $productSale)
     {
-        $productSale->update([
-            'quantity' => $productSale->quantity - 1,
-        ]);
+        if ($productSale->quantity - 1 === 0) {
+            $productSale->delete();
+
+            session()->flash('alert', [
+                'type' => 'success',
+                'message' => 'O produto foi removido da venda com sucesso.'
+            ]);
+        } else {
+            $productSale->update([
+                'quantity' => $productSale->quantity - 1,
+            ]);
+        }
 
         return Redirect::route('sales.edit', $sale);
     }

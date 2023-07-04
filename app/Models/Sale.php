@@ -25,7 +25,7 @@ class Sale extends Model
     ];
 
     const STATUS_CANCELED = [
-        'id' => 0,
+        'id' => 2,
         'label' => 'Cancelada'
     ];
 

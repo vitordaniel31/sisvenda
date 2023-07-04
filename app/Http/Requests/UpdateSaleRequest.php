@@ -22,7 +22,7 @@ class UpdateSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'client' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
