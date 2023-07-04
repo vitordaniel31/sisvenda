@@ -38,8 +38,8 @@ class PaymentMethodController extends Controller
 
         // @codeCoverageIgnoreStart
         $paymentMethods = collect($paymentMethods)->map(function ($paymentMethod) {
-            $paymentMethod['can_update'] = auth()->user()->can('update', $paymentMethod);
-            $paymentMethod['can_delete'] = auth()->user()->can('delete', $paymentMethod);
+            $paymentMethod['canUpdate'] = auth()->user()->can('update', $paymentMethod);
+            $paymentMethod['canDelete'] = auth()->user()->can('delete', $paymentMethod);
             return $paymentMethod;
         }, $paymentMethods);
         // @codeCoverageIgnoreEnd
@@ -77,7 +77,7 @@ class PaymentMethodController extends Controller
     public function store(CreatePaymentMethodRequest $request)
     {
         $paymentMethod = PaymentMethod::create($request->validated());
-        
+
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'A forma de pagamento foi cadastrada com sucesso.'
@@ -102,9 +102,9 @@ class PaymentMethodController extends Controller
         // @codeCoverageIgnoreEnd
 
         $paymentMethod->load('pix');
-        
-        $paymentMethod['can_update'] = auth()->user()->can('update', $paymentMethod);
-        $paymentMethod['can_delete'] = auth()->user()->can('delete', $paymentMethod);
+
+        $paymentMethod['canUpdate'] = auth()->user()->can('update', $paymentMethod);
+        $paymentMethod['canDelete'] = auth()->user()->can('delete', $paymentMethod);
 
         return Inertia::render('PaymentMethods/Show', [
             'paymentMethod' => $paymentMethod,
@@ -127,7 +127,7 @@ class PaymentMethodController extends Controller
             ];
             // @codeCoverageIgnoreEnd
         });
-        
+
         return Inertia::render('PaymentMethods/Edit', [
             'paymentMethod' => $paymentMethod,
             'keyNames' => $keyNames,
