@@ -42,6 +42,7 @@ class Sale extends Model
 
     protected $appends = [
         'status',
+        'total',
     ];
 
     public function getStatusAttribute()
@@ -67,6 +68,11 @@ class Sale extends Model
         }
 
         return $status;
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->products->sum('total');
     }
 
     /**

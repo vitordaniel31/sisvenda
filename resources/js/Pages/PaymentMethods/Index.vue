@@ -62,17 +62,20 @@ export default {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="
-                                    (paymentMethod, index) 
-                                    in paymentMethods"
+                                <tr
+                                    v-for="(
+                                        paymentMethod, index
+                                    ) in paymentMethods"
                                 >
                                     <td v-if="paymentMethod.pix_id != null">
                                         <Link
                                             :href="
-                                                route('paymentMethods.show', 
-                                                paymentMethod)
+                                                route(
+                                                    'paymentMethods.show',
+                                                    paymentMethod
+                                                )
                                             "
-                                            >{{ paymentMethod.name.label }} | 
+                                            >{{ paymentMethod.name.label }} |
                                             {{ paymentMethod.pix.key }}
                                         </Link>
                                     </td>
@@ -80,7 +83,7 @@ export default {
                                         <Link
                                             :href="
                                                 route(
-                                                    'paymentMethods.show', 
+                                                    'paymentMethods.show',
                                                     paymentMethod
                                                 )
                                             "
@@ -91,7 +94,7 @@ export default {
                                         <Link
                                             :href="
                                                 route(
-                                                    'paymentMethods.show', 
+                                                    'paymentMethods.show',
                                                     paymentMethod
                                                 )
                                             "
@@ -101,9 +104,7 @@ export default {
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="
-                                                    paymentMethod.can_update
-                                                "
+                                                v-show="paymentMethod.canUpdate"
                                                 class="btn btn-sm btn-outline-secondary"
                                                 :href="
                                                     route(
@@ -117,9 +118,7 @@ export default {
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="
-                                                    paymentMethod.can_delete
-                                                "
+                                                v-show="paymentMethod.canDelete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(

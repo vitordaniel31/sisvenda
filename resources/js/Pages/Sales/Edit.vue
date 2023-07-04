@@ -29,7 +29,7 @@ export default {
             title: "Vendas",
             description: "Editar Venda",
             form: useForm({
-                client: this.sale.client,
+                client: this.sale.client ? this.sale.client : "",
             }),
         };
     },

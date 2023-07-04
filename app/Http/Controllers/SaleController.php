@@ -41,7 +41,15 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Sales/Create');
+        $products = Product::all()->map(function ($product) {
+            $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
+
+            return $product;
+        });
+
+        return Inertia::render('Sales/Create', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -82,7 +90,11 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
+        $sale['canUpdate'] = auth()->user()->can('update', $sale);
+        $sale['canDelete'] = auth()->user()->can('delete', $sale);
+
         $sale->load('products.product');
+
         $products = Product::all()->map(function ($product) {
             $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
 

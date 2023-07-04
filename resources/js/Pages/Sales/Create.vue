@@ -3,6 +3,7 @@ import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Link, useForm } from "@inertiajs/vue3";
 import Form from "./Form.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import ListProducts from "./Products.vue";
 
 export default {
     components: {
@@ -10,6 +11,13 @@ export default {
         Link,
         Form,
         PrimaryButton,
+        ListProducts,
+    },
+
+    props: {
+        products: {
+            type: Object,
+        },
     },
 
     data() {
@@ -39,21 +47,32 @@ export default {
             <li class="breadcrumb-item active">Cadastrar Venda</li>
         </template>
         <template #content>
-            <form @submit.prevent="submit">
-                <div class="col-lg-12">
+            <div class="col-lg-12">
+                <form @submit.prevent="submit">
                     <Form :form="form" :create="true" :disabled="false"></Form>
-                </div>
-                <div class="col-lg-12">
-                    <div class="row justify-content-center">
-                        <PrimaryButton
-                            :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing"
-                        >
-                            Confirmar
-                        </PrimaryButton>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <ListProducts
+                            :products="products"
+                            :create="true"
+                            :disabled="false"
+                        ></ListProducts>
                     </div>
                 </div>
-            </form>
+            </div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <PrimaryButton
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Confirmar
+                    </PrimaryButton>
+                </div>
+            </div>
         </template>
     </DashboardLayout>
 </template>

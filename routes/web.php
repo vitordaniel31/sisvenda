@@ -29,7 +29,10 @@ Route::prefix('backoffice')->middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('sales', SaleController::class)->except(['destroy']);
-    Route::resource('sales.products', ProductSaleController::class)->only(['store']);
+    Route::resource('sales.products', ProductSaleController::class)->parameters(['products' => 'productSale'])->only(['destroy']);
+    Route::post('/sales/products/save/{sale?}', [ProductSaleController::class, 'save'])->name('sales.products.save');
+    Route::put('/sales/{sale}/products/{productSale}/add', [ProductSaleController::class, 'add'])->name('sales.products.add');
+    Route::put('/sales/{sale}/products/{productSale}/remove', [ProductSaleController::class, 'remove'])->name('sales.products.remove');
     Route::resource('pixes', PixController::class);
     Route::resource('paymentMethods', PaymentMethodController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

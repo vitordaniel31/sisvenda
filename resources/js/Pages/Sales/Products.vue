@@ -39,15 +39,39 @@ export default {
     data() {
         return {
             form: useForm({
-                product_id: 1,
+                product_id:
+                    this.products.length > 0 ? this.products[0].id : null,
                 quantity: "1",
             }),
+
+            numberOptions: {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+                decimalSeparator: ",",
+                thousandsSeparator: ".",
+            },
         };
     },
 
     methods: {
         submit() {
-            this.form.post(route("sales.products.store", this.sale));
+            if (this.sale) {
+                this.form.post(route("sales.products.save", this.sale));
+            } else {
+                this.form.post(route("sales.products.save"));
+            }
+        },
+
+        add(productSale) {
+            this.form.put(
+                route("sales.products.add", [this.sale, productSale])
+            );
+        },
+
+        remove(productSale) {
+            this.form.put(
+                route("sales.products.remove", [this.sale, productSale])
+            );
         },
     },
 
@@ -120,7 +144,7 @@ export default {
                 </div>
             </form>
             <div class="row justify-content-center">
-                <div class="col-lg-10">
+                <div class="col-lg-10 mt-2">
                     <div class="table-responsive">
                         <table
                             id="dataTable"
@@ -152,20 +176,126 @@ export default {
                                             >{{ productSale.product.name }}
                                         </Link>
                                     </td>
-                                    <td>{{ productSale.quantity }}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                {{ productSale.quantity }}
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div
+                                                    class="row justify-content-end"
+                                                >
+                                                    <button
+                                                        v-show="sale.canUpdate"
+                                                        class="btn btn-sm ms-1 ml-1 btn-outline-success"
+                                                        v-on:click="
+                                                            add(productSale)
+                                                        "
+                                                    >
+                                                        <i
+                                                            class="fa fa-plus"
+                                                        ></i>
+                                                    </button>
+                                                    <button
+                                                        v-show="sale.canUpdate"
+                                                        class="btn btn-sm ms-1 ml-1 btn-outline-secondary"
+                                                        v-on:click="
+                                                            remove(productSale)
+                                                        "
+                                                    >
+                                                        <i
+                                                            class="fa fa-minus"
+                                                        ></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>
                                         R$
                                         {{
-                                            productSale.price.replace(".", ",")
+                                            parseFloat(
+                                                productSale.price
+                                            ).toLocaleString(
+                                                "pt-BR",
+                                                numberOptions
+                                            )
                                         }}
                                     </td>
-                                    <td>R$ {{ productSale.total }}</td>
+                                    <td>
+                                        R$
+                                        {{
+                                            productSale.total.toLocaleString(
+                                                "pt-BR",
+                                                numberOptions
+                                            )
+                                        }}
+                                    </td>
                                     <td class="text-center">
-                                        <div class="btn-group"></div>
+                                        <div class="btn-group">
+                                            <button
+                                                v-show="sale.canDelete"
+                                                class="btn btn-sm ms-1 ml-1 btn-outline-danger"
+                                                v-on:click="
+                                                    deleteAlert(
+                                                        route(
+                                                            'sales.products.destroy',
+                                                            [sale, productSale]
+                                                        )
+                                                    )
+                                                "
+                                            >
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-2 mb-2">
+                    <div class="card border-left-capelli shadow h-100">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active"
+                                        ><i
+                                            class="fas fa-dollar-sign text-gray-300 mr-2"
+                                        ></i
+                                        >Venda</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div
+                                        class="h4 text-center font-weight-bold text-secondary text-uppercase mb-1"
+                                    >
+                                        Valor Total
+                                    </div>
+                                    <div
+                                        class="h5 text-center font-weight-bold text-capelli text-uppercase mb-1"
+                                    >
+                                        R$
+                                        {{
+                                            sale.total.toLocaleString(
+                                                "pt-BR",
+                                                numberOptions
+                                            )
+                                        }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i
+                                        class="fas fa-dollar-sign fa-2x text-gray-300"
+                                    ></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
