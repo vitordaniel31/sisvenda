@@ -2,6 +2,7 @@
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Link, useForm } from "@inertiajs/vue3";
 import Form from "./Form.vue";
+import ListProducts from "./Products.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 export default {
@@ -9,11 +10,16 @@ export default {
         DashboardLayout,
         Link,
         Form,
+        ListProducts,
         PrimaryButton,
     },
 
     props: {
         sale: {
+            type: Object,
+        },
+
+        products: {
             type: Object,
         },
     },
@@ -48,67 +54,34 @@ export default {
             </li>
         </template>
         <template #content>
-            <form @submit.prevent="submit">
-                <div class="col-lg-12">
+            <div class="col-lg-12">
+                <form @submit.prevent="submit">
                     <Form :form="form" :create="false" :disabled="false"></Form>
-                </div>
-                <div class="col-lg-12">
-                    <div class="row justify-content-center">
-                        <PrimaryButton
-                            :class="{ 'opacity-25': form.processing }"
-                            :disabled="form.processing"
-                        >
-                            Confirmar
-                        </PrimaryButton>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <ListProducts
+                            :products="products"
+                            :productSales="sale.products"
+                            :create="false"
+                            :disabled="false"
+                            :sale="sale"
+                        ></ListProducts>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-10">
-                            <div class="table-responsive">
-                                <table
-                                    class="dataTable table table-striped table-vcenter table-bordered hover"
-                                >
-                                    <thead>
-                                        <tr>
-                                            <th>Descrição</th>
-                                            <th>Quantidade</th>
-                                            <th>Valor Unitário</th>
-                                            <th>Valor Total</th>
-                                            <th class="text-center">Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            v-for="(
-                                                product, index
-                                            ) in sale.products"
-                                        >
-                                            <td>
-                                                <Link
-                                                    :href="
-                                                        route(
-                                                            'products.show',
-                                                            product.product_id
-                                                        )
-                                                    "
-                                                    >{{ product.product.name }}
-                                                </Link>
-                                            </td>
-                                            <td>{{ product.quantity }}</td>
-                                            <td>{{ product.price }}</td>
-                                            <td>{{ product.total }}</td>
-                                            <td class="text-center">
-                                                <div class="btn-group"></div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row justify-content-center">
+                    <PrimaryButton
+                        :class="{ 'opacity-25': form.processing }"
+                        :disabled="form.processing"
+                    >
+                        Confirmar
+                    </PrimaryButton>
                 </div>
-            </form>
+            </div>
         </template>
     </DashboardLayout>
 </template>

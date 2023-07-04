@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -48,7 +49,7 @@ class SaleController extends Controller
      */
     public function store(CreateSaleRequest $request)
     {
-        $sale = Sale::create(\array_merge($request->validated(), [
+        $sale = Sale::create(array_merge($request->validated(), [
             'status_id' => Sale::STATUS_OPEN['id'],
             'user_id' => auth()->user()->id,
         ]));
@@ -81,10 +82,16 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
-        $sale->load('products');
+        $sale->load('products.product');
+        $products = Product::all()->map(function ($product) {
+            $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
+
+            return $product;
+        });
 
         return Inertia::render('Sales/Edit', [
-            'sale' => $sale
+            'sale' => $sale,
+            'products' => $products,
         ]);
     }
 
