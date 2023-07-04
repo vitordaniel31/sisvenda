@@ -31,6 +31,36 @@ export default {
             type: Object,
         },
     },
+
+    data() {
+        return {
+            keyType: this.pix
+                ? this.searchKeyType(this.pix.type_id)
+                : this.keyTypes[0],
+        };
+    },
+
+    watch: {
+        form: {
+            handler: function (key) {
+                this.keyType = this.searchKeyType(key.type_id);
+            },
+            deep: true,
+        },
+    },
+
+    methods: {
+        searchKeyType(type_id) {
+            let keyType = null;
+            this.keyTypes.forEach((key) => {
+                if (key.id == type_id) {
+                    keyType = key;
+                }
+            });
+
+            return keyType;
+        },
+    },
 };
 </script>
 
@@ -88,12 +118,22 @@ export default {
             <div class="form-group">
                 <InputLabel for="key" value="Chave" :required="true" />
                 <TextInput
+                    v-if="keyType.mask"
                     id="key"
-                    type="text"
+                    :type="keyType.type"
+                    class="mt-1 block w-full"
+                    v-mask="keyType.mask"
+                    v-model="form.key"
+                    required
+                    :disabled="disabled"
+                />
+                <TextInput
+                    v-else
+                    id="key"
+                    :type="keyType.type"
                     class="mt-1 block w-full"
                     v-model="form.key"
                     required
-                    v-mask="'99/99/9999'"
                     :disabled="disabled"
                 />
 

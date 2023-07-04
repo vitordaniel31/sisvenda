@@ -13,26 +13,30 @@ export default {
     },
 
     props: {
-        keyTypes: {
+        keyNames: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        }
     },
 
     data() {
         return {
-            title: "Pix",
-            description: "Cadastrar Pix",
+            title: "Forma de Pagamento",
+            description: "Cadastrar Forma de Pagamento",
             form: useForm({
-                name: "",
-                key: "",
-                type_id: 0,
+                name_id: "",
+                pix_id: "",
+                notes: "",
             }),
         };
     },
 
     methods: {
         submit() {
-            this.form.post(route("pixes.store"));
+            this.form.post(route("paymentMethods.store"));
         },
     },
 };
@@ -42,9 +46,9 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('pixes.index')">Pix</Link>
+                <Link :href="route('paymentMethods.index')">Forma de Pagamento</Link>
             </li>
-            <li class="breadcrumb-item active">Cadastrar Pix</li>
+            <li class="breadcrumb-item active">Cadastrar Forma de Pagamento</li>
         </template>
         <template #content>
             <form @submit.prevent="submit">
@@ -53,7 +57,8 @@ export default {
                         :form="form"
                         :create="true"
                         :disabled="false"
-                        :keyTypes="keyTypes"
+                        :keyNames="keyNames"
+                        :pixKeys="pixKeys"
                     ></Form>
                 </div>
                 <div class="col-lg-12">
