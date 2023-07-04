@@ -25,8 +25,8 @@ class ProductController extends Controller
 
         // @codeCoverageIgnoreStart
         $products = collect($products)->map(function ($product) {
-            $product['can_update'] = auth()->user()->can('update', $product);
-            $product['can_delete'] = auth()->user()->can('delete', $product);
+            $product['canUpdate'] = auth()->user()->can('update', $product);
+            $product['canDelete'] = auth()->user()->can('delete', $product);
             return $product;
         }, $products);
         // @codeCoverageIgnoreEnd
@@ -64,8 +64,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product['can_update'] = auth()->user()->can('update', $product);
-        $product['can_delete'] = auth()->user()->can('delete', $product);
+        $product['canUpdate'] = auth()->user()->can('update', $product);
+        $product['canDelete'] = auth()->user()->can('delete', $product);
 
         return Inertia::render('Products/Show', [
             'product' => $product

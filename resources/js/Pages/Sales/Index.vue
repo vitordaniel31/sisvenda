@@ -77,7 +77,19 @@ export default {
                                     </td>
                                     <td>{{ sale.status.label }}</td>
                                     <td class="text-center">
-                                        <div class="btn-group"></div>
+                                        <div class="btn-group">
+                                            <Link
+                                                v-show="sale.canUpdate"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                :href="
+                                                    route('sales.edit', sale)
+                                                "
+                                            >
+                                                <i
+                                                    class="fa fa-fw fa-pencil-alt"
+                                                ></i>
+                                            </Link>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Sale;
 use App\Models\User;
 
 class SalePolicy
@@ -44,5 +45,13 @@ class SalePolicy
     public function delete(User $user): bool
     {
         return $user->can('sales.delete');
+    }
+
+    /**
+     * Determine whether the user can cancel the model.
+     */
+    public function cancel(User $user, Sale $sale): bool
+    {
+        return $user->can('sales.update') && $sale->status_id != Sale::STATUS_CANCELED['id'];
     }
 }

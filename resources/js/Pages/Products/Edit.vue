@@ -25,8 +25,6 @@ export default {
             form: useForm({
                 name: this.product.name,
                 price: this.product.price,
-                password: "",
-                password_confirmation: "",
             }),
         };
     },

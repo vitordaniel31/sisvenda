@@ -55,19 +55,19 @@ export default {
                     </h5>
                     <div class="btn-group float-right">
                         <Link
-                            v-show="paymentMethod.can_update"
+                            v-show="paymentMethod.canUpdate"
                             class="btn btn-sm ms-1 btn-outline-secondary"
                             :href="route('paymentMethods.edit', paymentMethod)"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </Link>
                         <button
-                            v-show="paymentMethod.can_delete"
+                            v-show="paymentMethod.canDelete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
                                 deleteAlert(
                                     route(
-                                        'paymentMethods.destroy', 
+                                        'paymentMethods.destroy',
                                         this.paymentMethod
                                     )
                                 )

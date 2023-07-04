@@ -16,7 +16,28 @@ export default {
                 cancelButtonText: "Cancelar",
             }).then((action) => {
                 if (action.isConfirmed) {
-                    this.deleteForm.delete(route);
+                    this.sweetForm.delete(route, {
+                        preserveScroll: true,
+                    });
+                }
+            });
+        },
+
+        cancelAlert(route) {
+            this.$swal({
+                title: "Você tem certeza?",
+                text: "Você está mudando o status deste item!",
+                icon: "warning",
+                showCancelButton: !0,
+                customClass: {
+                    confirmButton: "btn btn-danger m-1",
+                    cancelButton: "btn btn-secondary m-1",
+                },
+                confirmButtonText: "Sim, cancele!",
+                cancelButtonText: "Desfazer",
+            }).then((action) => {
+                if (action.isConfirmed) {
+                    this.sweetForm.put(route);
                 }
             });
         },
@@ -24,7 +45,7 @@ export default {
 
     data() {
         return {
-            deleteForm: useForm({}),
+            sweetForm: useForm({}),
         };
     },
 };
