@@ -13,33 +13,30 @@ export default {
     },
 
     props: {
-        pix: {
+        keyNames: {
             type: Object,
         },
 
-        keyTypes: {
+        pixKeys: {
             type: Object,
-        },
+        }
     },
 
     data() {
         return {
-            title: "Pix",
-            description: "Editar Pix",
+            title: "Forma de Pagamento",
+            description: "Cadastrar Forma de Pagamento",
             form: useForm({
-                name: this.pix.name,
-                key: this.pix.key,
-                type_id: this.pix.type_id,
+                name_id: "",
+                pix_id: "",
+                notes: "",
             }),
         };
     },
 
     methods: {
         submit() {
-            this.form.put(route("pixes.update", this.pix), {
-                onFinish: () =>
-                    this.form.reset("password", "password_confirmation"),
-            });
+            this.form.post(route("paymentMethods.store"));
         },
     },
 };
@@ -49,20 +46,19 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('pixes.index')">Pix</Link>
+                <Link :href="route('paymentMethods.index')">Forma de Pagamento</Link>
             </li>
-            <li class="breadcrumb-item active">Editar Pix</li>
-            <li class="breadcrumb-item active">{{ pix.id }}</li>
+            <li class="breadcrumb-item active">Cadastrar Forma de Pagamento</li>
         </template>
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
                     <Form
                         :form="form"
-                        :create="false"
+                        :create="true"
                         :disabled="false"
-                        :keyTypes="keyTypes"
-                        :pix="pix"
+                        :keyNames="keyNames"
+                        :pixKeys="pixKeys"
                     ></Form>
                 </div>
                 <div class="col-lg-12">

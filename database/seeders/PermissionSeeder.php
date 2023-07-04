@@ -28,6 +28,10 @@ class PermissionSeeder extends Seeder
         'pixes.create',
         'pixes.update',
         'pixes.delete',
+        'paymentMethods.read',
+        'paymentMethods.create',
+        'paymentMethods.update',
+        'paymentMethods.delete',
     ];
 
     /**
