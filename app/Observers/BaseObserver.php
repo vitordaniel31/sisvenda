@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\StockHistory;
+use Illuminate\Support\Facades\Cache;
 
 class BaseObserver
 {

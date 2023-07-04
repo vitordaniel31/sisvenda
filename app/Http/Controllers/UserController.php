@@ -6,8 +6,10 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Illuminate\Validation\Rules;
@@ -25,7 +27,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        if (Cache::has('users')) {
+            $users = Cache::get('users');
+        } else {
+            $users = User::all();
+
+            Cache::put('users', $users, 60);
+        }
 
         $users = collect($users)->map(function ($user) {
             $user['roles'] = implode(', ', $user->getRoleNames()->toArray());
@@ -61,6 +69,8 @@ class UserController extends Controller
         ]));
 
         $user->syncRoles($request->role_id);
+
+        Cache::forget('users');
 
         session()->flash('alert', [
             'type' => 'success',
@@ -118,6 +128,8 @@ class UserController extends Controller
 
         $user->syncRoles($request->role_id);
 
+        Cache::forget('users');
+
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'O usuário foi atualizado com sucesso.'
@@ -132,6 +144,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        Cache::forget('users');
 
         session()->flash('alert', [
             'type' => 'success',
