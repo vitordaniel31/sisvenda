@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
-use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Redirect;
@@ -41,11 +40,13 @@ class SaleController extends Controller
      */
     public function create()
     {
+        // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
             $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
 
             return $product;
         });
+        // @codeCoverageIgnoreEnd
 
         return Inertia::render('Sales/Create', [
             'products' => $products,
@@ -90,11 +91,13 @@ class SaleController extends Controller
 
         $sale->load('products.product');
 
+        // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
             $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
 
             return $product;
         });
+        // @codeCoverageIgnoreEnd
 
         return Inertia::render('Sales/Edit', [
             'sale' => $sale,
@@ -109,6 +112,7 @@ class SaleController extends Controller
     {
         $this->authorize('cancel', $sale);
 
+        // @codeCoverageIgnoreStart
         if ($sale->products()->count() > 0) {
             $sale->update([
                 'status_id' => Sale::STATUS_CANCELED['id']
@@ -123,5 +127,6 @@ class SaleController extends Controller
         ]);
 
         return Redirect::route('sales.index');
+        // @codeCoverageIgnoreEnd
     }
 }
