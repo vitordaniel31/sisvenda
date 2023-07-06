@@ -20,6 +20,12 @@ class ProductSaleController extends Controller
      */
     public function save(CreateProductSaleRequest $request, Sale $sale = null)
     {
+        if ($sale) {
+            $this->authorize('saveProduct', $sale);
+        } else {
+            $this->authorize('create', Sale::class);
+        }
+
         if (!$sale) {
             $sale = Sale::create([
                 'status_id' => Sale::STATUS_OPEN['id'],
@@ -45,6 +51,8 @@ class ProductSaleController extends Controller
 
     public function add(Sale $sale, ProductSale $productSale)
     {
+        $this->authorize('saveProduct', $sale);
+        
         $productSale->update([
             'quantity' => $productSale->quantity + 1,
         ]);
@@ -54,6 +62,8 @@ class ProductSaleController extends Controller
 
     public function remove(Sale $sale, ProductSale $productSale)
     {
+        $this->authorize('saveProduct', $sale);
+
         if ($productSale->quantity - 1 === 0) {
             $productSale->delete();
 

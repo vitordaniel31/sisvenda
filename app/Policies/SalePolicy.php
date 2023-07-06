@@ -54,4 +54,12 @@ class SalePolicy
     {
         return $user->can('sales.update') && $sale->status_id != Sale::STATUS_CANCELED['id'];
     }
+
+    /**
+     * Determine whether the user can add a product the model.
+     */
+    public function saveProduct(User $user, Sale $sale): bool
+    {
+        return $user->can('sales.update') && $sale->status_id === Sale::STATUS_OPEN['id'];
+    }
 }
