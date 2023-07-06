@@ -20,7 +20,7 @@ class SaleFactory extends Factory
         return [
             'client' => fake()->name(),
             'status_id' => random_int(0, 2),
-            'user_id' => User::all()->first()->id,
+            'user_id' => User::factory()->create()->id,
         ];
     }
 }
