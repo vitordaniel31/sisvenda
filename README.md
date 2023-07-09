@@ -69,6 +69,8 @@ git clone https://github.com/vitordaniel31/sisvenda.git
 
 cd sisvenda
 
+cp .env.example .env (atualize as variáveis de ambiente no .env)
+
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
@@ -79,12 +81,12 @@ docker run --rm \
 docker compose up -d &&
 docker exec -it sisvenda-laravel-1 bash
 
-cp .env.example .env &&
 cp .env.testing.example .env.testing &&
 php artisan key:generate &&
 php artisan key:generate --env=testing &&
 php artisan migrate --seed &&
 npm install &&
+npm run prod &&
 chmod -R 777 storage bootstrap/cache
 
 ```
