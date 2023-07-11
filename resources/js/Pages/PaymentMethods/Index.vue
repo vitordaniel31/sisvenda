@@ -10,13 +10,17 @@ export default {
 
     data() {
         return {
-            title: "Pix",
-            description: "Uma lista de todos os pix",
+            title: "Forma de Pagamento",
+            description: "Uma lista de todos as formas de pagamento",
         };
     },
 
     props: {
-        pixes: {
+        paymentMethods: {
+            type: Object,
+        },
+
+        pixKeys: {
             type: Object,
         },
     },
@@ -26,7 +30,7 @@ export default {
 <template>
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
-            <li class="breadcrumb-item active">Pix</li>
+            <li class="breadcrumb-item active">Forma de Pagamento</li>
         </template>
         <template #content>
             <div class="card shadow mb-4">
@@ -36,11 +40,12 @@ export default {
                             {{ title }}
                         </h6>
                         <Link
-                            v-show="can('pixes.create')"
-                            :href="route('pixes.create')"
+                            v-show="can('paymentMethods.create')"
+                            :href="route('paymentMethods.create')"
                             class="btn btn-capelli btn-sm mb-2"
                         >
-                            <i class="fa fa-fw fa-plus"></i>Cadastrar Pix
+                            <i class="fa fa-fw fa-plus"></i>
+                            Cadastrar Forma de Pagamento
                         </Link>
                     </div>
                 </div>
@@ -52,43 +57,74 @@ export default {
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Chave</th>
-                                    <th>Tipo</th>
+                                    <th>Observação</th>
                                     <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(pix, index) in pixes">
-                                    <td>
-                                        <Link :href="route('pixes.show', pix)"
-                                            >{{ pix.name }}
+                                <tr
+                                    v-for="(
+                                        paymentMethod, index
+                                    ) in paymentMethods"
+                                >
+                                    <td v-if="paymentMethod.pix_id != null">
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'paymentMethods.show',
+                                                    paymentMethod
+                                                )
+                                            "
+                                            >{{ paymentMethod.name.label }} |
+                                            {{ paymentMethod.pix.key }}
+                                        </Link>
+                                    </td>
+                                    <td v-else>
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'paymentMethods.show',
+                                                    paymentMethod
+                                                )
+                                            "
+                                            >{{ paymentMethod.name.label }}
                                         </Link>
                                     </td>
                                     <td>
-                                        {{ pix.key }}
-                                    </td>
-                                    <td>
-                                        {{ pix.type.label }}
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'paymentMethods.show',
+                                                    paymentMethod
+                                                )
+                                            "
+                                            >{{ paymentMethod.notes }}
+                                        </Link>
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
                                             <Link
-                                                v-show="pix.canUpdate"
+                                                v-show="paymentMethod.canUpdate"
                                                 class="btn btn-sm btn-outline-secondary"
-                                                :href="route('pixes.edit', pix)"
+                                                :href="
+                                                    route(
+                                                        'paymentMethods.edit',
+                                                        paymentMethod
+                                                    )
+                                                "
                                             >
                                                 <i
                                                     class="fa fa-fw fa-pencil-alt"
                                                 ></i>
                                             </Link>
                                             <button
-                                                v-show="pix.canDelete"
+                                                v-show="paymentMethod.canDelete"
                                                 class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                                                 v-on:click="
                                                     deleteAlert(
                                                         route(
-                                                            'pixes.destroy',
-                                                            pix
+                                                            'paymentMethods.destroy',
+                                                            paymentMethod
                                                         )
                                                     )
                                                 "

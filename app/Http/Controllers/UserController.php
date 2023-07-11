@@ -47,8 +47,8 @@ class UserController extends Controller
 
         $users = collect($users)->map(function ($user) {
             $user['roles'] = implode(', ', $user->getRoleNames()->toArray());
-            $user['can_update'] = auth()->user()->can('update', $user);
-            $user['can_delete'] = auth()->user()->can('delete', $user);
+            $user['canUpdate'] = auth()->user()->can('update', $user);
+            $user['canDelete'] = auth()->user()->can('delete', $user);
             return $user;
         }, $users);
 
@@ -95,8 +95,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user['can_update'] = auth()->user()->can('update', $user);
-        $user['can_delete'] = auth()->user()->can('delete', $user);
+        $user['canUpdate'] = auth()->user()->can('update', $user);
+        $user['canDelete'] = auth()->user()->can('delete', $user);
 
         $roles = Role::all();
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
-use App\Http\Requests\UpdateSaleRequest;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -22,6 +22,14 @@ class SaleController extends Controller
     {
         $sales = Sale::all();
 
+        // @codeCoverageIgnoreStart
+        $sales = collect($sales)->map(function ($sale) {
+            $sale['canUpdate'] = auth()->user()->can('update', $sale);
+            $sale['canDelete'] = auth()->user()->can('delete', $sale);
+            return $sale;
+        }, $sales);
+        // @codeCoverageIgnoreEnd
+
         return Inertia::render('Sales/Index', [
             'sales' => $sales
         ]);
@@ -32,7 +40,17 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Sales/Create');
+        // @codeCoverageIgnoreStart
+        $products = Product::all()->map(function ($product) {
+            $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
+
+            return $product;
+        });
+        // @codeCoverageIgnoreEnd
+
+        return Inertia::render('Sales/Create', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -40,17 +58,12 @@ class SaleController extends Controller
      */
     public function store(CreateSaleRequest $request)
     {
-        $sale = Sale::create(\array_merge($request->validated(), [
+        $sale = Sale::create(array_merge($request->validated(), [
             'status_id' => Sale::STATUS_OPEN['id'],
             'user_id' => auth()->user()->id,
         ]));
 
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'A venda foi criada com sucesso.'
-        ]);
-
-        return Redirect::route('sales.show', $sale);
+        return Redirect::route('sales.edit', $sale);
     }
 
     /**
@@ -58,11 +71,62 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        $sale['can_update'] = auth()->user()->can('update', $sale);
-        $sale['can_delete'] = auth()->user()->can('delete', $sale);
+        $sale['canUpdate'] = auth()->user()->can('update', $sale);
+        $sale['canDelete'] = auth()->user()->can('delete', $sale);
+
+        $sale->load('products.product');
 
         return Inertia::render('Sales/Show', [
             'sale' => $sale
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Sale $sale)
+    {
+        $sale['canUpdate'] = auth()->user()->can('update', $sale);
+        $sale['canDelete'] = auth()->user()->can('delete', $sale);
+
+        $sale->load('products.product');
+
+        // @codeCoverageIgnoreStart
+        $products = Product::all()->map(function ($product) {
+            $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
+
+            return $product;
+        });
+        // @codeCoverageIgnoreEnd
+
+        return Inertia::render('Sales/Edit', [
+            'sale' => $sale,
+            'products' => $products,
+        ]);
+    }
+
+    /**
+     * Cancel the specified resource in storage.
+     */
+    public function cancel(Sale $sale)
+    {
+        $this->authorize('cancel', $sale);
+
+        // @codeCoverageIgnoreStart
+        if ($sale->products()->count() > 0) {
+            $sale->update([
+                'status_id' => Sale::STATUS_CANCELED['id']
+            ]);
+        } else {
+            $sale->delete();
+        }
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'A venda foi cancelada com sucesso.'
+        ]);
+
+        return Redirect::route('sales.index');
+        // @codeCoverageIgnoreEnd
     }
 }

@@ -23,6 +23,36 @@ export default {
         form: {
             type: Object,
         },
+
+        sale: {
+            type: Object,
+        },
+    },
+
+    methods: {
+        handleClientChange() {
+            if (this.sale) {
+                this.$inertia.put(
+                    route("sales.update", this.sale),
+                    {
+                        client: this.form.client,
+                    },
+                    {
+                        preserveScroll: true,
+                    }
+                );
+            } else {
+                this.$inertia.post(
+                    route("sales.store"),
+                    {
+                        client: this.form.client,
+                    },
+                    {
+                        preserveScroll: true,
+                    }
+                );
+            }
+        },
     },
 };
 </script>
@@ -31,7 +61,7 @@ export default {
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="form-group">
-                <InputLabel for="client" value="Cliente" :required="true" />
+                <InputLabel for="client" value="Cliente" />
 
                 <TextInput
                     id="client"
@@ -39,9 +69,9 @@ export default {
                     class="mt-1 block w-full"
                     v-model="form.client"
                     required
-                    autofocus
-                    autocomplete="client"
+                    :autofocus="create"
                     :disabled="disabled"
+                    @change="handleClientChange"
                 />
 
                 <InputError class="mt-2" :message="form.errors.client" />

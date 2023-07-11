@@ -13,23 +13,23 @@ export default {
     },
 
     props: {
-        pix: {
+        paymentMethod: {
             type: Object,
         },
 
-        keyTypes: {
+        pixKeys: {
             type: Object,
         },
     },
 
     data() {
         return {
-            title: "Pix",
-            description: "Detalhar Pix",
+            title: "Forma de Pagamento",
+            description: "Detalhar Forma de Pagamento",
             form: useForm({
-                name: this.pix.name,
-                key: this.pix.key,
-                type_id: this.pix.type_id,
+                name_id: this.paymentMethod.name_id,
+                pix_id: this.paymentMethod.pix_id,
+                notes: this.paymentMethod.notes,
             }),
         };
     },
@@ -40,10 +40,12 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('pixes.index')">Pix</Link>
+                <Link :href="route('paymentMethods.index')">
+                    Forma de Pagamento
+                </Link>
             </li>
-            <li class="breadcrumb-item active">Detalhar Pix</li>
-            <li class="breadcrumb-item active">{{ pix.id }}</li>
+            <li class="breadcrumb-item active">Detalhar Forma de Pagamento</li>
+            <li class="breadcrumb-item active">{{ paymentMethod.id }}</li>
         </template>
         <template #content>
             <div class="card">
@@ -53,17 +55,22 @@ export default {
                     </h5>
                     <div class="btn-group float-right">
                         <Link
-                            v-show="pix.canUpdate"
+                            v-show="paymentMethod.canUpdate"
                             class="btn btn-sm ms-1 btn-outline-secondary"
-                            :href="route('pixes.edit', pix)"
+                            :href="route('paymentMethods.edit', paymentMethod)"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </Link>
                         <button
-                            v-show="pix.canDelete"
+                            v-show="paymentMethod.canDelete"
                             class="btn btn-sm ms-1 ml-1 btn-outline-danger"
                             v-on:click="
-                                deleteAlert(route('pixes.destroy', this.pix))
+                                deleteAlert(
+                                    route(
+                                        'paymentMethods.destroy',
+                                        this.paymentMethod
+                                    )
+                                )
                             "
                         >
                             <i class="fa fa-trash"></i>
@@ -75,8 +82,8 @@ export default {
                         :form="form"
                         :create="false"
                         :disabled="true"
-                        :keyTypes="keyTypes"
-                        :pix="pix"
+                        :paymentMethod="paymentMethod"
+                        :pixKeys="pixKeys"
                     ></Form>
                 </div>
             </div>

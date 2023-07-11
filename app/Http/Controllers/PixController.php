@@ -27,8 +27,8 @@ class PixController extends Controller
 
         // @codeCoverageIgnoreStart
         $pixes = collect($pixes)->map(function ($pix) {
-            $pix['can_update'] = auth()->user()->can('update', $pix);
-            $pix['can_delete'] = auth()->user()->can('delete', $pix);
+            $pix['canUpdate'] = auth()->user()->can('update', $pix);
+            $pix['canDelete'] = auth()->user()->can('delete', $pix);
             return $pix;
         }, $pixes);
         // @codeCoverageIgnoreEnd
@@ -72,8 +72,8 @@ class PixController extends Controller
     {
         $keyTypes = selectionPixTypes();
 
-        $pix['can_update'] = auth()->user()->can('update', $pix);
-        $pix['can_delete'] = auth()->user()->can('delete', $pix);
+        $pix['canUpdate'] = auth()->user()->can('update', $pix);
+        $pix['canDelete'] = auth()->user()->can('delete', $pix);
 
         return Inertia::render('Pixes/Show', [
             'pix' => $pix,

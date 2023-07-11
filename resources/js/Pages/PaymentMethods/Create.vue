@@ -13,25 +13,30 @@ export default {
     },
 
     props: {
-        product: {
+        keyNames: {
             type: Object,
         },
+
+        pixKeys: {
+            type: Object,
+        }
     },
 
     data() {
         return {
-            title: "Produtos",
-            description: "Editar Produto",
+            title: "Forma de Pagamento",
+            description: "Cadastrar Forma de Pagamento",
             form: useForm({
-                name: this.product.name,
-                price: this.product.price,
+                name_id: "",
+                pix_id: "",
+                notes: "",
             }),
         };
     },
 
     methods: {
         submit() {
-            this.form.put(route("products.update", this.product));
+            this.form.post(route("paymentMethods.store"));
         },
     },
 };
@@ -41,15 +46,20 @@ export default {
     <DashboardLayout :title="title" :description="description">
         <template #breadcrumbs>
             <li class="breadcrumb-item">
-                <Link :href="route('products.index')">Produtos</Link>
+                <Link :href="route('paymentMethods.index')">Forma de Pagamento</Link>
             </li>
-            <li class="breadcrumb-item active">Editar Produto</li>
-            <li class="breadcrumb-item active">{{ product.id }}</li>
+            <li class="breadcrumb-item active">Cadastrar Forma de Pagamento</li>
         </template>
         <template #content>
             <form @submit.prevent="submit">
                 <div class="col-lg-12">
-                    <Form :form="form" :create="false" :disabled="false"></Form>
+                    <Form
+                        :form="form"
+                        :create="true"
+                        :disabled="false"
+                        :keyNames="keyNames"
+                        :pixKeys="pixKeys"
+                    ></Form>
                 </div>
                 <div class="col-lg-12">
                     <div class="row justify-content-center">

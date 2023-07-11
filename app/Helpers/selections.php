@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Pix;
+use App\Models\PaymentMethod;
 
 function selectionPixTypes()
 {
@@ -12,4 +13,15 @@ function selectionPixTypes()
         Pix::TYPE_EMAIL,
         Pix::TYPE_RANDOMKEY,
     ];
-}
+};
+
+function selectionPaymentMethodsNames()
+{
+    return [
+        PaymentMethod::NAME_CASH,
+        PaymentMethod::NAME_TICKET,
+        PaymentMethod::NAME_CREDITCARD,
+        PaymentMethod::NAME_DEBITCARD,
+        PaymentMethod::NAME_PIX,
+    ];
+};
