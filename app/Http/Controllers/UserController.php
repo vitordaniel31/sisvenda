@@ -28,8 +28,18 @@ class UserController extends Controller
     public function index()
     {
         if (Cache::has('users')) {
+            session()->flash('alert', [
+                'type' => 'warn',
+                'message' => 'Essa consulta usou o Cache do Redis.'
+            ]);
+
             $users = Cache::get('users');
         } else {
+            session()->flash('alert', [
+                'type' => 'error',
+                'message' => 'Essa consulta não usou o Cache do Redis.'
+            ]);
+
             $users = User::all();
 
             Cache::put('users', $users, 60);

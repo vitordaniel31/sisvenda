@@ -36,18 +36,6 @@ export default {
         },
     },
 
-    watch: {
-        alert: {
-            handler(val) {
-                if (val) {
-                    this.toastr(val["type"], val["message"]);
-                }
-            },
-            deep: true,
-            immediate: true,
-        },
-    },
-
     computed: {
         alert() {
             return usePage().props.flash.alert;
@@ -56,6 +44,19 @@ export default {
 
     mounted() {
         $(".dataTable").DataTable();
+
+        this.$watch(
+            "alert",
+            (alert) => {
+                if (alert) {
+                    this.toastr(alert["type"], alert["message"]);
+                }
+            },
+            {
+                deep: true,
+                immediate: true,
+            }
+        );
     },
 };
 </script>
