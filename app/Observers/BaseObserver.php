@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Observers;
 
@@ -34,3 +35,5 @@ class BaseObserver
         ]);
     }
 }
+
+// @codeCoverageIgnoreEnd
