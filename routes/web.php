@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PixController;
 use App\Http\Controllers\ProductSaleController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::prefix('backoffice')->middleware('auth')->group(function () {
     Route::resource('pixes', PixController::class);
     Route::resource('paymentMethods', PaymentMethodController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/report', [ReportController::class, 'index'])->name('report');
 });
 
 require __DIR__ . '/auth.php';
