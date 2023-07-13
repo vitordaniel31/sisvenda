@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Redirect;
@@ -90,6 +91,7 @@ class SaleController extends Controller
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
         $sale->load('products.product');
+        $sale->load('bill.paymentMethods');
 
         // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
@@ -97,13 +99,42 @@ class SaleController extends Controller
 
             return $product;
         });
+
+        $paymentMethods = PaymentMethod::all()->map(function ($paymentMethod) {
+            $paymentMethod->label = $paymentMethod->name['label'] . ($paymentMethod->notes ? " ({$paymentMethod->notes})" : '');
+
+            return $paymentMethod;
+        });
         // @codeCoverageIgnoreEnd
 
         return Inertia::render('Sales/Edit', [
             'sale' => $sale,
             'products' => $products,
+            'paymentMethods' => $paymentMethods,
         ]);
     }
+
+    /**
+     * Finish the specified resource in storage.
+     */
+    public function finish(Sale $sale)
+    {
+        $this->authorize('finish', $sale);
+
+        // @codeCoverageIgnoreStart
+        $sale->update([
+            'status_id' => Sale::STATUS_FINISHED['id']
+        ]);
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'A venda foi finalizada com sucesso.'
+        ]);
+
+        return Redirect::route('sales.index');
+        // @codeCoverageIgnoreEnd
+    }
+
 
     /**
      * Cancel the specified resource in storage.

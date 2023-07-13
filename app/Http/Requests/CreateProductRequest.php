@@ -22,8 +22,8 @@ class CreateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string', 'max:255'],
-            'price' => ['required','numeric', 'regex:/^\d+(\.\d{1,3})?$/']
+            'name' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/', 'min:0.01']
         ];
     }
 }

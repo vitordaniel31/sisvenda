@@ -62,4 +62,15 @@ class SalePolicy
     {
         return $user->can('sales.update') && $sale->status_id === Sale::STATUS_OPEN['id'];
     }
+
+    /**
+     * Determine whether the user can finish the sale.
+     */
+    public function finish(User $user, Sale $sale): bool
+    {
+        return $user->can('sales.update')
+            && $sale->status_id === Sale::STATUS_OPEN['id']
+            && $sale->products()->count() > 0
+            && ($sale->bill && $sale->bill->total >= $sale->total);
+    }
 }
