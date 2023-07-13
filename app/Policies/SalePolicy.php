@@ -34,9 +34,9 @@ class SalePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user): bool
+    public function update(User $user, Sale $sale): bool
     {
-        return $user->can('sales.update');
+        return $user->can('sales.update') && $sale->status_id === Sale::STATUS_OPEN['id'];
     }
 
     /**
