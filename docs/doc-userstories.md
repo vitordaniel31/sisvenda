@@ -348,32 +348,3 @@ Salvando sempre o antes e o depois da alteração.
 | **TA10.01** | O usuário adicionará os produtos que estarão na venda, junto a sua quantidade.|
 | **TA10.02** | Caso tenha colocado produtos em quantidades superiores ao pedido, é possível modificar.|
 | **TA10.03** | Se um produto for adicionado a mais, ou o cliente venha a desistir de algum dos produtos, é possível remover o produto da venda.|
-
-### User Story US11 - Gerar QRcode do Pix
-
-|               |                                                                |
-| ------------- | :------------------------------------------------------------- |
-| **Descrição** | Gerar QRcode para finalização da venda, onde o cliente paga com o valor total e após recebimento do pix ser confirmado a venda é finalizada.
-
-| **Requisitos envolvidos** |                                                    |
-| -------------     | :------------------------------------------------------------- |
-| RF017    |  QRcode
-
-|                           |                                     |
-| ------------------------- | ----------------------------------- |
-| **Prioridade**            | Importante                           |
-| **Estimativa**            | 5h                                |
-| **Tempo Gasto (real):**   |                                     |
-| **Tamanho Funcional**     | 5                                  |
-| **Analista**             | Vitor (responsável por especificar/detalhar o US).                              |
-| **Desenvolvedor**         |  José Pereira, Ketlly e Hugo  (responsáveis por implementar e realizar testes de unidade e testes de integração).
-| **Gerente**         |  Ketlly (responsável por acompanhar o desenvolvimento da atividade e observar se o resultado final segue o pedido do cliente)                                  |
-| **Revisor**               |  Vitor (responsável por avaliar a implementação e executar os testes de unidade e testes de integração).                          |
-| **Testador**              |  José (responsável por executar os Testes de Aceitação e fazer  relatório de testes).                         |
-
-| Testes de Aceitação (TA) |  |
-| ------------------ | --------- |
-| **Código**      | **Descrição** |
-| **TA11.11** | Após o administrador cadastrar uma venda, conforme o requisitado, e escolher o PIX como forma de pagamento, o sistema gera o QR Code para pagamento com PIX e então verifica se o pagamento foi realizado com sucesso.|
-| **TA11.12** | Caso não haja uma venda correspondente àquele pagamento, o usuário será informado de tal erro e será preciso verificar se a venda foi realmente cadastrada. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão do pagamento.|
-| **TA11.13** | Caso no ato do pagamento ocorrer algum erro, a venda ficará como pendente até que seja normalizado. Assim que a operação for concluída e não houver erros, o sistema registra nos logs a conclusão do pagamento.|
