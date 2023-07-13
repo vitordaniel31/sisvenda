@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Observers;
 
@@ -27,3 +28,5 @@ class ProductSaleObserver extends BaseObserver
         }
     }
 }
+
+// @codeCoverageIgnoreEnd

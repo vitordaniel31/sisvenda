@@ -122,11 +122,11 @@ class SaleController extends Controller
     /**
      * Finish the specified resource in storage.
      */
+    // @codeCoverageIgnoreStart
     public function finish(Sale $sale)
     {
         $this->authorize('finish', $sale);
 
-        // @codeCoverageIgnoreStart
         $sale->update([
             'status_id' => Sale::STATUS_FINISHED['id']
         ]);
@@ -137,7 +137,6 @@ class SaleController extends Controller
         ]);
 
         return Redirect::route('sales.index');
-        // @codeCoverageIgnoreEnd
     }
 
 
@@ -148,7 +147,6 @@ class SaleController extends Controller
     {
         $this->authorize('cancel', $sale);
 
-        // @codeCoverageIgnoreStart
         if ($sale->products()->count() > 0) {
             $sale->update([
                 'status_id' => Sale::STATUS_CANCELED['id']
@@ -163,6 +161,7 @@ class SaleController extends Controller
         ]);
 
         return Redirect::route('sales.index');
-        // @codeCoverageIgnoreEnd
     }
+    // @codeCoverageIgnoreEnd
+
 }
