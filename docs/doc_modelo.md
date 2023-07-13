@@ -81,7 +81,6 @@ classDiagram
     class Pix{
         - key : char
         - bank : char
-        + issueQrCode() void
     }
     User "1" <-- "0 ... *" StockHistory
     ProductSale "0 ... *" --> "1" Product
@@ -106,7 +105,7 @@ Descrição sucinta das entidades presentes no sistema.
 | Bill    | Entidade que representa uma Conta tem as informações sale_id : Sale, total, + getTotal(), + setTotal(total: double), + makePayment().                     |
 | PaymentMethod    | Entidade que representa uma forma de pagamento tem as informações number, name, + getBank(), + setBank(bank: char), + getPix(), + setPix(key: char).                |
 | PaymentMethodBill    | Entidade que representa um relacionamento N:N entre PaymentMethod e Bill.                |
-| Pix    | Entidade que representa um Pix tem as informações key, bank, + issueQrCode().               |
+| Pix    | Entidade que representa um Pix tem as informações key, bank.               |
 
 ## Modelo de Dados (Entidade-Relacionamento)
 

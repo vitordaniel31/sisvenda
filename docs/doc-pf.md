@@ -42,7 +42,6 @@ Lista de User Stories e os requisitos que estão associados.
 * User Story US05 - Manter Pagamento
     ```
     RF016 - Gerar Conta a Receber para Pagamento
-    RF017 - Gerador de QR Code para PIX
 * User Story US06 - Manter Formas de Pagamento
     ```
     RF018 - Lista de Formas de Pagamento
@@ -97,7 +96,6 @@ os **ALI**s (Arquivos Lógicos Internos) com o valor de *35 PF* cada e os **AIE*
 |  Cancelar Vendas      |    EE    |      Média         | 4 PF              |
 |  Cadastrar produtos na venda |    EE    |    Média    | 4 PF              |
 |  Remover produtos da venda   |    EE    |    Média    | 4 PF              |
-|  Gerador de QR Code para PIX |    SE    |    Média    | 5 PF              |
 |  Lista de Formas de Pagamento|    CE    |    Média    | 4 PF              |
 |  Cadastro de Formas de Pagamento|  EE   |    Média    | 4 PF              |
 |  Edição de Forma de Pagamento|    EE    |    Média    | 4 PF              |
@@ -133,7 +131,6 @@ os **ALI**s (Arquivos Lógicos Internos) com o valor de *35 PF* cada e os **AIE*
 |  Cancelar Vendas      |    EE    |    2    |    2    |      Média         | 3 PF              |
 |  Cadastrar produtos na venda |    EE    |    2    |    5 (3 + 2)    |    Média    | 3 PF              |
 |  Remover produtos da venda   |    EE    |    2    |    5 (3 + 2)    |    Média    | 3 PF              |
-|  Gerador de QR Code para PIX |    SE    |    1    |    2            |    Média    | 4 PF              |
 |  Lista de Formas de Pagamento|    CE    |    2    |    3 (2 + 1)    |    Média    | 2 PF              |
 |  Cadastro de Formas de Pagamento|  EE   |    1    |    3 (2 + 1)    |    Média    | 3 PF              |
 |  Edição de Forma de Pagamento|    EE    |    1    |    3 (2 + 1)    |    Média    | 3 PF              |
