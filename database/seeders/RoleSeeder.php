@@ -43,7 +43,34 @@ class RoleSeeder extends Seeder
         ],
         [
             'name' => 'Gerente',
-            'permissions' => []
+            'permissions' => [
+                'users.read',
+                'users.create',
+                'roles.read',
+                'roles.create',
+                'roles.update',
+                'roles.delete',
+                'products.read',
+                'products.create',
+                'products.update',
+                'products.delete',
+                'sales.read',
+                'sales.create',
+                'sales.update',
+                'sales.delete',
+                'pixes.read',
+                'pixes.create',
+                'pixes.update',
+                'pixes.delete',
+                'paymentMethods.read',
+                'paymentMethods.create',
+                'paymentMethods.update',
+                'paymentMethods.delete',
+                'reports.read',
+                'reports.create',
+                'reports.update',
+                'reports.delete',
+            ]
         ],
     ];
 

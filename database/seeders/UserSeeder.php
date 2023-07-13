@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'teste@teste.com',
             'password' => 'password',
             'roles' => [
-                'Administrador'
+                'Gerente'
             ]
         ],
         [
