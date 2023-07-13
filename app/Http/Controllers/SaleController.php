@@ -91,7 +91,7 @@ class SaleController extends Controller
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
         $sale->load('products.product');
-        $sale->load('bill.paymentMethods');
+        $sale->load('bill.paymentMethods.pix');
 
         // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
@@ -101,7 +101,11 @@ class SaleController extends Controller
         });
 
         $paymentMethods = PaymentMethod::all()->map(function ($paymentMethod) {
-            $paymentMethod->label = $paymentMethod->name['label'] . ($paymentMethod->notes ? " ({$paymentMethod->notes})" : '');
+            if ($paymentMethod->name_id === PaymentMethod::NAME_PIX['id']) {
+                $paymentMethod->label = $paymentMethod->name['label'] . " - Chave: " . $paymentMethod->pix->key . " / " . $paymentMethod->pix->name;
+            } else {
+                $paymentMethod->label = $paymentMethod->name['label'] . ($paymentMethod->notes ? " ({$paymentMethod->notes})" : '');
+            }
 
             return $paymentMethod;
         });
