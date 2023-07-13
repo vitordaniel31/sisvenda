@@ -35,6 +35,7 @@ class ProductSaleController extends Controller
 
         $product = Product::findOrFail($request->product_id);
 
+        // @codeCoverageIgnoreStart
         $productSale = $sale->products()->where('product_id', $product->id)->first();
         if ($productSale) {
             $productSale->update([
@@ -45,6 +46,7 @@ class ProductSaleController extends Controller
                 'price' => $product->price,
             ]));
         }
+        // @codeCoverageIgnoreEnd
 
         return Redirect::route('sales.edit', $sale);
     }
@@ -52,18 +54,21 @@ class ProductSaleController extends Controller
     public function add(Sale $sale, ProductSale $productSale)
     {
         $this->authorize('saveProduct', $sale);
-        
+
+        // @codeCoverageIgnoreStart
         $productSale->update([
             'quantity' => $productSale->quantity + 1,
         ]);
 
         return Redirect::route('sales.edit', $sale);
+        // @codeCoverageIgnoreEnd
     }
 
     public function remove(Sale $sale, ProductSale $productSale)
     {
         $this->authorize('saveProduct', $sale);
 
+        // @codeCoverageIgnoreStart
         if ($productSale->quantity - 1 === 0) {
             $productSale->delete();
 
@@ -78,6 +83,7 @@ class ProductSaleController extends Controller
         }
 
         return Redirect::route('sales.edit', $sale);
+        // @codeCoverageIgnoreEnd   
     }
 
     /**

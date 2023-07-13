@@ -52,22 +52,22 @@ classDiagram
         - status : boolean
         - user_id : User
         + total() double
-        + generateAccount() void
+        + generateBill() void
         + completeSale() void
         + profitabilityProducts(di : date, df : date) void
         + reportSales(di : date, df : date) void
         + reportPaymentMethod(di : date, df : date) void
     }
-    class Account{
+    class Bill{
         - sale_id : Sale
         - total : double
         + getTotal() double
         + setTotal(total: double) void
         + makePayment() void
     }
-    class PaymentMethodOfAccount{
+    class PaymentMethodBill{
         - payment_id : PaymentMethod
-        - account_id : Account
+        - bill_id : Bill
         - value : double
     }
     class PaymentMethod{
@@ -86,9 +86,9 @@ classDiagram
     User "1" <-- "0 ... *" StockHistory
     ProductSale "0 ... *" --> "1" Product
     Sale "1" -- "1 ... *" ProductSale
-    Sale "1" <-- "1" Account
-    PaymentMethodOfAccount "*" --> "1" Account
-    PaymentMethodOfAccount "*" --> "1" PaymentMethod
+    Sale "1" <-- "1" Bill
+    PaymentMethodBill "*" --> "1" Bill
+    PaymentMethodBill "*" --> "1" PaymentMethod
     PaymentMethod "1" -- "0 ... 1" Pix
 ```
 
@@ -102,10 +102,10 @@ Descrição sucinta das entidades presentes no sistema.
 | StockHistory     | Entidade que representa o histórico de ações tem as informações: user_id, action, previous, later, + register(history : StockHistory).            |
 | Product    | Entidade que representa um produto tem as informações name, price, active, + register(pro : Product), + edit(pro : Product), + getActive(), setActive(active : boolean).                     |
 | ProductSale    | Entidade que representa um relacionamento N:N entre produto e venda.                    |
-| Sale    | Entidade que representa uma venda tem as informações date, status, user_id : User, + total(), + generateAccount(), + completeSale(), + profitabilityProducts(di : date, df : date), reportSales(di : date, df : date), reportPaymentMethod(di : date, df : date).                     |
-| Account    | Entidade que representa uma Conta tem as informações sale_id : Sale, total, + getTotal(), + setTotal(total: double), + makePayment().                     |
+| Sale    | Entidade que representa uma venda tem as informações date, status, user_id : User, + total(), + generateBill(), + completeSale(), + profitabilityProducts(di : date, df : date), reportSales(di : date, df : date), reportPaymentMethod(di : date, df : date).                     |
+| Bill    | Entidade que representa uma Conta tem as informações sale_id : Sale, total, + getTotal(), + setTotal(total: double), + makePayment().                     |
 | PaymentMethod    | Entidade que representa uma forma de pagamento tem as informações number, name, + getBank(), + setBank(bank: char), + getPix(), + setPix(key: char).                |
-| PaymentMethodOfAccount    | Entidade que representa um relacionamento N:N entre PaymentMethod e Account.                |
+| PaymentMethodBill    | Entidade que representa um relacionamento N:N entre PaymentMethod e Bill.                |
 | Pix    | Entidade que representa um Pix tem as informações key, bank, + issueQrCode().               |
 
 ## Modelo de Dados (Entidade-Relacionamento)
@@ -116,8 +116,8 @@ Para criar modelos ER é possível usar o BrModelo e gerar uma imagem. Contudo, 
 erDiagram
     User ||--o{ StockHistory : "cadastra"
     Product }|--|{ Sale : "tem"
-    Account ||--|{ Sale : "tem"
-    Account ||--|{ PaymentMethod : "possui"
+    Bill ||--|{ Sale : "tem"
+    Bill ||--|{ PaymentMethod : "possui"
     Pix |o--o| PaymentMethod : "pode ser"
 ```
 
@@ -181,7 +181,7 @@ erDiagram
 | status        | status da venda (concluida ou cancelada) | BOOLEAN        | ---     | Not Null    |
 | user_id       | identificador do Usuario         | INT          | ---     | FK / Not Null         |
 
-* Account
+* Bill
 
 | Tabela     | Conta                                                                      |
 | ---------- | -------------------------------------------------------------------------- |

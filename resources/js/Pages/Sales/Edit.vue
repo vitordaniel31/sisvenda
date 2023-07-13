@@ -3,6 +3,7 @@ import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Link, useForm } from "@inertiajs/vue3";
 import Form from "./Form.vue";
 import ListProducts from "./Products.vue";
+import ListBills from "./Bills.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 
@@ -11,6 +12,7 @@ export default {
         DashboardLayout,
         Link,
         Form,
+        ListBills,
         ListProducts,
         PrimaryButton,
         DangerButton,
@@ -22,6 +24,10 @@ export default {
         },
 
         products: {
+            type: Object,
+        },
+
+        paymentMethods: {
             type: Object,
         },
     },
@@ -79,6 +85,19 @@ export default {
                     </div>
                 </div>
             </div>
+            <div v-show="sale" class="col-lg-12">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <ListBills
+                            :paymentMethods="paymentMethods"
+                            :bill="sale.bill"
+                            :create="false"
+                            :disabled="false"
+                            :sale="sale"
+                        ></ListBills>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-12">
                 <div class="row justify-content-center">
                     <DangerButton
@@ -89,8 +108,18 @@ export default {
                     </DangerButton>
                     <PrimaryButton
                         v-show="sale.status_id == 0"
-                        :class="{ 'opacity-25': form.processing }"
-                        :disabled="form.processing"
+                        v-on:click="
+                            finishSaleAlert(route('sales.finish', sale))
+                        "
+                        :class="{
+                            'opacity-25':
+                                form.processing ||
+                                (sale.bill && sale.total > sale.bill.total),
+                        }"
+                        :disabled="
+                            form.processing ||
+                            (sale.bill && sale.total > sale.bill.total)
+                        "
                     >
                         Finalizar
                     </PrimaryButton>

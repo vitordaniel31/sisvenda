@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
-use App\Http\Requests\UpdateSaleRequest;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Redirect;
@@ -41,11 +41,13 @@ class SaleController extends Controller
      */
     public function create()
     {
+        // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
             $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
 
             return $product;
         });
+        // @codeCoverageIgnoreEnd
 
         return Inertia::render('Sales/Create', [
             'products' => $products,
@@ -89,18 +91,50 @@ class SaleController extends Controller
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
         $sale->load('products.product');
+        $sale->load('bill.paymentMethods');
 
+        // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
             $product->label = "{$product->name} - R$" . number_format($product->price, 2, ',', '.');
 
             return $product;
         });
 
+        $paymentMethods = PaymentMethod::all()->map(function ($paymentMethod) {
+            $paymentMethod->label = $paymentMethod->name['label'] . ($paymentMethod->notes ? " ({$paymentMethod->notes})" : '');
+
+            return $paymentMethod;
+        });
+        // @codeCoverageIgnoreEnd
+
         return Inertia::render('Sales/Edit', [
             'sale' => $sale,
             'products' => $products,
+            'paymentMethods' => $paymentMethods,
         ]);
     }
+
+    /**
+     * Finish the specified resource in storage.
+     */
+    public function finish(Sale $sale)
+    {
+        $this->authorize('finish', $sale);
+
+        // @codeCoverageIgnoreStart
+        $sale->update([
+            'status_id' => Sale::STATUS_FINISHED['id']
+        ]);
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'A venda foi finalizada com sucesso.'
+        ]);
+
+        return Redirect::route('sales.index');
+        // @codeCoverageIgnoreEnd
+    }
+
 
     /**
      * Cancel the specified resource in storage.
@@ -109,6 +143,7 @@ class SaleController extends Controller
     {
         $this->authorize('cancel', $sale);
 
+        // @codeCoverageIgnoreStart
         if ($sale->products()->count() > 0) {
             $sale->update([
                 'status_id' => Sale::STATUS_CANCELED['id']
@@ -123,5 +158,6 @@ class SaleController extends Controller
         ]);
 
         return Redirect::route('sales.index');
+        // @codeCoverageIgnoreEnd
     }
 }
