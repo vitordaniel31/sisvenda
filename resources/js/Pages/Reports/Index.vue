@@ -1,8 +1,8 @@
 <script>
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const picked = ref('One')
+const picked = ref("One");
 
 export default {
     components: {
@@ -14,7 +14,7 @@ export default {
             title: "Relatório",
             picked: null,
             dateInit: null,
-            dateFinish: null
+            dateFinish: null,
         };
     },
 
@@ -55,10 +55,14 @@ export default {
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="d-flex justify-content-between mb-0">
-                        <form action="/backoffice/report/" method="GET" class="d-flex">
+                        <form
+                            :action="route('reports.index')"
+                            method="GET"
+                            class="d-flex"
+                        >
                             <div class="form-group mr-4">
                                 <label
-                                    id="dateInitLabel" 
+                                    id="dateInitLabel"
                                     for="dateInit"
                                     class="mr-1"
                                 >
@@ -72,8 +76,8 @@ export default {
                                 />
                             </div>
                             <div class="form-group mr-4">
-                                <label 
-                                    id="dateFinishLabel" 
+                                <label
+                                    id="dateFinishLabel"
                                     for="dateFinish"
                                     class="mr-1"
                                 >
@@ -85,10 +89,9 @@ export default {
                                     id="dateFinish"
                                     v-model="dateFinish"
                                 />
-                                
                             </div>
-                            <button 
-                                type="submit" 
+                            <button
+                                type="submit"
                                 class="btn btn-capelli btn-sm mb-2"
                             >
                                 Gerar Relatório
@@ -97,13 +100,30 @@ export default {
                     </div>
                     <div class="d-flex justify-content-between mb-0">
                         <label for="one">Relatório de Produtos</label>
-                        <input type="radio" id="one" value="One" v-model="picked" />
+                        <input
+                            type="radio"
+                            id="one"
+                            value="One"
+                            v-model="picked"
+                        />
 
                         <label for="two">Relatório de Lucros</label>
-                        <input type="radio" id="two" value="Two" v-model="picked" />
+                        <input
+                            type="radio"
+                            id="two"
+                            value="Two"
+                            v-model="picked"
+                        />
 
-                        <label for="three">Relatório de Formas de Pagamento</label>
-                        <input type="radio" id="three" value="Three" v-model="picked" />
+                        <label for="three"
+                            >Relatório de Formas de Pagamento</label
+                        >
+                        <input
+                            type="radio"
+                            id="three"
+                            value="Three"
+                            v-model="picked"
+                        />
                     </div>
                 </div>
                 <div class="card-body">
@@ -129,9 +149,11 @@ export default {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr 
+                                <tr
                                     v-if="picked === 'One'"
-                                    v-for="(productBestSeller, index) in productBestSeller"
+                                    v-for="(
+                                        productBestSeller, index
+                                    ) in productBestSeller"
                                 >
                                     <td>
                                         {{ productBestSeller.name }}
@@ -143,7 +165,7 @@ export default {
                                         {{ productBestSeller.totalSalesAmount }}
                                     </td>
                                 </tr>
-                                <tr 
+                                <tr
                                     v-else-if="picked === 'Two'"
                                     v-for="(reportSales, index) in reportSales"
                                 >

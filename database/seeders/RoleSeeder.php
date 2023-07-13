@@ -34,7 +34,11 @@ class RoleSeeder extends Seeder
                 'paymentMethods.read',
                 'paymentMethods.create',
                 'paymentMethods.update',
-                'paymentMethods.delete'
+                'paymentMethods.delete',
+                'reports.read',
+                'reports.create',
+                'reports.update',
+                'reports.delete',
             ]
         ],
         [

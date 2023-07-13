@@ -32,6 +32,10 @@ class PermissionSeeder extends Seeder
         'paymentMethods.create',
         'paymentMethods.update',
         'paymentMethods.delete',
+        'reports.read',
+        'reports.create',
+        'reports.update',
+        'reports.delete',
     ];
 
     /**
