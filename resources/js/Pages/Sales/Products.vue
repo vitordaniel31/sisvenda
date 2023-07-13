@@ -113,7 +113,10 @@ export default {
                                 :reduce="(product) => product.id"
                             ></v-select>
 
-                            <InputError class="mt-2" />
+                            <InputError
+                                class="mt-2"
+                                :message="form.errors.product_id"
+                            />
                         </div>
                     </div>
                     <div class="col-md-2 col-lg-2">
@@ -135,7 +138,10 @@ export default {
                                 style="height: 32px"
                             />
 
-                            <InputError class="mt-2" />
+                            <InputError
+                                class="mt-2"
+                                :message="form.errors.quantity"
+                            />
                         </div>
                     </div>
                 </div>
@@ -270,8 +276,8 @@ export default {
                     </div>
                 </div>
 
-                <div class="col-lg-6 mt-2 mb-2">
-                    <div class="card border-left-capelli shadow h-100">
+                <div class="col-lg-3 mt-2 mb-2">
+                    <div class="card border-left-danger shadow h-100">
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
@@ -293,12 +299,113 @@ export default {
                                         Valor Total
                                     </div>
                                     <div
-                                        class="h5 text-center font-weight-bold text-capelli text-uppercase mb-1"
+                                        class="h5 text-center font-weight-bold text-danger text-uppercase mb-1"
                                     >
                                         R$
                                         {{
                                             sale
                                                 ? sale.total.toLocaleString(
+                                                      "pt-BR",
+                                                      numberOptions
+                                                  )
+                                                : parseFloat(0).toLocaleString(
+                                                      "pt-BR",
+                                                      numberOptions
+                                                  )
+                                        }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i
+                                        class="fas fa-dollar-sign fa-2x text-gray-300"
+                                    ></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mt-2 mb-2">
+                    <div class="card border-left-success shadow h-100">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active"
+                                        ><i
+                                            class="fas fa-dollar-sign text-gray-300 mr-2"
+                                        ></i
+                                        >Venda</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div
+                                        class="h4 text-center font-weight-bold text-secondary text-uppercase mb-1"
+                                    >
+                                        Valor Pago
+                                    </div>
+                                    <div
+                                        class="h5 text-center font-weight-bold text-success text-uppercase mb-1"
+                                    >
+                                        R$
+                                        {{
+                                            sale && sale.bill
+                                                ? parseFloat(
+                                                      sale.bill.total
+                                                  ).toLocaleString(
+                                                      "pt-BR",
+                                                      numberOptions
+                                                  )
+                                                : parseFloat(0).toLocaleString(
+                                                      "pt-BR",
+                                                      numberOptions
+                                                  )
+                                        }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i
+                                        class="fas fa-dollar-sign fa-2x text-gray-300"
+                                    ></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mt-2 mb-2">
+                    <div class="card border-left-capelli shadow h-100">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active"
+                                        ><i
+                                            class="fas fa-dollar-sign text-gray-300 mr-2"
+                                        ></i
+                                        >Venda</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div
+                                        class="h4 text-center font-weight-bold text-secondary text-uppercase mb-1"
+                                    >
+                                        Valor Restante
+                                    </div>
+                                    <div
+                                        class="h5 text-center font-weight-bold text-capelli text-uppercase mb-1"
+                                    >
+                                        R$
+                                        {{
+                                            sale && sale.bill
+                                                ? parseFloat(
+                                                      sale.total -
+                                                          sale.bill.total
+                                                  ).toLocaleString(
                                                       "pt-BR",
                                                       numberOptions
                                                   )

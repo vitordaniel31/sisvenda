@@ -7,12 +7,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 
 class Sale extends Model
 {
     use HasFactory,
-        SoftDeletes;
+        SoftDeletes,
+        CascadeSoftDeletes;
+
+    /**
+     * The relationships that should be soft deleted.
+     *
+     * @var array
+     */
+    protected $cascadeDeletes = [
+        'bill',
+        'products',
+    ];
 
     const STATUS_OPEN = [
         'id' => 0,
@@ -93,5 +106,15 @@ class Sale extends Model
     public function products(): HasMany
     {
         return $this->hasMany(ProductSale::class);
+    }
+
+    /**
+     * Get the bill associated with the Sale
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function bill(): HasOne
+    {
+        return $this->hasOne(Bill::class);
     }
 }

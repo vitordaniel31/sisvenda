@@ -41,6 +41,25 @@ export default {
                 }
             });
         },
+
+        finishSaleAlert(route) {
+            this.$swal({
+                title: "Você tem certeza?",
+                text: "Você está finalizando essa venda!",
+                icon: "warning",
+                showCancelButton: !0,
+                customClass: {
+                    confirmButton: "btn btn-success m-1",
+                    cancelButton: "btn btn-secondary m-1",
+                },
+                confirmButtonText: "Sim, finalize!",
+                cancelButtonText: "Desfazer",
+            }).then((action) => {
+                if (action.isConfirmed) {
+                    this.sweetForm.put(route);
+                }
+            });
+        },
     },
 
     data() {
