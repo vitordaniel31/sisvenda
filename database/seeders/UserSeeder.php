@@ -34,6 +34,14 @@ class UserSeeder extends Seeder
             ]
         ],
         [
+            'name' => 'Usuário Teste',
+            'email' => 'teste@teste.com',
+            'password' => 'password',
+            'roles' => [
+                'Administrador'
+            ]
+        ],
+        [
             'name' => 'Vitor Daniel',
             'email' => 'vitordaniel602@gmail.com',
             'password' => 'password',
