@@ -50,7 +50,7 @@ export default {
     <AuthenticationLayout>
         <template #content>
             <div class="row justify-content-center">
-                <h4><b>Central de Autenticação - Sisvenda</b></h4>
+                <h4><b>AUTENTICAÇÃO</b></h4>
             </div>
 
             <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -91,7 +91,7 @@ export default {
 
                 <div class="flex items-center justify-end mt-4">
                     <Link
-                        v-if="canResetPassword"
+                        v-if="canResetPassword && 1 != 1"
                         :href="route('password.request')"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
@@ -103,7 +103,7 @@ export default {
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                     >
-                        Log in
+                        Login
                     </PrimaryButton>
                 </div>
             </form>
