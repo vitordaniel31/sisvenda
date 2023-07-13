@@ -1,18 +1,22 @@
 <script>
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { ref } from "vue";
-
-const picked = ref("One");
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 export default {
     components: {
         DashboardLayout,
+        TextInput,
+        InputLabel,
+        InputError,
     },
 
     data() {
         return {
             title: "Relatório",
-            picked: null,
+            picked: "One",
             dateInit: null,
             dateFinish: null,
         };
@@ -42,6 +46,10 @@ export default {
         paymentMethods: {
             type: Object,
         },
+
+        types: {
+            type: Object,
+        },
     },
 };
 </script>
@@ -52,79 +60,70 @@ export default {
             <li class="breadcrumb-item active">Relatório</li>
         </template>
         <template #content>
+            <div class="row justify-content-center">
+                <form
+                    :action="route('reports.index')"
+                    method="GET"
+                    class="d-flex"
+                >
+                    <div class="form-group mr-4">
+                        <InputLabel for="dateInit" value="Data inicial" />
+
+                        <TextInput
+                            id="dateInit"
+                            type="date"
+                            class="mt-1 block w-full"
+                            v-model="dateInit"
+                        />
+                    </div>
+                    <div class="form-group mr-4">
+                        <InputLabel for="dateFinish" value="Data final" />
+
+                        <TextInput
+                            id="dateFinish"
+                            type="date"
+                            class="mt-1 block w-full"
+                            v-model="dateFinish"
+                        />
+                    </div>
+                </form>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-lg-10">
+                    <div class="form-group">
+                        <InputLabel
+                            value="Tipo do Relatório"
+                            :required="true"
+                        />
+                        <div class="col-lg-12" v-for="reportType in types">
+                            <div class="custom-control custom-switch">
+                                <input
+                                    class="custom-control-input"
+                                    type="radio"
+                                    :id="'type' + reportType.id"
+                                    name="type_id"
+                                    v-model="picked"
+                                    :value="reportType.id"
+                                />
+                                <InputLabel
+                                    class="custom-control-label"
+                                    :for="'type' + reportType.id"
+                                    :value="reportType.label"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-capelli btn-sm mb-2">
+                    Gerar Relatório
+                </button>
+            </div>
+
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <div class="d-flex justify-content-between mb-0">
-                        <form
-                            :action="route('reports.index')"
-                            method="GET"
-                            class="d-flex"
-                        >
-                            <div class="form-group mr-4">
-                                <label
-                                    id="dateInitLabel"
-                                    for="dateInit"
-                                    class="mr-1"
-                                >
-                                    Data Inicial:
-                                </label>
-                                <input
-                                    type="date"
-                                    name="dateInit"
-                                    id="dateInit"
-                                    v-model="dateInit"
-                                />
-                            </div>
-                            <div class="form-group mr-4">
-                                <label
-                                    id="dateFinishLabel"
-                                    for="dateFinish"
-                                    class="mr-1"
-                                >
-                                    Data Final:
-                                </label>
-                                <input
-                                    type="date"
-                                    name="dateFinish"
-                                    id="dateFinish"
-                                    v-model="dateFinish"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                class="btn btn-capelli btn-sm mb-2"
-                            >
-                                Gerar Relatório
-                            </button>
-                        </form>
-                    </div>
-                    <div class="d-flex justify-content-between mb-0">
-                        <label for="one">Relatório de Produtos</label>
-                        <input
-                            type="radio"
-                            id="one"
-                            value="One"
-                            v-model="picked"
-                        />
-
-                        <label for="two">Relatório de Lucros</label>
-                        <input
-                            type="radio"
-                            id="two"
-                            value="Two"
-                            v-model="picked"
-                        />
-
-                        <label for="three"
-                            >Relatório de Formas de Pagamento</label
-                        >
-                        <input
-                            type="radio"
-                            id="three"
-                            value="Three"
-                            v-model="picked"
-                        />
-                    </div>
+                    <div class="d-flex justify-content-between mb-0"></div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

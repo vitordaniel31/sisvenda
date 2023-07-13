@@ -11,6 +11,8 @@ use App\Models\Sale;
 use App\Models\PaymentMethod;
 use App\Policies\ReportPolicy;
 
+use function App\Helpers\selectionReportsTypes;
+
 class ReportController extends Controller
 {
     public function index()
@@ -80,7 +82,8 @@ class ReportController extends Controller
             'dateFinish' => $dateFinish,
             'productBestSeller' => $productBestSeller,
             'payments' => $payments,
-            'paymentMethods' => $paymentMethods
+            'paymentMethods' => $paymentMethods,
+            'types' => selectionReportsTypes(),
         ]);
     }
 }
