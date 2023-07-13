@@ -18,6 +18,7 @@ class ReportController extends Controller
         $dateFinish = request('dateFinish');
 
         $productBestSeller = ProductSale::select()
+            ->join('sales', 'sales.id', '=', 'product_sales.sale_id')
             ->join('products', 'products.id', '=', 'product_id')
             ->select(ProductSale::raw('products.name, 
                 SUM(products.price * product_sales.quantity) as totalSalesAmount, 
@@ -34,6 +35,7 @@ class ReportController extends Controller
         }
 
         $reportSales = ProductSale::select()
+            ->join('sales', 'sales.id', '=', 'product_sales.sale_id')
             ->join('products', 'product_sales.product_id', '=', 'products.id')
             ->select(ProductSale::raw('COUNT(*) as totalSales, 
                 SUM(product_sales.quantity) as totalProducts, 
