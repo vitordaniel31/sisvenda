@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             ProductSeeder::class,
-            PixSeeder::class
+            PixSeeder::class,
+            PaymentMethodSeeder::class
         ]);
     }
 }
