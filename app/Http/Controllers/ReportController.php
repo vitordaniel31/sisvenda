@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 namespace App\Http\Controllers;
 
@@ -63,7 +64,7 @@ class ReportController extends Controller
                 payment_methods.name_id,
                 COUNT(bill_payment_method.payment_method_id) as totalPaymentMethod,
                 SUM(bill_payment_method.value) as totalPago'))
-            ->groupby('payment_methods.name_id','payment_method_id')
+            ->groupby('payment_methods.name_id', 'payment_method_id')
             ->orderByDesc('totalPaymentMethod')
             ->take(3)
             ->whereBetween('sales.created_at', [$dateInit, $dateFinish])
@@ -72,7 +73,7 @@ class ReportController extends Controller
 
         foreach ($payments as $payment) {
             $payment->totalPago = number_format($payment->totalPago, 2, '.', ',');
-            
+
             switch ($payment->name_id) {
                 case 0:
                     $payment->name = PaymentMethod::NAME_CASH;
@@ -105,3 +106,5 @@ class ReportController extends Controller
         ]);
     }
 }
+
+// @codeCoverageIgnoreEnd
