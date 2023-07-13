@@ -40,9 +40,9 @@ class PixSeeder extends Seeder
     {
         foreach ($this->pixes as $pixToCreate) {
             $pixes = Pix::firstOrCreate([
-                'name' => $pixToCreate['name']
-            ], [
                 'key' => $pixToCreate['key'],
+            ], [
+                'name' => $pixToCreate['name'],
                 'type_id' => $pixToCreate['type_id']
             ]);
         }

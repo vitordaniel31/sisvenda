@@ -11,12 +11,12 @@ class PaymentMethodSeeder extends Seeder
         [
             'name_id' => 0,
             'pix_id' => null,
-            'notes' => '',
+            'notes' => null,
         ],
         [
             'name_id' => 1,
             'pix_id' => null,
-            'notes' => '',
+            'notes' => null,
         ],
         [
             'name_id' => 2,
@@ -31,7 +31,7 @@ class PaymentMethodSeeder extends Seeder
         [
             'name_id' => 4,
             'pix_id' => 1,
-            'notes' => '',
+            'notes' => null,
         ],
     ];
 

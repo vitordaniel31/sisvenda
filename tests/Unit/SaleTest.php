@@ -61,7 +61,9 @@ it('store a sales without permission', function () {
 it('access sales edit page with permission', function () {
     $user = createUserForActing('sales.update');
 
-    $sale = Sale::factory()->create();
+    $sale = Sale::factory()->create([
+        'status_id' => Sale::STATUS_OPEN['id']
+    ]);
 
     $this->actingAs($user)->get(route('sales.edit', $sale))
         ->assertStatus(200);
@@ -78,7 +80,9 @@ it('access sales edit page without permission', function () {
 
 it('update a sales with permission', function () {
     $user = createUserForActing('sales.update');
-    $sale = Sale::factory()->create();
+    $sale = Sale::factory()->create([
+        'status_id' => Sale::STATUS_OPEN['id']
+    ]);
 
     $this->actingAs($user)->get(route('sales.edit', $sale), [
         'client' => 'Venda Editada Teste',

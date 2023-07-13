@@ -91,15 +91,7 @@ export default {
                                         </Link>
                                     </td>
                                     <td>
-                                        <Link
-                                            :href="
-                                                route(
-                                                    'paymentMethods.show',
-                                                    paymentMethod
-                                                )
-                                            "
-                                            >{{ paymentMethod.notes }}
-                                        </Link>
+                                        {{ paymentMethod.notes }}
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
