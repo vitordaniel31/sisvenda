@@ -129,6 +129,18 @@ export default {
                         </li>
                         <hr class="sidebar-divider my-0" />
                     </div>
+                    <div v-if="can('reports.read')">
+                        <li class="nav-item active">
+                            <Link
+                                class="nav-link collapsed"
+                                :href="route('reports.index')"
+                            >
+                                <i class="fas fa-chart-line"></i>
+                                <span>Relatórios</span>
+                            </Link>
+                        </li>
+                        <hr class="sidebar-divider my-0" />
+                    </div>
                     <div v-if="can('sales.read')">
                         <li class="nav-item active">
                             <Link

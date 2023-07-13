@@ -25,3 +25,21 @@ function selectionPaymentMethodsNames()
         PaymentMethod::NAME_PIX,
     ];
 };
+
+function selectionReportsTypes()
+{
+    return [
+        [
+            'id' => 'One',
+            'label' => 'Relatório de Produtos'
+        ],
+        [
+            'id' => 'Two',
+            'label' => 'Relatório de Vendas'
+        ],
+        [
+            'id' => 'Three',
+            'label' => 'Relatório de Formas de Pagamento'
+        ]
+    ];
+};
