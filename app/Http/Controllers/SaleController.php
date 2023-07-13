@@ -76,6 +76,7 @@ class SaleController extends Controller
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
         $sale->load('products.product');
+        $sale->load('bill.paymentMethods.pix');
 
         return Inertia::render('Sales/Show', [
             'sale' => $sale
@@ -91,7 +92,7 @@ class SaleController extends Controller
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
         $sale->load('products.product');
-        $sale->load('bill.paymentMethods');
+        $sale->load('bill.paymentMethods.pix');
 
         // @codeCoverageIgnoreStart
         $products = Product::all()->map(function ($product) {
@@ -101,7 +102,11 @@ class SaleController extends Controller
         });
 
         $paymentMethods = PaymentMethod::all()->map(function ($paymentMethod) {
-            $paymentMethod->label = $paymentMethod->name['label'] . ($paymentMethod->notes ? " ({$paymentMethod->notes})" : '');
+            if ($paymentMethod->name_id === PaymentMethod::NAME_PIX['id']) {
+                $paymentMethod->label = $paymentMethod->name['label'] . " - Chave: " . $paymentMethod->pix->key . " / " . $paymentMethod->pix->name;
+            } else {
+                $paymentMethod->label = $paymentMethod->name['label'] . ($paymentMethod->notes ? " ({$paymentMethod->notes})" : '');
+            }
 
             return $paymentMethod;
         });
@@ -117,11 +122,11 @@ class SaleController extends Controller
     /**
      * Finish the specified resource in storage.
      */
+    // @codeCoverageIgnoreStart
     public function finish(Sale $sale)
     {
         $this->authorize('finish', $sale);
 
-        // @codeCoverageIgnoreStart
         $sale->update([
             'status_id' => Sale::STATUS_FINISHED['id']
         ]);
@@ -132,7 +137,6 @@ class SaleController extends Controller
         ]);
 
         return Redirect::route('sales.index');
-        // @codeCoverageIgnoreEnd
     }
 
 
@@ -143,7 +147,6 @@ class SaleController extends Controller
     {
         $this->authorize('cancel', $sale);
 
-        // @codeCoverageIgnoreStart
         if ($sale->products()->count() > 0) {
             $sale->update([
                 'status_id' => Sale::STATUS_CANCELED['id']
@@ -158,6 +161,7 @@ class SaleController extends Controller
         ]);
 
         return Redirect::route('sales.index');
-        // @codeCoverageIgnoreEnd
     }
+    // @codeCoverageIgnoreEnd
+
 }

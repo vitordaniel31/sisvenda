@@ -16,7 +16,7 @@ return new class extends Migration
             $table->tinyInteger('name_id');
             $table->unsignedBigInteger('pix_id')->nullable();
             $table->foreign('pix_id')->references('id')->on('pixes');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,5 +28,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('payment_methods');
-    } 
+    }
 };

@@ -71,10 +71,13 @@ export default {
                 >
                     <a
                         class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href=""
+                        :href="route('dashboard')"
                     >
                         <div class="sidebar-brand-icon">
-                            <img class="img-fluid" src="" />
+                            <img
+                                class="img-fluid"
+                                src="../Static/images/sisvenda_logo.png"
+                            />
                         </div>
                     </a>
                     <hr class="sidebar-divider my-0" />

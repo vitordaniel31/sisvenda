@@ -4,6 +4,7 @@ import { Link, useForm } from "@inertiajs/vue3";
 import Form from "./Form.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import ListProducts from "./Products.vue";
+import ListBills from "./Bills.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 
 export default {
@@ -13,6 +14,7 @@ export default {
         Form,
         PrimaryButton,
         ListProducts,
+        ListBills,
         DangerButton,
     },
 
@@ -69,6 +71,12 @@ export default {
                         :disabled="true"
                         :sale="sale"
                     ></ListProducts>
+                    <ListBills
+                        :bill="sale.bill"
+                        :create="false"
+                        :disabled="true"
+                        :sale="sale"
+                    ></ListBills>
                     <div class="row justify-content-center">
                         <DangerButton
                             v-show="sale.status_id != 2"

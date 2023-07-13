@@ -19,6 +19,16 @@ export default {
                                 <div class="row">
                                     <div class="col-lg-12 mt-3">
                                         <div class="p-5">
+                                            <div
+                                                class="row justify-content-center mb-4"
+                                            >
+                                                <img
+                                                    height="150"
+                                                    width="150"
+                                                    class="img-fluid"
+                                                    src="images/sisvenda_logo_pink.png"
+                                                />
+                                            </div>
                                             <slot name="content"></slot>
                                         </div>
                                     </div>

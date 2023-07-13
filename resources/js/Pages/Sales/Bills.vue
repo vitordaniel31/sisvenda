@@ -163,7 +163,13 @@ export default {
                                         paymentMethod, index
                                     ) in bill.payment_methods"
                                 >
-                                    <td>
+                                    <td v-if="paymentMethod.name_id == 4">
+                                        {{
+                                            paymentMethod.name["label"] +
+                                            ` - Chave: ${paymentMethod.pix.key} / ${paymentMethod.pix.name}`
+                                        }}
+                                    </td>
+                                    <td v-else>
                                         {{ paymentMethod.name["label"] }}
                                         {{
                                             paymentMethod.notes
