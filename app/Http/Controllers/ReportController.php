@@ -55,26 +55,45 @@ class ReportController extends Controller
             $reportSale->totalSalesAmount = number_format($reportSale->totalSalesAmount, 2, ',', '.');
         }
 
-        $payments = ProductSale::select()
-            ->join('sales', 'sales.id', '=', 'product_sales.sale_id')
+        $payments = Sale::select()
             ->join('bills', 'sales.id', '=', 'bills.sale_id')
             ->join('bill_payment_method', 'bills.id', '=', 'bill_payment_method.bill_id')
             ->join('payment_methods', 'payment_methods.id', '=', 'bill_payment_method.payment_method_id')
-            ->select(ProductSale::raw('
+            ->select(Sale::raw('
+                payment_methods.name_id,
                 COUNT(bill_payment_method.payment_method_id) as totalPaymentMethod,
                 SUM(bill_payment_method.value) as totalPago'))
-            ->groupby('payment_method_id')
+            ->groupby('payment_methods.name_id','payment_method_id')
             ->orderByDesc('totalPaymentMethod')
             ->take(3)
-            ->whereBetween('product_sales.created_at', [$dateInit, $dateFinish])
+            ->whereBetween('sales.created_at', [$dateInit, $dateFinish])
             ->where('sales.status_id', '=', '1')
             ->get();
 
         foreach ($payments as $payment) {
             $payment->totalPago = number_format($payment->totalPago, 2, '.', ',');
+            
+            switch ($payment->name_id) {
+                case 0:
+                    $payment->name = PaymentMethod::NAME_CASH;
+                    break;
+                case 1:
+                    $payment->name = PaymentMethod::NAME_TICKET;
+                    break;
+                case 2:
+                    $payment->name = PaymentMethod::NAME_CREDITCARD;
+                    break;
+                case 3:
+                    $payment->name = PaymentMethod::NAME_DEBITCARD;
+                    break;
+                case 4:
+                    $payment->name = PaymentMethod::NAME_PIX;
+                    break;
+                default:
+                    $payment->name = null;
+                    break;
+            }
         }
-
-        $paymentMethods = PaymentMethod::all();
 
         return Inertia::render('Reports/Index', [
             'reportSales' => $reportSales,
@@ -82,7 +101,6 @@ class ReportController extends Controller
             'dateFinish' => $dateFinish,
             'productBestSeller' => $productBestSeller,
             'payments' => $payments,
-            'paymentMethods' => $paymentMethods,
             'types' => selectionReportsTypes(),
         ]);
     }
