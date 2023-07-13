@@ -76,6 +76,7 @@ class SaleController extends Controller
         $sale['canDelete'] = auth()->user()->can('delete', $sale);
 
         $sale->load('products.product');
+        $sale->load('bill.paymentMethods.pix');
 
         return Inertia::render('Sales/Show', [
             'sale' => $sale
