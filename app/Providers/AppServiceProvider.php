@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // @codeCoverageIgnoreStart
-        if ($this->app['env'] === 'local') {
+        if ($this->app['env'] === 'production') {
             $this->app['url']->forceRootUrl(config('app.url'));
         }
         // @codeCoverageIgnoreEnd
